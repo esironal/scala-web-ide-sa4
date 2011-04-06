@@ -7,16 +7,28 @@ Initial group splitting
 
 = Details =
 
-*File Manager*
-
+*User Interface*
+    Abdul Wahed Mehran
+    Andrea Gallidabino (teamlead)
+    Mattia Candeloro
 
 
 *Collab. Editor*
+    Thomas Mantegazzi, 
+    Yotam Sharon, 
+    Ebrisa Savina Mastrodicasa, 
+    Gerardo Caruso, 
+    Marcello Romanelli
  
-
-
 *Compiler*
+    Raphael Schapfel (teamlead)
+    Lorenzo Wölckner
+    Cristian Bruseghini
+    Lorenzo Baracchi
+    
+*Source Control (Infrastructure)*
+    Rocco Ghielmini (teamlead)
+    Luca Urso
+    Elabed Omar
 
-
-
-*Architect/Infrastructure/QA*
+*Architect/QA*
