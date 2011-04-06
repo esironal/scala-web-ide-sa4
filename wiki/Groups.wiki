@@ -8,8 +8,8 @@ Initial group splitting
 = Details =
 
 *User Interface*
-    Abdul Wahed Mehran
-    Andrea Gallidabino (teamlead)
+    Abdul Wahed Mehran,
+    Andrea Gallidabino (teamlead),
     Mattia Candeloro
 
 
@@ -21,10 +21,10 @@ Initial group splitting
     Marcello Romanelli
  
 *Compiler*
-    Raphael Schapfel (teamlead)
-    Lorenzo Wölckner
-    Cristian Bruseghini
-    Lorenzo Baracchi
+    Raphael Schapfel (teamlead),
+    Lorenzo Wölckner,
+    Cristian Bruseghini,
+    Lorenzo Baracchi,
     
 *Source Control (Infrastructure)*
     Rocco Ghielmini (teamlead)
