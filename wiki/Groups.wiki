@@ -8,17 +8,15 @@ Initial group splitting
 = Details =
 
 *File Manager*
-- 
--
+
+
 
 *Collab. Editor*
-- 
--
+ 
+
 
 *Compiler*
--
--
+
+
 
 *Architect/Infrastructure/QA*
--
--
