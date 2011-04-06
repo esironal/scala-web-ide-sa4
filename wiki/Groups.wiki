@@ -24,11 +24,11 @@ Initial group splitting
     Raphael Schapfel (teamlead),
     Lorenzo Wölckner,
     Cristian Bruseghini,
-    Lorenzo Baracchi,
+    Lorenzo Baracchi
     
 *Source Control, File Management, Project Management, Infrastructure*
-    Rocco Ghielmini (teamlead)
-    Luca Urso
+    Rocco Ghielmini (teamlead),
+    Luca Urso,
     Elabed Omar
 
 *Architect/QA*
