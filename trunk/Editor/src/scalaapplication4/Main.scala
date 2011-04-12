@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package scalaapplication4
+package scalaapp
 
 object Main {
 
