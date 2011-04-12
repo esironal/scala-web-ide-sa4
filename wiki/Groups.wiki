@@ -29,6 +29,7 @@ Initial group splitting
 *Source Control, File Management, Project Management, Infrastructure*
     Rocco Ghielmini (teamlead),
     Luca Urso,
-    Elabed Omar
+    Elabed Omar,
+    Igor Moreno
 
 *Architect/QA*
