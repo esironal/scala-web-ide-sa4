@@ -6,12 +6,17 @@
   </head>
   <body class="lift:content_id=main">
     <div id="main" class="lift:surround?with=default;at=content">
-      <h2>Welcome to your project!</h2>
-      <p>
-	<span class="lift:helloWorld.howdy">
-	  Welcome to your Lift app at <span id="time">Time goes here</span>
-	</span>
-      </p>
+		<div id="editor_box">
+			<div id="left_sidebar">
+				Left Sidebar
+				<button type="button" onclick="left_sidebar()">Click Me!</button>
+			</div>
+			I'm the editor!
+			<div id="right_sidebar">
+				Right Sidebar
+				<button type="button" onclick="right_sidebar()">Click Me!</button>
+			</div>
+		</div>
     </div>
   </body>
 </html>
