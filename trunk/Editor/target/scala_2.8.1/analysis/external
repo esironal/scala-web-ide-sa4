@@ -1,0 +1,9 @@
+#External Dependencies
+#Thu Apr 14 15:24:03 CEST 2011
+/MAMP/sa4-project/Editor/project/boot/scala-2.8.1/lib/scala-library.jar=src/main/scala/code/lib/DependencyFactory.scala\:src/main/scala/bootstrap/liftweb/Boot.scala\:src/main/scala/code/model/User.scala\:src/main/scala/code/snippet/HelloWorld.scala
+/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar=src/main/scala/code/lib/DependencyFactory.scala\:src/main/scala/bootstrap/liftweb/Boot.scala\:src/main/scala/code/model/User.scala\:src/main/scala/code/snippet/HelloWorld.scala
+/MAMP/sa4-project/Editor/lib_managed/scala_2.8.1/compile/lift-mapper_2.8.1-2.2.jar=src/main/scala/bootstrap/liftweb/Boot.scala\:src/main/scala/code/model/User.scala
+/MAMP/sa4-project/Editor/lib_managed/scala_2.8.1/compile/lift-proto_2.8.1-2.2.jar=src/main/scala/bootstrap/liftweb/Boot.scala\:src/main/scala/code/model/User.scala
+/MAMP/sa4-project/Editor/lib_managed/scala_2.8.1/compile/lift-util_2.8.1-2.2.jar=src/main/scala/code/lib/DependencyFactory.scala\:src/main/scala/bootstrap/liftweb/Boot.scala\:src/main/scala/code/model/User.scala\:src/main/scala/code/snippet/HelloWorld.scala
+/MAMP/sa4-project/Editor/lib_managed/scala_2.8.1/compile/lift-common_2.8.1-2.2.jar=src/main/scala/bootstrap/liftweb/Boot.scala\:src/main/scala/code/model/User.scala\:src/main/scala/code/snippet/HelloWorld.scala
+/MAMP/sa4-project/Editor/lib_managed/scala_2.8.1/compile/lift-webkit_2.8.1-2.2.jar=src/main/scala/code/lib/DependencyFactory.scala\:src/main/scala/bootstrap/liftweb/Boot.scala
