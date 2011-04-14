@@ -1,0 +1,155 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:lift="http://liftweb.net/">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title class="lift:Menu.title">App: </title>
+    <style class="lift:CSS.blueprint"></style>
+    <style class="lift:CSS.fancyType"></style>
+    <script id="jquery" src="/classpath/jquery.js" type="text/javascript"></script>
+    <script id="json" src="/classpath/json.js" type="text/javascript"></script>
+
+
+	//Autocompletion
+	<link rel="stylesheet" href="lib/codemirror.css" />
+    <script type="text/javascript" src="lib/codemirror.js"></script>
+    <link rel="stylesheet" href="mode/javascript/javascript.css" />
+    <script  type="text/javascript" src="mode/javascript/javascript.js"></script>
+    <link rel="stylesheet" href="css/docs.css" />
+
+	<script type="text/javascript">
+		function right_sidebar() {
+			var sidebar = document.getElementById("right_sidebar");
+			sidebar.style.display = "none";
+		}
+		
+		function left_sidebar() {
+			var sidebar = document.getElementById("left_sidebar");
+			sidebar.style.display = "none";
+		}
+	</script>
+	
+    <style type="text/css">
+      .completions {
+        position: absolute;
+        z-index: 10;
+        overflow: hidden;
+        -webkit-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+        -moz-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+        box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+      }
+      .completions select {
+        background: #fafafa;
+        outline: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        font-family: monospace;
+      }
+      .CodeMirror {
+        border: 1px solid #eee;
+      }
+    </style>
+	
+	<script src="lib/complete.js"></script>
+    <style type="text/css">
+/* <![CDATA[ */
+.edit_error_class {
+  display: block;
+  color: red;
+}
+
+.sidebar ul {
+	margin:0;
+	padding:0;
+	border-bottom:1px solid #ccc;
+}
+	 
+
+.sidebar ul li {
+	margin:0;
+	padding:0;
+	list-style:none;
+	border:1px solid #ccc;
+	border-bottom:none;
+}
+
+.sidebar ul li a {
+	display:block;
+	padding:3px;
+	text-indent:30px;
+	text-decoration:none;
+}
+
+.sidebar ul li span {
+	display:block;
+	padding:3px;
+	text-indent:30px;
+	text-decoration:none;
+}
+
+.sidebar ul li a:hover {
+	background-color: #eee;
+}
+
+#editor_box {
+	border: solid 2px black;
+	width: 868px;
+	height: 400px;
+	margin-bottom: 15px;
+}
+
+#left_sidebar {
+	width: 10%;
+	height: 400px;
+	display: inline;
+	float: left;
+	border: solid 1px black;
+}
+
+#right_sidebar {
+	width: 10%;
+	height: 400px;
+	display: inline;
+	float: right;
+	border: solid 1px black;
+}
+
+.container {
+	width: 80%;
+}
+
+  /* ]]> */
+  </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="column span-15 last" style="text-align: center">
+        <h1 class="alt">Collaborative Editor</h1>
+      </div>
+
+      <hr />
+
+      <div class="column span-6 colborder sidebar">
+        <hr class="space" />
+
+	<span class="lift:Menu.builder"></span>
+
+        <div class="lift:Msgs?showAll=true"></div>
+        <hr class="space" />
+      </div>
+
+      <div class="column span-17 last">
+        <div id="content">The main content will get bound here</div>
+      </div>
+
+      <hr />
+      <div class="column span-23 last" style="text-align: center">
+        <h4 class="alt">
+         Designed By <br />
+		 Gerardo Caruso | Thomas Mantegazzi | Ebrisa Savina Mastrodicasa | Marcello Romanelli | Yotam Sharon</h4>
+      </div>
+    </div>
+  </body>
+</html>

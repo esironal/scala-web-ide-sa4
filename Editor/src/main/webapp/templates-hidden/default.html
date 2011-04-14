@@ -8,6 +8,15 @@
     <style class="lift:CSS.fancyType"></style>
     <script id="jquery" src="/classpath/jquery.js" type="text/javascript"></script>
     <script id="json" src="/classpath/json.js" type="text/javascript"></script>
+
+
+	//Autocompletion
+	<link rel="stylesheet" href="lib/codemirror.css" />
+    <script type="text/javascript" src="lib/codemirror.js"></script>
+    <link rel="stylesheet" href="mode/javascript/javascript.css" />
+    <script  type="text/javascript" src="mode/javascript/javascript.js"></script>
+    <link rel="stylesheet" href="css/docs.css" />
+
 	<script type="text/javascript">
 		function right_sidebar() {
 			var sidebar = document.getElementById("right_sidebar");
@@ -19,6 +28,30 @@
 			sidebar.style.display = "none";
 		}
 	</script>
+	
+    <style type="text/css">
+      .completions {
+        position: absolute;
+        z-index: 10;
+        overflow: hidden;
+        -webkit-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+        -moz-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+        box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+      }
+      .completions select {
+        background: #fafafa;
+        outline: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        font-family: monospace;
+      }
+      .CodeMirror {
+        border: 1px solid #eee;
+      }
+    </style>
+	
+	<script src="lib/complete.js"></script>
     <style type="text/css">
 /* <![CDATA[ */
 .edit_error_class {
