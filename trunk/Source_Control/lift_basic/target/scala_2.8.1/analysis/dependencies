@@ -1,0 +1,10 @@
+#Source Dependencies
+#Fri Apr 15 15:51:56 CEST 2011
+src/main/scala/code/comet/Messager.scala=src/main/scala/code/snippet/ChatIn.scala\:src/main/scala/code/comet/Client.scala
+src/main/scala/code/snippet/HelloWorld.scala=
+src/main/scala/bootstrap/liftweb/Boot.scala=
+src/main/scala/code/comet/Client.scala=
+src/main/scala/code/lib/DependencyFactory.scala=src/main/scala/code/snippet/HelloWorld.scala
+src/main/scala/code/comet/Message.scala=src/main/scala/code/snippet/ChatIn.scala\:src/main/scala/code/comet/Messager.scala\:src/main/scala/code/comet/Client.scala
+src/main/scala/code/snippet/ChatIn.scala=
+src/main/scala/code/model/User.scala=src/main/scala/bootstrap/liftweb/Boot.scala

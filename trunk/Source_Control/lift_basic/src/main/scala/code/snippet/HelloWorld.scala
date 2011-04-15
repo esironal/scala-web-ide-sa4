@@ -8,7 +8,14 @@ import java.util.Date
 import code.lib._
 import Helpers._
 
+/**
+ * A simple class to try...
+ * 
+ * @author Rocco Ghielmini, Luca Urso, Omar Elabed
+ * @version 2011.04.15
+ */
 class HelloWorld {
+
   lazy val date: Box[Date] = DependencyFactory.inject[Date] // inject the date
 
   // replace the contents of the element with id "time" with the date
