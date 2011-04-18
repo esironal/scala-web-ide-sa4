@@ -122,7 +122,7 @@ class Boot {
       		}
       		else {
       			<h2>You have to login.</h2>
-      			
+      			S.redirectTo("/user_mgt/login")
       		}
       		}
       		<p>
