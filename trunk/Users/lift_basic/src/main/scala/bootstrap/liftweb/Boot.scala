@@ -11,7 +11,8 @@ import Loc._
 import mapper._
 
 import code.model._
-
+import scala.xml.NodeSeq
+import code.model.Message
 
 /**
  * A class that's instantiated early and run.  It allows the application
@@ -47,6 +48,7 @@ class Boot {
       // /static path to be visible
       Menu(Loc("Profile",
                Link(List("profile"), true, "/profile/"), "Profile")),
+//      Menu.i("Rewritten Example") / "profile2" >> User.AddUserMenusAfter >> Hidden,
       Menu(Loc("Static", Link(List("static"), true, "/static/index"), 
 	       "Static Content")))
 
@@ -82,14 +84,22 @@ class Boot {
 	// Make a transaction span the whole HTTP request
     S.addAround(DB.buildLoanWrapper)
 
-
+    
+//      LiftRules.statelessRewrite.append {
+//      case RewriteRequest(
+//        ParsePath(List("profile", id), _, _, _), _, _) =>
+//          RewriteResponse("profile2"::Nil, Map("id" -> id))
+//    } 
+//    
   	LiftRules.viewDispatch.append {
       case "profile"::Nil =>
         Right(View.Profile)
+     
     }
 
 
 
+    
     
   }
   
@@ -99,8 +109,9 @@ class Boot {
   	object Profile extends LiftView {
   		def content(id: String) = 
   		{
-  		
-  			val userProfile = User.find(By(User.firstName, id))
+  			val userProfile: Box[User] = User.find(By(User.accountName, id))
+  			val user: User = userProfile.openOr(null)
+  			val msgs = Message.findAll(By(Message.userID, user.id.is))
   		
   		
   		<html>
@@ -121,12 +132,21 @@ class Boot {
       			}
       		}
       		else {
-      			<h2>You have to login.</h2>
       			S.redirectTo("/user_mgt/login")
+      			
       		}
       		}
-      		<p>
-	 		</p>
+      		
+  			<div class="lift:FormMessage">
+  
+  			
+  			
+  			{
+  				
+  				for(msg <- msgs) yield(<h3>{msg.toString}</h3>)
+  			}
+	 		</div>
+  			
     		</div>
   		</body>
 	</html>    	
@@ -139,7 +159,10 @@ class Boot {
   		}
   		
   	
-  	}	
+  	}
+//  	
+
+
   }
   
   
