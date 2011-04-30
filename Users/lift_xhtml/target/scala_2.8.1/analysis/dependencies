@@ -1,0 +1,9 @@
+#Source Dependencies
+#Sat Apr 30 17:41:02 CEST 2011
+src/main/scala/code/snippet/FormMessage.scala=
+src/main/scala/code/snippet/HelloWorld.scala=
+src/main/scala/bootstrap/liftweb/Boot.scala=
+src/main/scala/code/lib/DependencyFactory.scala=src/main/scala/code/snippet/HelloWorld.scala
+src/main/scala/code/model/User.scala=src/main/scala/bootstrap/liftweb/Boot.scala\:src/main/scala/code/snippet/FormMessage.scala\:src/main/scala/code/snippet/LoginRedirect.scala
+src/main/scala/code/snippet/LoginRedirect.scala=
+src/main/scala/code/model/Message.scala=src/main/scala/bootstrap/liftweb/Boot.scala\:src/main/scala/code/snippet/FormMessage.scala
