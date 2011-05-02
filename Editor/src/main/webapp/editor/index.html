@@ -1,0 +1,109 @@
+<html>
+<head>
+	<script src="lib/codemirror.js"></script>
+	<script type='text/javascript' src='lib/resizable-tables.js'></script>
+	
+	<link rel="stylesheet" href="lib/codemirror.css"/>
+	<script src="mode/javascript/javascript.js"></script>
+	<link rel="stylesheet" href="mode/javascript/javascript.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+	
+	
+	<script type="text/javascript">
+	function left_sidebar() {
+		var sidebar = document.getElementById("left_sidebar");
+		var button = document.getElementById("left_button");
+		var img = document.getElementById("left_img");
+		
+		
+		if(sidebar.value == 'true') {
+			sidebar.style.display = "none";
+			sidebar.value = "false";
+			button.value = "Show Project Browser";
+			img.src = "img/open_active.png";
+		} else {
+			sidebar.style.display = "inline";
+			sidebar.value = "true";
+			button.value = "Hide Project Browser";
+			img.src = "img/open_inactive.png";
+			
+		}
+	}
+	
+	function right_sidebar() {
+		var sidebar = document.getElementById("right_sidebar");
+		var button = document.getElementById("right_button");
+		var img = document.getElementById("right_img");
+		
+		if(sidebar.value == "true") {
+			sidebar.style.display = "none";
+			sidebar.value = "false";
+			button.value = "Show Chat";
+			img.src = "img/chat_active.png";
+			
+		} else {
+			sidebar.style.display = "inline";
+			sidebar.value = "true";
+			button.value = "Hide Chat";
+			img.src = "img/chat_inactive.png";
+			
+		}
+	}
+	
+	
+	$(document).ready( function() {
+	    $('#left_sidebar').fileTree({ root: 'demo/', script: 'jqueryFileTree.php' }, function(file) { 
+							alert(file);
+						});
+	});
+	</script>
+</head>
+<body>
+	<div id="top_menu">
+		<ul>
+			<li><img src="img/new.png" />New</li>
+			<li><img src="img/open.png" />Open</li>
+			<li><img src="img/save.png" />Save</li>
+			<li>|</li>
+			<li><img src="img/upload.png" />Upload</li>
+			<li><img src="img/download.png" />Download</li>
+			<li>|</li>
+			<li><img src="img/build.png" />Build</li>
+			<li><img src="img/run.png" />Run</li>
+			<li>|</li>
+			<li><img src="img/lock.png" />Lock</li>
+			<li><input type="button" value="Hide Project Browser" id="left_button" onclick="left_sidebar()">
+				<img id="left_img" src="img/open_inactive.png" width="16" heght="16" alt="submit" /></input>
+				</li>
+			<li><input type="button" value="Hide Chat" id="right_button" onclick="right_sidebar()">
+				<img id="right_img" src="img/chat_inactive.png" width="16" heght="16" alt="submit" />
+			</input></li>
+		</ul>
+	</div>
+	<br />
+	<!--<hr>-->
+	<table border="1">
+		<tr>
+			<td id="left_sidebar" value="true"  width='10%'>Left side</td>			
+			<td width='80%' id="codearea" valign="top">
+				<form>
+					<textarea id="code" name="code">
+					</textarea>
+				</form>
+			</td>
+			<td id="right_sidebar" value="true" width='10%'>Right Side</td>
+		</tr>
+	</table>
+	<!-- <div id="editor">
+		<div id="left_sidebar" value="true">
+		</div>
+		
+		<div id="right_sidebar" value="true">
+			Right Sidebar
+		</div>
+		</div> -->
+    <script src="complete.js"></script>
+
+	
+</body>
+</html>
