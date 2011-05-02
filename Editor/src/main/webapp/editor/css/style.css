@@ -59,8 +59,10 @@ form {
 {
 	font-family: Tahoma;
 	font-size: 13px;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-top: 1px;
+	margin-left: 11px;
+	margin-right: 11px;
+	margin-bottom: 1px;
 	padding-top:3px;
 	float: left;
 	cursor:pointer;
@@ -68,10 +70,26 @@ form {
 
 #top_menu li:hover
 {
+	margin-top: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 0;
 	height: 23px;
 	background-color: #e7f5fa;
 	cursor: pointer;
-	border: solid -2px #9de2fb;
+	border: solid 1px #9de2fb;
+}
+
+#top_menu li.nohover:hover
+{
+	background: -moz-linear-gradient(90% 140% 90deg, #71787a, #b8c3c7);
+	background: -webkit-gradient(linear, center bottom, center top, from(#71787a), to(#b8c3c7));
+	border: none;
+	margin-top: 1px;
+	margin-left: 11px;
+	margin-right: 11px;
+	margin-bottom: 1px;
+	cursor: default;
 }
 
 #top_menu li img
