@@ -1,12 +1,16 @@
 <html>
 <head>
-	<script src="lib/codemirror.js"></script>
-	<script type='text/javascript' src='lib/resizable-tables.js'></script>
-	
+	<script src="lib/codemirror.js"></script>	
 	<link rel="stylesheet" href="lib/codemirror.css"/>
-	<script src="mode/javascript/javascript.js"></script>
-	<link rel="stylesheet" href="mode/javascript/javascript.css"/>
+	<script src="mode/clike/clike.js"></script>
+	<link rel="stylesheet" href="mode/clike/clike.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
+	<style type="text/css"> 
+	      .CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
+	      .activeline {background: #f0fcff !important;}
+	    </style>
+	
+	<script type="text/javascript">
 	
 	
 	<script type="text/javascript">
@@ -88,20 +92,48 @@
 			<td width='80%' id="codearea" valign="top">
 				<form>
 					<textarea id="code" name="code">
+/*
+* Software Atelier 4
+* Project 1
+* Exercise 1
+* Developers: Marcello Romanelli, Gerardo Caruso
+*/
+
+package code.snippet
+
+import java.net.URL
+import scala.xml.XML
+
+object Twitter {
+
+def search(val query: String) = {
+  val twitter = "http://search.twitter.com/search.atom?q=" + query + "&rpp=1000";
+
+  val url = new URL(twitter);
+  val conn = url.openConnection;
+  val xml = XML.load(conn.getInputStream);
+
+  val filter = xml \\ "entry";
+
+}
+// def main(args: Array[String]): Unit = {
+//      val query = args(0);
+//      val twitter = "http://search.twitter.com/search.atom?q=" + query + "&rpp=1000";
+//    
+//      val url = new URL(twitter);
+//      val conn = url.openConnection;
+//      val xml = XML.load(conn.getInputStream);
+//    
+//      val filter = xml \\ "entry";
+//      
+//    }
+}
 					</textarea>
 				</form>
 			</td>
 			<td id="right_sidebar" value="true" width='10%'>Right Side</td>
 		</tr>
 	</table>
-	<!-- <div id="editor">
-		<div id="left_sidebar" value="true">
-		</div>
-		
-		<div id="right_sidebar" value="true">
-			Right Sidebar
-		</div>
-		</div> -->
     <script src="complete.js"></script>
 
 	

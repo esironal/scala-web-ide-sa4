@@ -176,6 +176,11 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
                        "do double else enum extends false final finally float for goto if implements import " +
                        "instanceof int interface long native new null package private protected public " +
                        "return short static strictfp super switch synchronized this throw throws transient " +
-                       "true try void volatile while")
+                       "true try void volatile while def val var yield" + 
+					   "case default do else for if match while" +
+					   "return throw try catch finally" +
+					   "unit Unit boolean Boolean int Int Any AnyVal Nothing" +
+					   "AnyRef Null List String Integer Option Array" +
+					   ": * & % ! ; < > ? _ = => <- <: <% >: # @")
   });
 }());
