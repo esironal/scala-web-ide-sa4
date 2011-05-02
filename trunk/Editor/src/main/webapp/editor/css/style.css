@@ -1,0 +1,96 @@
+/*#editor {
+	width: 100%;
+	height: 94%;
+	margin: auto;
+	border: solid 1px black;
+}*/
+
+table
+{
+	margin-top:-15px;
+	width:100%;
+	height:90%;
+}
+
+#left_sidebar {
+	width: 10%;
+	height: 100%;
+	display: inline;
+	float: left;
+	clear: left;
+	border: solid 1px black;
+}
+
+#right_sidebar {
+	width: 10%;
+	height: 100%;
+	display: inline;
+	float: right;
+	border: solid 1px black;
+}
+
+form {
+	width: 933px;
+	display: inline;
+	float: left;
+	background:white;
+}
+
+
+#top_menu
+{
+	background: -moz-linear-gradient(90% 140% 90deg, #71787a, #b8c3c7);
+	background: -webkit-gradient(linear, center bottom, center top, from(#71787a), to(#b8c3c7));
+	width:110%;
+	min-width:1000px;
+	height:28px;
+	margin-top:-8px;
+	margin-left:-10px;  
+}
+
+#top_menu ul
+{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#top_menu li
+{
+	font-family: Tahoma;
+	font-size: 13px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-top:3px;
+	float: left;
+	cursor:pointer;
+}
+
+#top_menu li:hover
+{
+	height: 23px;
+	background-color: #e7f5fa;
+	cursor: pointer;
+	border: solid -2px #9de2fb;
+}
+
+#top_menu li img
+{
+	margin-right: 5px;
+}
+
+tr td
+{
+	height:620px;
+}
+
+#code
+{
+	width: 100%;
+	height: 100%;
+}
+
+#codearea
+{
+	height:550px;
+}
