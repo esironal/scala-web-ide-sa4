@@ -1,4 +1,4 @@
 #External Dependencies
-#Sat Apr 30 17:41:02 CEST 2011
-/Users/galli/Library/lift23/lift_xhtml/project/boot/scala-2.7.7/lib/scala-library.jar=LiftProject.scala
-/Users/galli/Library/lift23/lift_xhtml/project/boot/scala-2.7.7/org.scala-tools.sbt/sbt/0.7.5/sbt_2.7.7-0.7.5.jar=LiftProject.scala
+#Tue May 03 12:54:59 CEST 2011
+/Users/mattia/Documents/Scala/WebIDE/Users/lift_xhtml/project/boot/scala-2.7.7/org.scala-tools.sbt/sbt/0.7.5/sbt_2.7.7-0.7.5.jar=LiftProject.scala
+/Users/mattia/Documents/Scala/WebIDE/Users/lift_xhtml/project/boot/scala-2.7.7/lib/scala-library.jar=LiftProject.scala

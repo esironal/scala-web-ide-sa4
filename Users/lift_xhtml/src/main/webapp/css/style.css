@@ -1,0 +1,89 @@
+ body{
+ 	font: tahoma;
+ 	background-color:#E7F5FA;
+ 	
+ 	}
+.ProfileContainer{
+	width:480px;
+	
+	
+	}
+
+.profileImg{
+	width:64px;
+	height:64px;
+	float:left;
+	margin-right:30px;
+	}
+	
+.userData{
+	height:64px;
+	margin-left:10px;
+	float:left;
+	width:400px;
+	
+	}
+	
+textarea{
+	height:50px;
+
+	margin-left:5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+    border: 1px solid #DDDDDD;
+    font-size: 14px;
+    padding: 8px;
+    width: 42%;
+
+	
+	}
+	input[type="text"]{
+    -moz-border-radius: 5px 5px 5px 5px;
+	webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+    border: 1px solid #DDDDDD;
+    font-size: 14px;
+    margin: 5px 5px 5px 30px;
+    padding: 8px;
+    width: 275px;
+		
+		}
+		
+ input[type="password"]{
+    -moz-border-radius: 5px 5px 5px 5px;
+	webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+    border: 1px solid #DDDDDD;
+    font-size: 14px;
+    margin: 5px 5px 5px 30px;
+    padding: 8px;
+    width: 275px;
+		
+		}
+		
+		input[type="submit"], input[type="button"] {
+    -moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
+    background: url("/images/bg-btn.gif") repeat-x scroll 0 0 #DDDDDD;
+    border-color: #DDDDDD #DDDDDD #CCCCCC;
+    border-style: solid;
+    border-width: 1px;
+    color: #333333;
+    cursor: pointer;
+    font: 11px/14px "Lucida Grande",sans-serif;
+    margin: 0;
+    overflow: visible;
+    padding: 4px 8px 5px;
+    text-shadow: 1px 1px 0 #FFFFFF;
+    width: 120px;
+	font-size:120%;}
+.FormMessage{
+	width:400px;
+	left-margin:5px;
+	top-margin:20px;
+	
+	
+	}
+		

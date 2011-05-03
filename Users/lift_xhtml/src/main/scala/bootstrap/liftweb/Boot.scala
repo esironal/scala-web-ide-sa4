@@ -130,29 +130,34 @@ class Boot {
  		  		<div id="main" class="lift:surround?with=default;at=content">
                  {if (User.loggedIn_?){
                  {if(userProfile!= Empty){
-                     <img src={user.personalImageURL} style="width:100px; height:100px;"></img><h2>{"Profile: " + user.accountID}</h2>
-                     
-                     <h3>{"Personal Data:"}</h3>
-                     <span>{"Name: " + user.firstName.is + " " + user.lastName.is}<br/></span>
-                     <span>{"Gender: " + user.gender.is }</span>
+                 <div class="ProfileContainer">	<div class="profileImg">
+                <img src={user.personalImageURL} style="width:100px; height:100px;"/></div>
+                     <div class="userData">
+                     <h2>{ user.accountID}</h2>
+                     <div style="float:left;">{"Name: " +user.firstName.is + " " + user.lastName.is}</div>
+                     <div style="float:left;">{"Gender: " + user.gender.is }</div>
                      <br/>
-                     <span>{"Email: " + user.email.is }</span>
-                     <br/>
-                     <span>{"SkypeID: " + user.skypeID.is }</span>
+                     <div style="float:left;">{"Email: " + user.email.is }</div>
+                    
+                     <div style="float:left;">{"SkypeID: " + user.skypeID.is }</div>
                      
-                     <br/><br/><br/><hr/>
+                    
+                     </div>
                      
-                     <span class="lift:FormMessage"> </span>
-                     <hr></hr>
-                     
-                     <span>{for(message <- msgs) yield(printMessage(message))
-                     }</span>
+                     <br />
+                      <div class="lift:FormMessage"> </div>
+                     <hr/>
+                     </div>
+                     <div>{for(message <- msgs) yield(printMessage(message))
+                     }</div>
                      
                      }else 
                      <h2>{"User doesn't exist"}</h2>
                      }}else{
 	                    	S.redirectTo("/user_mgt/login")
                      }}
+                     
+                   
                 </div>
  			</body>
 		</html>        
