@@ -1,129 +1,95 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:lift="http://liftweb.net/">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <title class="lift:Menu.title">App: </title>
+	<title class="lift:Menu.title">COLLABORATIVE IDE</title>
+	
+	<!-- CSS -->
     <style class="lift:CSS.blueprint"></style>
     <style class="lift:CSS.fancyType"></style>
-    <script id="jquery" src="/classpath/jquery.js" type="text/javascript"></script>
-    <script id="json" src="/classpath/json.js" type="text/javascript"></script>
-
-
-	//Autocompletion
-	<link rel="stylesheet" href="lib/codemirror.css" />
-    <script type="text/javascript" src="lib/codemirror.js"></script>
-    <link rel="stylesheet" href="mode/javascript/javascript.css" />
-    <script  type="text/javascript" src="mode/javascript/javascript.js"></script>
-    <link rel="stylesheet" href="css/docs.css" />
-
+    <link rel="stylesheet" type="text/css" href="css/codemirror.css"/>
+	<link rel="stylesheet" type="text/css" href="css/modaldbox.css"/>
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="mode/clike/clike.css"/>
+	<style type="text/css"> 
+	.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
+	.activeline {background: #f0fcff !important;}
+	</style>
+	<!-- /CSS -->
+	
+	<!-- SCRIPTS -->
+	<script id="jquery" type="text/javascript" src="/classpath/jquery.js"></script>
+    <script id="json" type="text/javascript" src="/classpath/json.js"></script>
+	<script type="text/javascript" src="lib/codemirror.js"></script>	
+	<script type="text/javascript" src="lib/modaldbox.js"></script>
+	<script type="text/javascript" src="mode/clike/clike.js"></script>
+	
 	<script type="text/javascript">
-		function right_sidebar() {
-			var sidebar = document.getElementById("right_sidebar");
+	function left_sidebar() {
+		var sidebar = document.getElementById("left_sidebar");
+		var button = document.getElementById("left_button");
+		var img = document.getElementById("left_img");
+
+
+		if(sidebar.value == 'true') {
 			sidebar.style.display = "none";
+			sidebar.value = "false";
+			button.value = "Show Project Browser";
+			img.src = "img/open_active.png";
+		} else {
+			sidebar.style.display = "inline";
+			sidebar.value = "true";
+			button.value = "Hide Project Browser";
+			img.src = "img/open_inactive.png";
+
 		}
-		
-		function left_sidebar() {
-			var sidebar = document.getElementById("left_sidebar");
+	}
+
+	function right_sidebar() {
+		var sidebar = document.getElementById("right_sidebar");
+		var button = document.getElementById("right_button");
+		var img = document.getElementById("right_img");
+
+		if(sidebar.value == "true") {
 			sidebar.style.display = "none";
+			sidebar.value = "false";
+			button.value = "Show Chat";
+			img.src = "img/chat_active.png";
+
+		} else {
+			sidebar.style.display = "inline";
+			sidebar.value = "true";
+			button.value = "Hide Chat";
+			img.src = "img/chat_inactive.png";
 		}
+	}
 	</script>
+	<!-- /SCRIPTS -->
 	
-    <style type="text/css">
-      .completions {
-        position: absolute;
-        z-index: 10;
-        overflow: hidden;
-        -webkit-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
-        -moz-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
-        box-shadow: 2px 3px 5px rgba(0,0,0,.2);
-      }
-      .completions select {
-        background: #fafafa;
-        outline: none;
-        border: none;
-        padding: 0;
-        margin: 0;
-        font-family: monospace;
-      }
-      .CodeMirror {
-        border: 1px solid #eee;
-      }
-    </style>
-	
-	<script src="lib/complete.js"></script>
-    <style type="text/css">
-/* <![CDATA[ */
-.edit_error_class {
-  display: block;
-  color: red;
-}
-
-.sidebar ul {
-	margin:0;
-	padding:0;
-	border-bottom:1px solid #ccc;
-}
-	 
-
-.sidebar ul li {
-	margin:0;
-	padding:0;
-	list-style:none;
-	border:1px solid #ccc;
-	border-bottom:none;
-}
-
-.sidebar ul li a {
-	display:block;
-	padding:3px;
-	text-indent:30px;
-	text-decoration:none;
-}
-
-.sidebar ul li span {
-	display:block;
-	padding:3px;
-	text-indent:30px;
-	text-decoration:none;
-}
-
-.sidebar ul li a:hover {
-	background-color: #eee;
-}
-
-#editor_box {
-	border: solid 2px black;
-	width: 868px;
-	height: 400px;
-	margin-bottom: 15px;
-}
-
-#left_sidebar {
-	width: 10%;
-	height: 400px;
-	display: inline;
-	float: left;
-	border: solid 1px black;
-}
-
-#right_sidebar {
-	width: 10%;
-	height: 400px;
-	display: inline;
-	float: right;
-	border: solid 1px black;
-}
-
-.container {
-	width: 80%;
-}
-
-  /* ]]> */
-  </style>
   </head>
-  <body>
 
+
+  <body>
+		<div id="top_menu">
+			<ul>
+				<li><img src="img/new.png" /><span onclick="sm('box',800,400)">New</span></li>
+				<li><img src="img/open.png" />Open</li>
+				<li><img src="img/save.png" />Save</li>
+				<li class="nohover">|</li>
+				<li><img src="img/upload.png" />Upload</li>
+				<li><img src="img/download.png" />Download</li>
+				<li class="nohover">|</li>
+				<li><img src="img/build.png" />Build</li>
+				<li><img src="img/run.png" />Run</li>
+				<li class="nohover">|</li>
+				<li><img src="img/lock.png" />Lock</li>
+				<li class="nohover"><input type="button" value="Hide Project Browser" id="left_button" onclick="left_sidebar()">
+					<img id="left_img" src="img/open_inactive.png" width="16" heght="16" alt="submit" /></input>
+				</li>
+				<li class="nohover"><input type="button" value="Hide Chat" id="right_button" onclick="right_sidebar()">
+					<img id="right_img" src="img/chat_inactive.png" width="16" heght="16" alt="submit" />
+				</input></li>
+			</ul>
+		</div>
     <div class="container">
       <div class="column span-15 last" style="text-align: center">
         <h1 class="alt">Collaborative Editor</h1>
