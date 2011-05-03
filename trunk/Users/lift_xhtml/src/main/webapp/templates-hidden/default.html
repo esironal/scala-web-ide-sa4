@@ -8,6 +8,7 @@
     <style class="lift:CSS.fancyType"></style>
     <script id="jquery" src="/classpath/jquery.js" type="text/javascript"></script>
     <script id="json" src="/classpath/json.js" type="text/javascript"></script>
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
 /* <![CDATA[ */
 .edit_error_class {
@@ -15,38 +16,80 @@
   color: red;
 }
 
-.sidebar ul {
-	margin:0;
-	padding:0;
-	border-bottom:1px solid #ccc;
-}
-	 
-
-.sidebar ul li {
-	margin:0;
-	padding:0;
+.sidebar{
+	float:left;
+	width:100%;
 	list-style:none;
-	border:1px solid #ccc;
-	border-bottom:none;
+	font-weight:bold;
+	margin-bottom:10px;
 }
-
-.sidebar ul li a {
+.sidebar li{
+	float:left;
+	margin-right:10px;
+	position:relative;
 	display:block;
-	padding:3px;
-	text-indent:30px;
-	text-decoration:none;
 }
-
-.sidebar ul li span {
+.sidebar li a{
 	display:block;
-	padding:3px;
-	text-indent:30px;
+	padding:5px;
+	color:#fff;
+	background:#B6C2C7;
 	text-decoration:none;
+
+	text-shadow:1px 1px 1px rgba(0,0,0,0.75); /* Text shadow to lift it a little */
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+}
+.sidebar li a:hover{
+	color:#4B717A;
+	background:#9DE2FB; /* Solid colour fall-back */
+	background:rgba(157,226,251,0.75); /* It'll look nice semi-transparent */
+
+	text-decoration:underline;
 }
 
-.sidebar ul li a:hover {
-	background-color: #eee;
+/************/
+/*
+.sidebar ul{
+	list-style:none;
+	position:absolute;
+	left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
+	opacity:0; /* Set initial state to transparent */
+	-webkit-transition:0.25s linear opacity; /* Make the dropdown fade-in in Webkit */
 }
+.sidebar ul li{
+	padding-top:1px; /* Introducing a padding between the li and the a give the illusion spaced items */
+	float:none;
+}
+.sidebar ul a{
+	white-space:nowrap; /* Stop text wrapping and creating multi-line dropdown items */
+	display:block;
+}
+.sidebar li:hover ul{ /* Display the dropdown on hover */
+	left:0; /* Bring back on-screen when needed */
+	opacity:1; /* Fade to opaque */
+}
+.sidebar li:hover a{ /* Set styles for top level when dropdown is hovered */
+
+	background:#6b0c36; /* Solid colour fall-back */
+	background:rgba(107,12,54,0.75); /* It'll look nice semi-transparent */
+	text-decoration:underline;
+}
+.sidebar li:hover ul a{ /* Override some top level styles when dropdown is hovered */
+	text-decoration:none;
+	-webkit-transition:-webkit-transform 0.075s linear;
+}
+.sidebar li:hover ul li a:hover{ /* Set styles for dropdown when items are hovered */
+	background:#333; /* Solid colour fall-back */
+
+	background:rgba(51,51,51,0.75); /* It'll look nice semi-transparent */
+	text-decoration:underline;
+	-moz-transform:scale(1.05);
+	-webkit-transform:scale(1.05);
+}
+
+*/
 
 
   /* ]]> */
@@ -61,6 +104,7 @@
       <hr />
 
       <div class="column span-6 colborder sidebar">
+   
         <hr class="space" />
 
 	<span class="lift:Menu.builder"></span>
