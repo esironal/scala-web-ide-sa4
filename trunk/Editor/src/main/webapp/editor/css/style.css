@@ -5,32 +5,20 @@
 	border: solid 1px black;
 }*/
 
+html, body { 
+margin: 0; 
+padding: 0; 
+}
+
 table
 {
-	margin-top:-15px;
 	width:100%;
-	height:90%;
-}
-
-#left_sidebar {
-	width: 10%;
-	height: 100%;
-	display: inline;
-	float: left;
-	clear: left;
-	border: solid 1px black;
-}
-
-#right_sidebar {
-	width: 10%;
-	height: 100%;
-	display: inline;
-	float: right;
-	border: solid 1px black;
+	height:70%;
+	margin-top:-15px;
 }
 
 form {
-	width: 933px;
+	width: 100%;
 	display: inline;
 	float: left;
 	background:white;
@@ -41,11 +29,9 @@ form {
 {
 	background: -moz-linear-gradient(90% 140% 90deg, #71787a, #b8c3c7);
 	background: -webkit-gradient(linear, center bottom, center top, from(#71787a), to(#b8c3c7));
-	width:110%;
+	width:100%;
 	min-width:1000px;
 	height:28px;
-	margin-top:-8px;
-	margin-left:-10px;  
 }
 
 #top_menu ul
@@ -97,10 +83,10 @@ form {
 	margin-right: 5px;
 }
 
-tr td
+/*tr td
 {
 	height:620px;
-}
+}*/
 
 #code
 {
@@ -110,5 +96,5 @@ tr td
 
 #codearea
 {
-	height:550px;
+	height:100%;
 }

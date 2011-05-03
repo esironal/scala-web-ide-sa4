@@ -6,20 +6,20 @@
 	<link rel="stylesheet" href="mode/clike/clike.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
 	<style type="text/css"> 
-	      .CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
-	      .activeline {background: #f0fcff !important;}
-	    </style>
-	
-	<script type="text/javascript">
-	
-	
+	.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
+	.activeline {background: #f0fcff !important;}
+	</style>
+
+	<script type="text/javascript" src="lib/modaldbox.js"></script>
+	<link rel="stylesheet" href="lib/modaldbox.css" type="text/css" />
+
 	<script type="text/javascript">
 	function left_sidebar() {
 		var sidebar = document.getElementById("left_sidebar");
 		var button = document.getElementById("left_button");
 		var img = document.getElementById("left_img");
-		
-		
+
+
 		if(sidebar.value == 'true') {
 			sidebar.style.display = "none";
 			sidebar.value = "false";
@@ -30,42 +30,34 @@
 			sidebar.value = "true";
 			button.value = "Hide Project Browser";
 			img.src = "img/open_inactive.png";
-			
+
 		}
 	}
-	
+
 	function right_sidebar() {
 		var sidebar = document.getElementById("right_sidebar");
 		var button = document.getElementById("right_button");
 		var img = document.getElementById("right_img");
-		
+
 		if(sidebar.value == "true") {
 			sidebar.style.display = "none";
 			sidebar.value = "false";
 			button.value = "Show Chat";
 			img.src = "img/chat_active.png";
-			
+
 		} else {
 			sidebar.style.display = "inline";
 			sidebar.value = "true";
 			button.value = "Hide Chat";
 			img.src = "img/chat_inactive.png";
-			
 		}
 	}
-	
-	
-	$(document).ready( function() {
-	    $('#left_sidebar').fileTree({ root: 'demo/', script: 'jqueryFileTree.php' }, function(file) { 
-							alert(file);
-						});
-	});
 	</script>
 </head>
 <body>
 	<div id="top_menu">
 		<ul>
-			<li><img src="img/new.png" />New</li>
+			<li><img src="img/new.png" /><span onclick="sm('box',800,400)">New</span></li>
 			<li><img src="img/open.png" />Open</li>
 			<li><img src="img/save.png" />Save</li>
 			<li class="nohover">|</li>
@@ -78,7 +70,7 @@
 			<li><img src="img/lock.png" />Lock</li>
 			<li class="nohover"><input type="button" value="Hide Project Browser" id="left_button" onclick="left_sidebar()">
 				<img id="left_img" src="img/open_inactive.png" width="16" heght="16" alt="submit" /></input>
-				</li>
+			</li>
 			<li class="nohover"><input type="button" value="Hide Chat" id="right_button" onclick="right_sidebar()">
 				<img id="right_img" src="img/chat_inactive.png" width="16" heght="16" alt="submit" />
 			</input></li>
@@ -86,9 +78,11 @@
 	</div>
 	<br />
 	<!--<hr>-->
+	
 	<table border="1">
 		<tr>
-			<td id="left_sidebar" value="true"  width='10%'>Left side</td>			
+			<td id="left_sidebar" value="true"  width='10%'>
+			</td>			
 			<td width='80%' id="codearea" valign="top">
 				<form>
 					<textarea id="code" name="code">
@@ -106,36 +100,42 @@ import scala.xml.XML
 
 object Twitter {
 
-def search(val query: String) = {
-  val twitter = "http://search.twitter.com/search.atom?q=" + query + "&rpp=1000";
+	def search(val query: String) = {
+		val twitter = "http://search.twitter.com/search.atom?q=" + query + "&rpp=1000";
 
-  val url = new URL(twitter);
-  val conn = url.openConnection;
-  val xml = XML.load(conn.getInputStream);
+		val url = new URL(twitter);
+		val conn = url.openConnection;
+		val xml = XML.load(conn.getInputStream);
 
-  val filter = xml \\ "entry";
+		val filter = xml \\ "entry";
 
-}
-// def main(args: Array[String]): Unit = {
-//      val query = args(0);
-//      val twitter = "http://search.twitter.com/search.atom?q=" + query + "&rpp=1000";
-//    
-//      val url = new URL(twitter);
-//      val conn = url.openConnection;
-//      val xml = XML.load(conn.getInputStream);
-//    
-//      val filter = xml \\ "entry";
-//      
-//    }
-}
-					</textarea>
-				</form>
-			</td>
-			<td id="right_sidebar" value="true" width='10%'>Right Side</td>
-		</tr>
-	</table>
-    <script src="complete.js"></script>
-
+	}
+	// def main(args: Array[String]): Unit = {
+		//      val query = args(0);
+		//      val twitter = "http://search.twitter.com/search.atom?q=" + query + "&rpp=1000";
+		//    
+		//      val url = new URL(twitter);
+		//      val conn = url.openConnection;
+		//      val xml = XML.load(conn.getInputStream);
+		//    
+		//      val filter = xml \\ "entry";
+		//      
+		//    }
+	}
+						</textarea>
+					</form>
+				</td>
+				<td id="right_sidebar" value="true" width='10%'>Right Side</td>
+			</tr>
+		</table>
+		<script src="complete.js"></script>
+		
+		<div id="box" class="dialog">
+		<div style="text-align:center"><span id="txt">A nice file viewer</span><br>
+		<button onclick="hm('box');okSelected()">OK</button></div>
+		</div>
+		
+	</body>
 	
-</body>
-</html>
+	
+	</html>
