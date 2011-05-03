@@ -6,7 +6,7 @@ import java.util.GregorianCalendar
  * Class used to compile the source file passed as parameters
  * @autor: Lorenzo Baracchi <lorenzo.baracchi@member.fsf.org>	
  */
-class Compiler(filesList: scala.Array[String], optionList: scala.Array[String]) {
+class Compiler(sourcesDirectory: String, optionList: scala.Array[String]) {
 
 	
 
@@ -29,10 +29,15 @@ class Compiler(filesList: scala.Array[String], optionList: scala.Array[String]) 
 	// check if the given option could be recognized by the compiler
 	// @return true if it is recognized, false otherwise
 	def checkOptionExists (option: String) = {
-		option match {
+		var op=option.substring(option.indexOf(" ")+1)
+		op match {
 			case "-verbose" => true
 			case "-nowarn" => true
-			//TODO classpath, sourcepath bootclasspath d target
+			case "-classpath" => true
+			case "-sourcepath" => true
+			case "-bootclasspath" => true
+			case "-d" => true
+			case "-target" => true
 			case _ => false
 		}
 	}
@@ -57,9 +62,10 @@ class Compiler(filesList: scala.Array[String], optionList: scala.Array[String]) 
   		var s = "scalac " 
 		try{
 			s=addOptionList(s)
-	  		for(file <- filesList) {
-	  			s=s+" "+file
-	  		}
+	  		//for(file <- filesList) {
+	  		//	s=s+" "+file
+	  		//}
+			s=s+" "+sourcesDirectory+"/*"
 	  		var gc= new GregorianCalendar();
 	  		var time=gc.getTime().toString()
 	  		time=time.replace(" ", "_")
@@ -72,7 +78,7 @@ class Compiler(filesList: scala.Array[String], optionList: scala.Array[String]) 
 	  		}
 		}
 		catch {
-  			case e:IllegalArgumentException => println("Error occurred: "e.getMessage())
+  			case e:IllegalArgumentException => println("Error occurred: "+e.getMessage())
 		}
   	}
 
@@ -84,7 +90,7 @@ class Compiler(filesList: scala.Array[String], optionList: scala.Array[String]) 
 object Compiler {
 	def main(args: scala.Array[String]){
 		var lo = scala.Array("-verbose")
-  		var c = new Compiler(scala.Array("HelloWorld.scala"), lo);
+  		var c = new Compiler("sources", lo);
   		c.compile();
   	}
 }
