@@ -181,6 +181,6 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
 					   "return throw try catch finally" +
 					   "unit Unit boolean Boolean int Int Any AnyVal Nothing" +
 					   "AnyRef Null List String Integer Option Array" +
-					   ": * & % ! ; < > ? _ = => <- <: <% >: # @")
+					   ": * & % ! ; < > ? _ = => <- <: <% >: # @ object")
   });
 }());
