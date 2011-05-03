@@ -20,16 +20,23 @@
     for (var i = 0, e = arr.length; i < e; ++i) f(arr[i]);
   }
 
-  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-    lineNumbers: true,
-    onKeyEvent: function(i, e) {
-      // Hook into ctrl-space
-      if (e.keyCode == 32 && (e.ctrlKey || e.metaKey) && !e.altKey) {
-        e.stop();
-        return startComplete();
-      }
-    }
-  });
+  	var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+      lineNumbers: true,
+      matchBrackets: true,
+      mode: "text/x-java",
+		onCursorActivity: function() {
+		    editor.setLineClass(hlLine, null);
+		    hlLine = editor.setLineClass(editor.getCursor().line, "activeline");
+		  },
+		onKeyEvent: function(i, e) {
+	      // Hook into ctrl-space
+	      if (e.keyCode == 32 && (e.ctrlKey || e.metaKey) && !e.altKey) {
+	        e.stop();
+	        return startComplete();
+	      }
+	    }
+    });
+	var hlLine = editor.setLineClass(0, "activeline");
 
   function startComplete() {
     // We want a single cursor position.
