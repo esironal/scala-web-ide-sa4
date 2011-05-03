@@ -16,8 +16,6 @@ import scala.xml.NodeSeq
 import code.model.User
 import code.model.Message
 
-import code.lib.UserProfileId
-
 /**
 * A class that's instantiated early and run.  It allows the application
 * to modify lift's environment
@@ -54,6 +52,10 @@ class Boot {
               Link(List("profile"), true, "/profile/"), "Profile")),
      Menu(Loc("Stats",
               Link(List("stats"), true, "/stats/"), "Stats")),
+     Menu(Loc("UserList",
+              Link(List("userList"), true, "/userList/"), "UserList")),
+     Menu(Loc("Delete",
+              Link(List("delete"), true, "/delete/"), "Delete")),
      Menu(Loc("Static", Link(List("static"), true, "/static/index"), 
           "Static Content")))
 
@@ -95,10 +97,11 @@ class Boot {
        	Right(View.Profile)
      case "stats"::Nil =>
      	Right(View.Stats)
+     case "delete" :: Nil =>
+     	Right(View.Delete)
+     case "userList" :: Nil =>
+     	Right(View.UserList)
    }
-
-
-
    
  }
  
@@ -114,33 +117,36 @@ class Boot {
          	var msgs :List[Message] = null
          	
          	if(userProfile!= Empty){
-         		UserProfileId.name(id)
-         		msgs = Message.findAll(By(Message.userID, user.id.is))
+         		msgs = Message.findAll(By(Message.userID, user.id.is)).reverse
          	}
          	
          	
-           S.notice(UserProfileId.name.is)
-	
          <html>
  			<head>
    				<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
-   				<title/>
+   				<title>Home</title>
  			</head>
  			<body class="lift:content_id=main">
  		  		<div id="main" class="lift:surround?with=default;at=content">
                  {if (User.loggedIn_?){
                  {if(userProfile!= Empty){
-                     <h2>{"Profile: " + user.firstName + " " + user.lastName}</h2>
-                     <br></br>
-                     <h3>{"Email: " + user.email.is }</h3>
-                     <h3>{"Password: " + user.password.is }</h3>
-                     <h3>{"SkypeID: " + user.skypeID.is }</h3>
+                     <img src={user.personalImageURL} style="width:100px; height:100px;"></img><h2>{"Profile: " + user.accountID}</h2>
+                     
+                     <h3>{"Personal Data:"}</h3>
+                     <span>{"Name: " + user.firstName.is + " " + user.lastName.is}<br/></span>
+                     <span>{"Gender: " + user.gender.is }</span>
+                     <br/>
+                     <span>{"Email: " + user.email.is }</span>
+                     <br/>
+                     <span>{"SkypeID: " + user.skypeID.is }</span>
+                     
+                     <br/><br/><br/><hr/>
                      
                      <span class="lift:FormMessage"> </span>
+                     <hr></hr>
                      
-                     <table border="1">{for(message <- msgs) yield(printMessage(message))
-                     }</table>
-                     
+                     <span>{for(message <- msgs) yield(printMessage(message))
+                     }</span>
                      
                      }else 
                      <h2>{"User doesn't exist"}</h2>
@@ -157,15 +163,17 @@ class Boot {
              case id: String => () => Full(content(id))
          }
          
-         def printMessage(msg: Message) : NodeSeq = {
-        	 
-        	 val fromUser : Box[User] = User.find(By(User.accountID, msg.fromID.is))
-        	 val user : User = fromUser.openOr(null)
-        	 <tr>
-        	 <td>{msg.messageNumber}</td>
-        	 <td>{user.accountID.is}</td>
-        	 <td>{msg.date.is}</td>
-        	 </tr>
+          def printMessage(msg: Message): NodeSeq = {
+         	
+         	val fromUser: Box[User] = User.find(By(User.id, msg.fromID.is))
+         	val user: User = fromUser.openOr(null)
+         	
+         	<span>
+         	<img src={user.personalImageURL} style="width:64px; height:64px;"></img><span>{"" + msg.messageNumber.is + ":  "}</span><b><a href={"/profile/"+user.accountID.is}>{""+user.accountID.is}</a></b><span>{"\t " + msg.date.is}</span>
+         	<br/>
+         	<span>{"" + msg.text.is}</span>
+         	<hr/>
+         	</span>
          }
      }
      
@@ -204,7 +212,73 @@ class Boot {
              case _ => () => Full(content())
         }
    	}
+   	
+   	object UserList extends LiftView {
+     	def content() = {   
+			val users: List[User] = User.findAll()
+			
+			
+			
+			<html>
+ 			<head>
+   				<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+   				<title>Home</title>
+ 			</head>
+ 			<body class="lift:content_id=main">
+ 		  		<div id="main" class="lift:surround?with=default;at=content">
+ 		  		
+ 		  		<span>{
+ 		  			
+ 		  			for(user <- users) yield(
+						<span>{"#   "}</span>
+						<b><a href={"/profile/"+user.accountID.is}>{""+user.accountID.is}</a></b>
+						<span>{"   " + user.firstName.is + " " + user.lastName.is}</span>
+						<br/>
+						)}
+				</span>
+			</div>
+ 			</body>
+			</html> 
+		
+     	}
+     	
+     	def dispatch = { 
+             case _ => () => Full(content())
+        }
+   	}
+
+   	
+   	object Delete extends LiftView {
+     	def content() = {   
+     		
+     		val users: List[User] = User.findAll()
+     		val msgs: List[Message] = Message.findAll()
+     		
+     		for(user <- users) User.delete_!(user)
+     		for(msg <- msgs)  Message.delete_!(msg)
+     	
+     	
+     		<html>
+ 			<head>
+   				<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+   				<title>Home</title>
+ 			</head>
+ 			<body class="lift:content_id=main">
+ 		  		<div id="main" class="lift:surround?with=default;at=content">
+ 		  			<span>{"User: " + User.count}</span><br/>
+ 		  			<span>{"UserList: " + users.length}</span><br/>
+ 		  			<span>{"Message: " + Message.count}</span><br/>
+ 		  		</div>
+ 			</body>
+			</html>      
+     	
+     	
+     	}
+     	
+     	def dispatch = { 
+             case _ => () => Full(content())
+        }
+   	}
  }
- 
  
 }

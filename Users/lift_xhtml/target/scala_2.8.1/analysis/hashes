@@ -1,9 +1,17 @@
 #Source Hashes
-#Tue May 03 13:05:04 CEST 2011
-src/main/scala/code/snippet/FormMessage.scala=2dde6bd9f4f67450eceaf08852b0c12ca1e407e9
-src/main/scala/code/snippet/HelloWorld.scala=1501d439869e932b723c930fe207babc90e49fb1
-src/main/scala/bootstrap/liftweb/Boot.scala=776a2271ffc9752a03f3ad3acbb141331c2aea17
-src/main/scala/code/lib/DependencyFactory.scala=a531c6a8f7499c89beb1706862b7aee4dae69b20
-src/main/scala/code/model/User.scala=8e1ea5572bb2046dfe879c396db56c84c87a2c45
+#Tue May 03 16:05:21 CEST 2011
+src/main/scala/code/model/UserProject.scala=6277b4995eb2faa6161d410800a0960c2e23a3d2
+src/main/scala/code/snippet/FormMessage.scala=ff1d433b6c8211d7e8fa657ee4a422037cdc34a5
+src/main/scala/code/model/ProfileMessage.scala=32b3cf3f200e2e00a5429bf68e4d5297de69c8dc
 src/main/scala/code/snippet/LoginRedirect.scala=ca840bb4e56c8083cc50ffdb8032bb0f60e84e65
-src/main/scala/code/model/Message.scala=d06819be443bcace15d5bb03d6dbd3305679c54d
+src/main/scala/code/snippet/HelloWorld.scala=1501d439869e932b723c930fe207babc90e49fb1
+src/main/scala/code/lib/DependencyFactory.scala=a531c6a8f7499c89beb1706862b7aee4dae69b20
+src/main/scala/code/model/FileChatMessage.scala=dcd5347f82f22f9657ab0c9beeba75515ccdd310
+src/main/scala/bootstrap/liftweb/Boot.scala=10d4e83d6b9292483eb29f2188f1e265db12dd3c
+src/main/scala/bootstrap/liftweb/Profile.scala=4bcf76e1ba99aa0c30c1bd868921926fe9539586
+src/main/scala/code/model/Project.scala=4b364d70e99f68924e8c9b3e0d923df2a6db2ed6
+src/main/scala/code/model/User.scala=9908e388d5339a8bc5cae5dc07a9235d84369783
+src/main/scala/bootstrap/liftweb/UserList.scala=6493be1afc65933b42d4628096faf66550d5fff7
+src/main/scala/bootstrap/liftweb/Delete.scala=095f844c75790a1b8f80b9141ecacf6febea897d
+src/main/scala/code/model/ProjectChatMessage.scala=378968b2650e3162d36f35de68711bfede47ac20
+src/main/scala/bootstrap/liftweb/Stats.scala=94028a6c7511b8453a0d1e1826b66b987f6e039b

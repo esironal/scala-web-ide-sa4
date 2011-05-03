@@ -19,12 +19,12 @@ class Message extends LongKeyedMapper[Message] with IdPK {
 	
 	object messageNumber extends MappedDecimal(this, MathContext.DECIMAL64, 0)
 
-	object fromID extends MappedString(this, 50)
+	object fromID extends MappedLong(this)
 	
 	object date extends MappedDateTime(this)
 	
 	 object text extends MappedTextarea(this, 2048) {
-    override def textareaRows  = 10
+    override def textareaRows  = 3
     override def textareaCols = 50
     override def displayName = "Message"
   }
