@@ -22,27 +22,25 @@ object User extends User with MetaMegaProtoUser[User] {
   override def dbTableName = "users" // define the DB table name
   override def screenWrap = Full(<lift:surround with="default" at="content">
 			       <lift:bind /></lift:surround>)
-  // define the order fields will appear in forms and output
+  
+  //Order
   override def fieldOrder = List(id, accountID, firstName, lastName, email,
-  locale, timezone, password, skypeID, gender, personalImageURL, textArea)
+  locale, timezone, password, skypeID, gender, personalImageURL)
 
+  //Signup and edit
   override def signupFields = List(accountID, firstName, lastName, password, email, gender, skypeID)	
   override def editFields = List(firstName, lastName, password, gender, skypeID, personalImageURL)	
 
 
-  // comment this line out to require email validations
   override def skipEmailValidation = true
 }
 
-/**
- * An O-R mapped "User" class that includes first name, last name, password and we add a "Personal Essay" to it
- */
 class User extends MegaProtoUser[User] {
-  	def getSingleton = User // what's the "meta" server
+  	def getSingleton = User
   	
 	object accountID extends MappedString(this, 30){
 		override def displayName = "Account Name"
-		override def validations = valUnique(S.?("user.unique.accountID")) _ :: super.validations
+		override def validations = valUnique(S.?("This name is already taken")) _ :: super.validations
 	}
 
 	object skypeID extends MappedString(this, 30) {
@@ -50,17 +48,11 @@ class User extends MegaProtoUser[User] {
 	}
 	
 	object gender extends MappedGender(this){
+		override def displayName = "Gender"
 	}
 	
 	object personalImageURL extends MappedString(this, 200){
 		override def displayName = "Personal Image"
 		override def defaultValue = "/images/img.png" 
 	}
-
-  // define an additional field for a personal essay
-  object textArea extends MappedTextarea(this, 2048) {
-    override def textareaRows  = 3
-    override def textareaCols = 50
-    override def displayName = "Personal Essay"
-  }
 }

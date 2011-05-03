@@ -17,11 +17,11 @@ import sitemap._
 import Loc._
 import mapper._
 
-import code.model.ProfileMessage
+import code.model.Message
 import code.model.User
 
 object FormMessage extends LiftScreen {
-	object message extends ScreenVar(ProfileMessage.create)
+	object message extends ScreenVar(Message.create)
 	
 	addFields(() => message.is.text)
 
@@ -32,7 +32,7 @@ object FormMessage extends LiftScreen {
 
 		message.is.userID(userInstance.id.is)
 		message.is.fromID(User.currentUser.openOr(null).id.is)
-		message.is.messageNumber(ProfileMessage.findAll(By(ProfileMessage.userID, userInstance.id.is)).length + 1)
+		message.is.messageNumber(Message.findAll(By(Message.userID, userInstance.id.is)).length + 1)
 		message.is.date(new java.util.Date)
 		message.is.save
 		

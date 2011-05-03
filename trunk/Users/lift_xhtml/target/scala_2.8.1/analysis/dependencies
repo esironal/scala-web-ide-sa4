@@ -1,9 +1,17 @@
 #Source Dependencies
-#Tue May 03 13:05:04 CEST 2011
+#Tue May 03 16:05:21 CEST 2011
+src/main/scala/code/model/UserProject.scala=src/main/scala/bootstrap/liftweb/Boot.scala
 src/main/scala/code/snippet/FormMessage.scala=
-src/main/scala/code/snippet/HelloWorld.scala=
-src/main/scala/bootstrap/liftweb/Boot.scala=
-src/main/scala/code/lib/DependencyFactory.scala=src/main/scala/code/snippet/HelloWorld.scala
-src/main/scala/code/model/User.scala=src/main/scala/code/snippet/FormMessage.scala\:src/main/scala/code/snippet/LoginRedirect.scala\:src/main/scala/bootstrap/liftweb/Boot.scala
+src/main/scala/code/model/ProfileMessage.scala=src/main/scala/bootstrap/liftweb/Delete.scala\:src/main/scala/code/snippet/FormMessage.scala\:src/main/scala/bootstrap/liftweb/Profile.scala\:src/main/scala/bootstrap/liftweb/Boot.scala
 src/main/scala/code/snippet/LoginRedirect.scala=
-src/main/scala/code/model/Message.scala=src/main/scala/code/snippet/FormMessage.scala\:src/main/scala/bootstrap/liftweb/Boot.scala
+src/main/scala/code/snippet/HelloWorld.scala=
+src/main/scala/code/lib/DependencyFactory.scala=src/main/scala/code/snippet/HelloWorld.scala
+src/main/scala/code/model/FileChatMessage.scala=src/main/scala/bootstrap/liftweb/Boot.scala
+src/main/scala/bootstrap/liftweb/Boot.scala=
+src/main/scala/bootstrap/liftweb/Profile.scala=src/main/scala/bootstrap/liftweb/Boot.scala
+src/main/scala/code/model/Project.scala=src/main/scala/bootstrap/liftweb/Boot.scala
+src/main/scala/code/model/User.scala=src/main/scala/bootstrap/liftweb/Stats.scala\:src/main/scala/bootstrap/liftweb/UserList.scala\:src/main/scala/bootstrap/liftweb/Delete.scala\:src/main/scala/code/snippet/FormMessage.scala\:src/main/scala/code/snippet/LoginRedirect.scala\:src/main/scala/bootstrap/liftweb/Profile.scala\:src/main/scala/bootstrap/liftweb/Boot.scala
+src/main/scala/bootstrap/liftweb/UserList.scala=src/main/scala/bootstrap/liftweb/Boot.scala
+src/main/scala/bootstrap/liftweb/Delete.scala=src/main/scala/bootstrap/liftweb/Boot.scala
+src/main/scala/code/model/ProjectChatMessage.scala=src/main/scala/bootstrap/liftweb/Boot.scala
+src/main/scala/bootstrap/liftweb/Stats.scala=src/main/scala/bootstrap/liftweb/Boot.scala

@@ -24,9 +24,11 @@ object User extends User with MetaMegaProtoUser[User] {
 			       <lift:bind /></lift:surround>)
   // define the order fields will appear in forms and output
   override def fieldOrder = List(id, accountID, firstName, lastName, email,
-  locale, timezone, password, skypeID, gender, textArea)
+  locale, timezone, password, skypeID, gender, personalImageURL, textArea)
 
   override def signupFields = List(accountID, firstName, lastName, password, email, gender, skypeID)	
+  override def editFields = List(firstName, lastName, password, gender, skypeID, personalImageURL)	
+
 
   // comment this line out to require email validations
   override def skipEmailValidation = true
@@ -39,18 +41,25 @@ class User extends MegaProtoUser[User] {
   	def getSingleton = User // what's the "meta" server
   	
 	object accountID extends MappedString(this, 30){
+		override def displayName = "Account Name"
 		override def validations = valUnique(S.?("user.unique.accountID")) _ :: super.validations
 	}
 
 	object skypeID extends MappedString(this, 30) {
+		override def displayName = "Skype ID"
 	}
 	
 	object gender extends MappedGender(this){
 	}
+	
+	object personalImageURL extends MappedString(this, 200){
+		override def displayName = "Personal Image"
+		override def defaultValue = "/images/img.png" 
+	}
 
   // define an additional field for a personal essay
   object textArea extends MappedTextarea(this, 2048) {
-    override def textareaRows  = 10
+    override def textareaRows  = 3
     override def textareaCols = 50
     override def displayName = "Personal Essay"
   }
