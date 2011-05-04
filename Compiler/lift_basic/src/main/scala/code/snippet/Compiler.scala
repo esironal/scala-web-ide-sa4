@@ -2,7 +2,7 @@ import java.lang.reflect._
 import java.io._
 import java.util.GregorianCalendar
 
-/*
+/**
  * Class used to compile the source file passed as parameters
  * @autor: Lorenzo Baracchi <lorenzo.baracchi@member.fsf.org>	
  */
@@ -12,8 +12,10 @@ class Compiler(sourcesDirectory: String, optionList: scala.Array[String]) {
 
   	val runTime = Runtime.getRuntime 
 	
-	// send the given commad to the system which will execute it
-	// and save the result to the given log file
+	/**
+	 * send the given commad to the system which will execute it
+	 * and save the result to the given log file
+	 */
   	def exec (cmd: String, log: String) = {
   		//execute the command and redirect the output to a log (both stdout and stderr)
   		val command= scala.Array("/bin/bash", "-c", cmd+" &> "+log)
@@ -26,25 +28,31 @@ class Compiler(sourcesDirectory: String, optionList: scala.Array[String]) {
   		pr.exitValue()
   	}
 
-	// check if the given option could be recognized by the compiler
-	// @return true if it is recognized, false otherwise
+	/** 
+	 * check if the given option could be recognized by the compiler
+	 * @return true if it is recognized, false otherwise
+	 */
 	def checkOptionExists (option: String) = {
 		var op=option.substring(option.indexOf(" ")+1)
 		op match {
 			case "-verbose" => true
 			case "-nowarn" => true
+			case "-optimise" => true
 			case "-classpath" => true
 			case "-sourcepath" => true
 			case "-bootclasspath" => true
 			case "-d" => true
 			case "-target" => true
+			case "-explaintypes" => true
 			case _ => false
 		}
 	}
 
-	// Add a list of option to the command
-	// @return the command as a String
-	// @throws IllegalArgumentException if one of the option is not recognized
+	/**
+	 * Add a list of option to the command
+	 * @return the command as a String
+	 * @throws IllegalArgumentException if one of the option is not recognized
+	 */
 	def addOptionList (s: String) = {
 		var newS=s
 		for(opt <- optionList) {
@@ -56,7 +64,9 @@ class Compiler(sourcesDirectory: String, optionList: scala.Array[String]) {
 		newS
 	}
   	
-  	// As the name says: it compiles
+  	/** 
+  	 * As the name says: it compiles
+  	 */
   	def compile () = {
   		println("Please wait, Compiling...")
   		var s = "scalac " 
