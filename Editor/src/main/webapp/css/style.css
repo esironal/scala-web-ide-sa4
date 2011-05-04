@@ -1,0 +1,112 @@
+/*#editor {
+	width: 100%;
+	height: 94%;
+	margin: auto;
+	border: solid 1px black;
+}*/
+
+html, body { 
+margin: 0; 
+padding: 0; 
+}
+
+table
+{
+	width:100%;
+	height:94%;
+	margin-top:-20px;
+}
+
+#left_sidebar
+{
+	background: -moz-linear-gradient(90% 200% 180deg, #b8c3c7, #71787a);
+	background: -webkit-gradient(linear, left center, right center, from(#71787a), to(#b8c3c7));
+}
+
+#right_sidebar
+{
+	background: -moz-linear-gradient(90% 200% 180deg, #71787a, #b8c3c7);
+	background: -webkit-gradient(linear, right center, left center, from(#71787a), to(#b8c3c7));
+}
+
+form {
+	width: 100%;
+	display: inline;
+	float: left;
+	background:white;
+}
+
+
+#top_menu
+{
+	background: -moz-linear-gradient(90% 140% 90deg, #71787a, #b8c3c7);
+	background: -webkit-gradient(linear, center bottom, center top, from(#71787a), to(#b8c3c7));
+	width:100%;
+	min-width:1000px;
+	height:28px;
+}
+
+#top_menu ul
+{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#top_menu li
+{
+	font-family: Tahoma;
+	font-size: 13px;
+	margin-top: 1px;
+	margin-left: 11px;
+	margin-right: 11px;
+	margin-bottom: 1px;
+	padding-top:3px;
+	float: left;
+	cursor:pointer;
+}
+
+#top_menu li:hover
+{
+	margin-top: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 0;
+	height: 23px;
+	background-color: #e7f5fa;
+	cursor: pointer;
+	border: solid 1px #9de2fb;
+}
+
+#top_menu li.nohover:hover
+{
+	background: -moz-linear-gradient(90% 140% 90deg, #71787a, #b8c3c7);
+	background: -webkit-gradient(linear, center bottom, center top, from(#71787a), to(#b8c3c7));
+	border: none;
+	margin-top: 1px;
+	margin-left: 11px;
+	margin-right: 11px;
+	margin-bottom: 1px;
+	cursor: default;
+}
+
+#top_menu li img
+{
+	margin-right: 5px;
+}
+
+/*tr td
+{
+	height:620px;
+}*/
+
+#code
+{
+	width: 100%;
+	height: 100%;
+}
+
+#codearea
+{
+	height:100%;
+}

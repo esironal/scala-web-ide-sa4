@@ -1,0 +1,7 @@
+#mbox{background-color:#eee; padding:8px; border:2px outset #666;}
+#mbm{font-family:sans-serif;font-weight:bold;float:right;padding-bottom:5px;}
+#ol{background-image: url(http://z.about.com/d/javascript/1/0/L/1/overlay.png);}
+.dialog {display:none}
+.dialink {cursor:pointer; color:#900;text-decoration:underline;}
+
+* html #ol{background-image:none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://0.tqn.com/d/javascript/1/0/L/1/overlay.png", sizingMethod="scale");}
