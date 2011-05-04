@@ -3,11 +3,14 @@ import java.lang.String
 object LogParser{
   var logTest = "warning: there were deprecation warnings; re-run with -deprecation for details\none warning found"
   var logTest2 = "NetBeansProjects/SA4Game/src/sa4game/Server.scala:12: warning: method removeKey in trait MapLike is deprecated: Use `remove' instead\n    ab.removeKey(\"pol\")\n       ^\nNetBeansProjects/SA4Game/src/sa4game/Server.scala:13: warning: method removeKey in trait MapLike is deprecated: Use `remove' instead\n    ab.removeKey(\"pol\")\n       ^\ntwo warnings found"
-  var logTest3 = "NetBeansProjects/SA4Game/src/sa4game/Client.scala:17: error: not found: type HashMap\n  var games = new HashMap[String,Array[Array[Array[Character]]]]\n                  ^\nNetBeansProjects/SA4Game/src/sa4game/Client.scala:69: error: not found: type Random\n    val rnd = new Random\n                  ^\n2 errors found"
+  var logTest3 = "NetBeansProjects/SA4Game/src/sa4game/Client.scala:17: error: not found: type HashMap\n  var games = new HashMap[String,Array[Array[Array[Character]]]]\n                  ^\nNetBeansProjects/SA4Game/src/sa4game/Client.scala:6969: error: not found: type Random\n    val rnd = new Random\n                  ^\n2 errors found"
   var logTest4 = ""
 
-  def parseLog(string: String): String =
+  def parseLog(string: String): collection.mutable.HashMap[String,String] =
   {
+    var amount = 0
+    var errorDisplay = "-"
+    var warningDisplay = "-"
     var logArray = string.split("\n")
     val logTd1 = "logTd1"
     val logTd2 = "logTd2"
@@ -61,6 +64,7 @@ object LogParser{
           {
             if(i % 3 == 0)
             {
+              amount = amount + 1
               val position = logArray(i).indexOf(" ")
               logArray(i) = logArray(i).substring(0,position+1) +
               logArray(i).substring(position+1,position+6).capitalize + logArray(i).substring(position+6)
@@ -90,24 +94,51 @@ object LogParser{
     }
     if(logTrFinalCompile == logTrFinalCompileFailure)
     {
+      errorDisplay = amount.toString
+      warningDisplay = "?"
       log += "\n<tr class='" + logTrFinalCompile + "'>\n<td class='" + logTd1 +
       "'></td><td class='" + logTd2 + "'>COMPILATION FAILED</td>\n</tr>"
     }
     else
     {
+      if(logTrFinalCompile == logTrFinalCompileWarning)
+      {
+        if(amount == 0)
+        {
+          warningDisplay = "*"
+        }
+        else
+        {
+          warningDisplay = amount.toString
+        }
+      }
       log += "\n<tr class='" + logTrFinalCompile + "'>\n<td class='" + logTd1 +
       "'></td><td class='" + logTd2 + "'>COMPILATION SUCCESSFUL</td>\n</tr>"
     }
-    return "<div class='logDiv'>\n<table class='logTable' cellspacing='0'>" + log + "\n</table>\n</div>"
+    log = "<div class='logDiv'>\n<table class='logTable' cellspacing='0'>" + log + "\n</table>\n</div>"
+    var result = new collection.mutable.HashMap[String,String]
+    result("errorDisplay") = errorDisplay
+    result("warningDisplay") = warningDisplay
+    result("log") = log
+    return result
   }
 
   def main(args: Array[String]): Unit = {
-    println(parseLog(logTest))
+    var parsed = parseLog(logTest)
+    println("<p>errors: " + parsed("errorDisplay") + ", warnings: " + parsed("warningDisplay") + "</p>")
+    println(parsed("log"))
     println("<p></p>")
-    println(parseLog(logTest2))
+    parsed = parseLog(logTest2)
+    println("<p>errors: " + parsed("errorDisplay") + ", warnings: " + parsed("warningDisplay") + "</p>")
+    println(parsed("log"))
     println("<p></p>")
-    println(parseLog(logTest3))
+    parsed = parseLog(logTest3)
+    println("<p>errors: " + parsed("errorDisplay") + ", warnings: " + parsed("warningDisplay") + "</p>")
+    println(parsed("log"))
     println("<p></p>")
-    println(parseLog(logTest4))
+    parsed = parseLog(logTest4)
+    println("<p>errors: " + parsed("errorDisplay") + ", warnings: " + parsed("warningDisplay") + "</p>")
+    println(parsed("log"))
+    println("<p></p>")
   }
 }
