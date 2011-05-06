@@ -101,9 +101,8 @@ class Boot {
 				</td>			
 				<td width='80%' id="codearea" valign="top">
 					<form>
-						<textarea id="code" name="code"></textarea>
+						<textarea id="demo_editor_text" name="demo_editor_text"></textarea>
 							<script src="http://marcelloromanelli.com/editor/lib/complete.js"></script>
-							
 						</form>
 					</td>
 					<td id="right_sidebar" value="true" width='10%'>
