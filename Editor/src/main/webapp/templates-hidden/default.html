@@ -3,9 +3,11 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title class="lift:Menu.title">COLLABORATIVE IDE</title>
 	
-	<!-- CSS -->
-    <!--<style class="lift:CSS.blueprint"></style>
-    <style class="lift:CSS.fancyType"></style>-->
+	<script src="http://usiedit.appspot.com/static/compressed_form.js"></script>
+	<script>
+	  mobwrite.syncGateway = 'http://usiedit.appspot.com/scripts/q.py';
+	</script>
+
     <link rel="stylesheet" type="text/css" href="css/codemirror.css"/>
 	<link rel="stylesheet" type="text/css" href="css/modaldbox.css"/>
 	<link rel="stylesheet" type="text/css" href="css/style.css"/>
@@ -65,12 +67,11 @@
 		}
 	}
 	</script>
-	<!-- /SCRIPTS -->
 	
   </head>
 
 
-  <body>
+<body onload="mobwrite.share('demo_editor_text');">
 		<div id="top_menu">
 			<ul>
 				<li><img src="img/new.png" /><span onclick="sm('box',800,400)">New</span></li>
@@ -93,34 +94,10 @@
 			</ul>
 		</div>
     <div class="container">
-      <!--<div class="column span-15 last" style="text-align: center">
-        <h1 class="alt">Collaborative Editor</h1>
-      </div>
 
-      <hr />
-
-      <div class="column span-6 colborder sidebar">
-        <hr class="space" />
-
-	<span class="lift:Menu.builder"></span>
-
-        <div class="lift:Msgs?showAll=true"></div>
-        <hr class="space" />
-      </div>-->
-
-      <!--<div class="column span-17 last">-->
-      <!--<div>-->
         <div id="content">The main content will get bound here</div>
-      <!--</div>-->
 
-      <!--<hr />
-      <div class="column span-23 last" style="text-align: center">
-      <div>
-        <h4 class="alt">
-         Designed By <br />
-		 Gerardo Caruso | Thomas Mantegazzi | Ebrisa Savina Mastrodicasa | Marcello Romanelli | Yotam Sharon</h4>
-      </div>
-    </div>-->
+
     </div>
   </body>
 </html>
