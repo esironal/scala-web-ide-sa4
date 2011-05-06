@@ -10,7 +10,15 @@ import sitemap._
 import Loc._
 import mapper._
 
+import js._
+import JsCmds._
+import JE._
+
+import scala.xml.NodeSeq
+
 import code.model._
+import code.comet.ChatServer
+import scala.collection.immutable._
 
 
 /**
@@ -46,7 +54,9 @@ class Boot {
       // more complex because this menu allows anything in the
       // /static path to be visible
       Menu(Loc("Static", Link(List("static"), true, "/static/index"), 
-	       "Static Content")))
+	       "Static Content")),
+	  Menu(Loc("Chat", Link(List("chat"), true, "/chat/"), 
+	       "Chat Content"))     )
 
     def sitemapMutators = User.sitemapMutator
 
@@ -64,11 +74,64 @@ class Boot {
 
     // Force the request to be UTF-8
     LiftRules.early.append(_.setCharacterEncoding("UTF-8"))
+    
+    LiftRules.viewDispatch.append {
+    	case "chat" :: Nil => Right(ChatView)
+    }
 
     // What is the function to test if a user is logged in?
     LiftRules.loggedInTest = Full(() => User.loggedIn_?)
 
     // Make a transaction span the whole HTTP request
     S.addAround(DB.buildLoanWrapper)
+  }
+  
+  object ChatView extends LiftView {
+  	def dispatch = {
+  		case filename:String => () => Full(content(filename))	
+  	}
+  	
+  	def content(filename:String):NodeSeq = {
+  	 <lift:surround with="default" at="content">
+		<br />
+		<!--<hr>-->
+		<table border="1">
+			<tr>
+				<td id="left_sidebar" value="true"  width='10%'>
+				</td>			
+				<td width='80%' id="codearea" valign="top">
+					<form>
+						<textarea id="code" name="code"></textarea>
+							<script src="http://marcelloromanelli.com/editor/lib/complete.js"></script>
+							
+						</form>
+					</td>
+					<td id="right_sidebar" value="true" width='10%'>
+					<div id="chat_content">
+					<lift:comet type="Chat" name={filename}>
+				        <h5 style="text-align:center">Chat</h5>
+				        <ul>
+				          <li>A message</li>
+				        </ul>
+				     </lift:comet>
+				      
+					  <div>
+				        <form class="lift:ChatIn?form=post">
+				          <input id="chat_in" />
+					      <input type="hidden" name="filename" value={filename}/>
+					      <input type="hidden" name="name" value="Jack"/>
+				          <input type="submit" value="Send"/>
+				        </form>
+				      </div>
+					</div>
+					</td>
+				</tr>
+			</table>
+			<div id="box" class="dialog">
+			<div style="text-align:center"><span id="txt">A nice file viewer</span><br />
+			<button onclick="hm('box');okSelected()">OK</button></div>
+			</div>
+      </lift:surround>
+  	}	
   }
 }
