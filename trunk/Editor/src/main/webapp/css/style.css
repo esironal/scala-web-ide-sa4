@@ -31,6 +31,7 @@ table
 
 form {
 	width: 100%;
+	height: 650px;
 	display: inline;
 	float: left;
 	background:white;
@@ -109,4 +110,26 @@ form {
 #codearea
 {
 	height:100%;
+}
+
+#textcompile
+{
+	height: 100%;
+	margin: 0;
+}
+
+#totext
+{
+	height: 500px;
+}
+
+#compiler
+{
+	height: 150px;
+}
+
+#demo_editor_text
+{
+	height: 100%;
+	width: 100%;
 }
