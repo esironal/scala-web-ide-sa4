@@ -1,9 +1,11 @@
 package bootstrap.liftweb
 
-object ProjectXML extends FileSystem{
+//import org.specs.io.FileWriter
+
+object ProjectXML{
 	
 	def content(path: String) = {
-		
+		//println("aa " + FileSystem.filePaths("/"))
 		
 	}
 }
