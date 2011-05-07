@@ -1,4 +1,5 @@
 import java.lang.String
+import scala.xml._
 
 object LogParser{
   var logTest = "warning: there were deprecation warnings; re-run with -deprecation for details\none warning found"
@@ -123,6 +124,11 @@ object LogParser{
     return result
   }
 
+  def getXMLlog(string: String): NodeSeq = {
+    val xmlLog = XML.loadString(parseLog(string)("log"))
+    return xmlLog
+  }
+
   def main(args: Array[String]): Unit = {
     var parsed = parseLog(logTest)
     println("<p>errors: " + parsed("errorDisplay") + ", warnings: " + parsed("warningDisplay") + "</p>")
@@ -140,5 +146,6 @@ object LogParser{
     println("<p>errors: " + parsed("errorDisplay") + ", warnings: " + parsed("warningDisplay") + "</p>")
     println(parsed("log"))
     println("<p></p>")
+    println(getXMLlog(logTest2))
   }
 }
