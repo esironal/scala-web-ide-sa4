@@ -1,3 +1,6 @@
+package code
+package snippet
+
 import java.lang.reflect._
 import java.io._
 import java.util.GregorianCalendar
@@ -26,6 +29,21 @@ class Compiler(sourcesDirectory: String, optionList: scala.Array[String]) {
   		
 		//return the exit value   
   		pr.exitValue()
+  	}
+  	
+  	/*
+  	 * Execute the given command from the terminal
+  	 */
+  	def copyFiles(src: String) =
+  	{
+  		val c = scala.Array("/bin/bash", "-c curl -O " + src)
+  		val exec = runTime.exec(c)
+  		
+		// wait for the end of the command execution
+  		exec.waitFor()
+  		
+		//return the exit value   
+  		exec.exitValue()
   	}
 
 	/** 
