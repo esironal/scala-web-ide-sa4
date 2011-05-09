@@ -91,7 +91,7 @@ class Boot {
   		case filename:String => () => Full(content(filename))	
   	}
   	
-  	def content(filename:String):NodeSeq = {
+  	def content(filename:String):NodeSeq = {	
   	 <lift:surround with="default" at="content">
 		<br />
 		<!--<hr>-->
@@ -101,10 +101,9 @@ class Boot {
 				</td>			
 				<td width='80%' id="codearea" valign="top">
 					<form>
-						<textarea id="demo_editor_text" name="demo_editor_text"></textarea>
-							<script src="http://marcelloromanelli.com/editor/lib/complete.js"></script>
-						</form>
-					</td>
+						<textarea id={filename} name={filename}></textarea>
+					</form>
+				</td>
 					<td id="right_sidebar" value="true" width='10%'>
 					<div id="chat_content">
 					<lift:comet type="Chat" name={filename}>

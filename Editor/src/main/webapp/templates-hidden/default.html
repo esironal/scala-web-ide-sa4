@@ -9,9 +9,9 @@
 	</script>
 
     <link rel="stylesheet" type="text/css" href="css/codemirror.css"/>
-	<link rel="stylesheet" type="text/css" href="css/modaldbox.css"/>
-	<link rel="stylesheet" type="text/css" href="css/style.css"/>
-	<link rel="stylesheet" type="text/css" href="mode/clike/clike.css"/>
+	<!-- <link rel="stylesheet" type="text/css" href="css/modaldbox.css"/> -->
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<!-- <link rel="stylesheet" type="text/css" href="mode/clike/clike.css"/> -->
 	<style type="text/css"> 
 	.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
 	.activeline {background: #f0fcff !important;}
@@ -19,11 +19,11 @@
 	<!-- /CSS -->
 	
 	<!-- SCRIPTS -->
-	<script id="jquery" type="text/javascript" src="/classpath/jquery.js"></script>
+	<!-- <script id="jquery" type="text/javascript" src="/classpath/jquery.js"></script>
     <script id="json" type="text/javascript" src="/classpath/json.js"></script>
-	<script type="text/javascript" src="lib/codemirror.js"></script>	
+	<script type="text/javascript" src="lib/codemirror.js"></script>	 -->
 	<script type="text/javascript" src="lib/modaldbox.js"></script>
-	<script type="text/javascript" src="mode/clike/clike.js"></script>
+	<!-- <script type="text/javascript" src="mode/clike/clike.js"></script> -->
 	
 	<script type="text/javascript">
 	function left_sidebar() {
@@ -37,12 +37,12 @@
 			sidebar.style.background = "-moz-linear-gradient(90% 200% 180deg, #b8c3c7, #71787a)";
 			sidebar.value = "false";
 			button.value = "Show Project Browser";
-			img.src = "img/open_active.png";
+			img.src = "/img/open_active.png";
 		} else {
 			sidebar.style.display = "inline";
 			sidebar.value = "true";
 			button.value = "Hide Project Browser";
-			img.src = "img/open_inactive.png";
+			img.src = "/img/open_inactive.png";
 
 		}
 	}
@@ -57,39 +57,40 @@
 			sidebar.style.background = "-moz-linear-gradient(90% 200% 180deg, #71787a, #b8c3c7)";
 			sidebar.value = "false";
 			button.value = "Show Chat";
-			img.src = "img/chat_active.png";
+			img.src = "/img/chat_active.png";
 
 		} else {
 			sidebar.style.display = "inline";
 			sidebar.value = "true";
 			button.value = "Hide Chat";
-			img.src = "img/chat_inactive.png";
+			img.src = "/img/chat_inactive.png";
 		}
 	}
 	</script>
 	
   </head>
 
-
-<body onload="mobwrite.share('demo_editor_text');">
+<!-- INSERIRE IL NOME DEL FILE -->
+<body onload="mobwrite.share('test');">
+	<!-- body -->
 		<div id="top_menu">
 			<ul>
-				<li><img src="img/new.png" /><span onclick="sm('box',800,400)">New</span></li>
-				<li><img src="img/open.png" />Open</li>
-				<li><img src="img/save.png" />Save</li>
+				<li><img src="/img/new.png" /><span onclick="sm('box',800,400)">New</span></li>
+				<li><img src="/img/open.png" />Open</li>
+				<li><img src="/img/save.png" />Save</li>
 				<li class="nohover">|</li>
-				<li><img src="img/upload.png" />Upload</li>
-				<li><img src="img/download.png" />Download</li>
+				<li><img src="/img/upload.png" />Upload</li>
+				<li><img src="/img/download.png" />Download</li>
 				<li class="nohover">|</li>
-				<li><img src="img/build.png" />Build</li>
-				<li><img src="img/run.png" />Run</li>
+				<li><img src="/img/build.png" />Build</li>
+				<li><img src="/img/run.png" />Run</li>
 				<li class="nohover">|</li>
-				<li><img src="img/lock.png" />Lock</li>
+				<li><img src="/img/lock.png" />Lock</li>
 				<li class="nohover"><input type="button" value="Hide Project Browser" id="left_button" onclick="left_sidebar()">
-					<img id="left_img" src="img/open_inactive.png" width="16" heght="16" alt="submit" /></input>
+					<img id="left_img" src="/img/open_inactive.png" width="16" heght="16" alt="submit" /></input>
 				</li>
 				<li class="nohover"><input type="button" value="Hide Chat" id="right_button" onclick="right_sidebar()">
-					<img id="right_img" src="img/chat_inactive.png" width="16" heght="16" alt="submit" />
+					<img id="right_img" src="/img/chat_inactive.png" width="16" heght="16" alt="submit" />
 				</input></li>
 			</ul>
 		</div>
