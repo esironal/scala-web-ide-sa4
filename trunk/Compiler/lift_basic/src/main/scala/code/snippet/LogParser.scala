@@ -1,3 +1,6 @@
+package code
+package snippet
+
 import java.lang.String
 import scala.xml._
 

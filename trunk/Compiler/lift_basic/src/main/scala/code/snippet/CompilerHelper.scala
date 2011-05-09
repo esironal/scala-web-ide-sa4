@@ -1,3 +1,6 @@
+package code
+package snippet
+
 import java.lang.reflect._
 import java.io._
 
@@ -9,6 +12,22 @@ class CompilerHelper (id: Int, optionList: scala.Array[String]) {
 
 	val runTime = Runtime.getRuntime 
 	val projectId = "project"+id
+	
+	/*
+	 * Return location of the locally stored copy of the file.
+	 */
+	 def getPath() = 
+	 {
+	 	projectId+"/src"
+	 }
+	 
+	 /*
+	 * Return location of the log of the compiled file.
+	 */
+	 def getLog() = 
+	 {
+	 	projectId+"/log"
+	 }
 	
 	/**
 	 * Create the directories need to compile the project
