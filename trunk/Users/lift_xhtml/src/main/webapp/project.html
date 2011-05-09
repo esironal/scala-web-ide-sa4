@@ -1,0 +1,21 @@
+                <div id="main" class="lift:surround?with=default;at=content">
+                    <div class="lift:FileIn.cometFileList"></div>
+                    <div>
+                        <form class="lift:form.ajax">
+		                    <div class="lift:FileIn.hiddenProjectId"></div>
+                            
+                            <input class="lift:FileIn.newFile" id="fileIn"/>
+                            <input type="submit" value="New file"/>
+                        </form>
+                    </div>
+                    <br/><br/>
+                    <div>
+                        <form class="lift:form.ajax">
+                            <div id="fileName">file path</div>
+                            <input type="hidden" id="projectId" name="projectId" value=""/>
+                            <input type="hidden" id="fileId" name="fileId" value=""/>
+                            <textarea id="fileContent" class="lift:FileIn.saveFile">file content</textarea><br/>
+                            <input type="submit" value="Save file"/>
+                        </form>
+                    </div>
+                </div>
