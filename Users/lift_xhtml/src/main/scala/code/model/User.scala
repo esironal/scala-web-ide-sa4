@@ -35,7 +35,7 @@ object User extends User with MetaMegaProtoUser[User] {
   override def skipEmailValidation = true
 }
 
-class User extends MegaProtoUser[User] {
+class User extends MegaProtoUser[User] with ManyToMany {
   	def getSingleton = User
   	
 	object accountID extends MappedString(this, 30){
@@ -60,4 +60,6 @@ class User extends MegaProtoUser[User] {
 		override def displayName = "Coordonates"
 		override def defaultValue = "NotSet" 
 	}
+
+	object projects extends MappedManyToMany(UserProject, UserProject.user, UserProject.project, Project)
 }

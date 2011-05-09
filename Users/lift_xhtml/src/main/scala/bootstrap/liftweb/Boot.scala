@@ -60,7 +60,10 @@ class Boot {
      Menu(Loc("Delete",
               Link(List("delete"), true, "/delete/"), "Delete")),
      Menu(Loc("Static", Link(List("static"), true, "/static/index"), 
-          "Static Content")))
+          "Static Content")),
+     Menu(Loc("Project", Link(List("project"), true, "/project"), "Project")),
+     Menu(Loc("ProjectList",
+              Link(List("projectList"), true, "/projectList"), "ProjectList")))
 
    def sitemapMutators = User.sitemapMutator
 
@@ -104,6 +107,7 @@ class Boot {
      	Right(Delete)
      case "userList" :: Nil =>
      	Right(UserList)
+     
    }
    
  }
