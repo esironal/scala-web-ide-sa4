@@ -95,16 +95,17 @@ class Boot {
   	 <lift:surround with="default" at="content">
 		<br />
 		<!--<hr>-->
-		<table border="1">
+		<table id="main_table">
 			<tr>
-				<td id="left_sidebar" value="true"  width='10%'>
+				<td id="left_sidebar" value="true">
 				</td>			
-				<td width='80%' id="codearea" valign="top">
-					<form>
-						<textarea id={filename} name={filename}></textarea>
-					</form>
+				<td id="codearea" valign="top">
+					<textarea id={filename} name={filename} class="editor"></textarea>
+					<div id="log">
+						LOG
+					</div>
 				</td>
-					<td id="right_sidebar" value="true" width='10%'>
+					<td id="right_sidebar" value="true">
 					<div id="chat_content">
 					<lift:comet type="Chat" name={filename}>
 				        <h5 style="text-align:center">Chat</h5>
