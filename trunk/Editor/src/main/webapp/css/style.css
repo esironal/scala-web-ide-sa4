@@ -8,38 +8,53 @@
 html, body { 
 margin: 0; 
 padding: 0; 
+width: 100%;
+height: 100%;
+
 }
 
-table
+body {
+	margin: 0;
+	padding: 0;
+}
+
+table#main_table
 {
+	display:block;
+    position: absolute;
+	top: 28px;
+	left: 0;
+	
 	width:100%;
-	height:94%;
-	margin-top:-20px;
+	height: 100%;
+	margin: 0 auto;
+
 }
 
 #left_sidebar
-{
+{/*
 	background: -moz-linear-gradient(90% 200% 180deg, #b8c3c7, #71787a);
-	background: -webkit-gradient(linear, left center, right center, from(#71787a), to(#b8c3c7));
+	background: -webkit-gradient(linear, left center, right center, from(#71787a), to(#b8c3c7));*/
+	width:10%;
+	height: 100%;
+	background: yellow;
 }
 
 #right_sidebar
 {
-	background: -moz-linear-gradient(90% 200% 180deg, #71787a, #b8c3c7);
-	background: -webkit-gradient(linear, right center, left center, from(#71787a), to(#b8c3c7));
-}
-
-form {
-	width: 100%;
-	height: 650px;
-	display: inline;
-	float: left;
-	background:white;
+/*	background: -moz-linear-gradient(90% 200% 180deg, #71787a, #b8c3c7);
+	background: -webkit-gradient(linear, right center, left center, from(#71787a), to(#b8c3c7));*/
+	width:10%;
+	height: 100%;
+	background: red;
+	
 }
 
 
 #top_menu
 {
+	display:block;
+	
 	background: -moz-linear-gradient(90% 140% 90deg, #71787a, #b8c3c7);
 	background: -webkit-gradient(linear, center bottom, center top, from(#71787a), to(#b8c3c7));
 	width:100%;
@@ -101,48 +116,51 @@ form {
 	height:620px;
 }*/
 
-#code
+#codearea {
+	width: 80%;
+	height: 100%;
+}
+
+.editor
 {
+
 	width: 100%;
-	height: 100%;
+	border: none;
+	background: green;
+	overflow: auto;
 }
 
-#codearea
+.log
 {
-	height:100%;
-}
 
-#textcompile
-{
-	height: 100%;
-	margin: 0;
-}
-
-#totext
-{
-	height: 500px;
-}
-
-#compiler
-{
-	height: 150px;
-}
-
-#demo_editor_text
-{
-	height: 100%;
 	width: 100%;
+	margin-right: 0;
+	border: none;
 }
 
 
 
-#chat_in{border:1px solid #bdc7d8;font-family:"lucida grande",tahoma,verdana,arial,sans-serif;font-size: 11px;padding:3px;-webkit-appearance:none;-webkit-border-radius:0}
+#chat_in{
+	border:1px solid #bdc7d8;
+	font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+	font-size: 11px;
+	padding:3px;
+	-webkit-appearance:none;
+	-webkit-border-radius:0;
+	width: 100%;
+	margin-bottom:0;
+	}
+	
+input#chat_in{
+	width: 90%;
+}
 
 #chat_content ul {
 	font-family: Tahoma;
 	font-size: 13px;
 	list-style: none;
-	width: 100%;
-	height: 300px;
-	margin-left:-20px;
+}
+
+#chat_content ul li{
+	width: 20px;
 }

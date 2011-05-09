@@ -8,8 +8,8 @@
 	  mobwrite.syncGateway = 'http://usiedit.appspot.com/scripts/q.py';
 	</script>
 
-    <link rel="stylesheet" type="text/css" href="css/codemirror.css"/>
-	<!-- <link rel="stylesheet" type="text/css" href="css/modaldbox.css"/> -->
+    <link rel="stylesheet" type="text/css" href="/css/codemirror.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/modaldbox.css"/>
     <link href="/css/style.css" rel="stylesheet" type="text/css" />
 	<!-- <link rel="stylesheet" type="text/css" href="mode/clike/clike.css"/> -->
 	<style type="text/css"> 
@@ -22,12 +22,17 @@
 	<!-- <script id="jquery" type="text/javascript" src="/classpath/jquery.js"></script>
     <script id="json" type="text/javascript" src="/classpath/json.js"></script>
 	<script type="text/javascript" src="lib/codemirror.js"></script>	 -->
-	<script type="text/javascript" src="lib/modaldbox.js"></script>
+	<script type="text/javascript" src="/lib/modaldbox.js"></script>
 	<!-- <script type="text/javascript" src="mode/clike/clike.js"></script> -->
-	
+	<script type="text/javascript" charset="utf-8">
+	function height_size() {
+		var height = window.innerHeight - 30;
+		var main_table = document.getElementById("main_table");
+		main_table.style.height = height + "px";
+	}
+	</script>
 	<script type="text/javascript">
 		var filename;
-	
 		function getURL() {
 			var strHref = window.location.href;
 			var url = strHref.split("/");
