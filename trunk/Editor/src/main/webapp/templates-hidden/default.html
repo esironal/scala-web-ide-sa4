@@ -26,6 +26,17 @@
 	<!-- <script type="text/javascript" src="mode/clike/clike.js"></script> -->
 	
 	<script type="text/javascript">
+		var filename;
+	
+		function getURL() {
+			var strHref = window.location.href;
+			var url = strHref.split("/");
+			window.filename = url.pop();
+		}
+	</script>
+	
+	
+	<script type="text/javascript">
 	function left_sidebar() {
 		var sidebar = document.getElementById("left_sidebar");
 		var button = document.getElementById("left_button");
@@ -71,7 +82,9 @@
   </head>
 
 <!-- INSERIRE IL NOME DEL FILE -->
-<body onload="mobwrite.share('test');">
+<!-- <body onload="var name = getURL(); "> -->
+	<body onload="getURL(); mobwrite.share(filename);">
+	
 	<!-- body -->
 		<div id="top_menu">
 			<ul>
