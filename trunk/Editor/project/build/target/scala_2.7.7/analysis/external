@@ -1,4 +1,4 @@
 #External Dependencies
-#Fri May 06 19:41:18 CEST 2011
-/Users/nystrom/Dropbox/work/uta-svn/nystrom/uta/sa4/p4/svn/scala-web-ide-sa4/Editor/project/boot/scala-2.7.7/org.scala-tools.sbt/sbt/0.7.4/sbt_2.7.7-0.7.4.jar=LiftProject.scala
-/Users/nystrom/Dropbox/work/uta-svn/nystrom/uta/sa4/p4/svn/scala-web-ide-sa4/Editor/project/boot/scala-2.7.7/lib/scala-library.jar=LiftProject.scala
+#Mon May 09 13:44:18 CEST 2011
+/SA4/trunk/Editor/project/boot/scala-2.7.7/lib/scala-library.jar=LiftProject.scala
+/SA4/trunk/Editor/project/boot/scala-2.7.7/org.scala-tools.sbt/sbt/0.7.4/sbt_2.7.7-0.7.4.jar=LiftProject.scala
