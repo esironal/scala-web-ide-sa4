@@ -55,4 +55,9 @@ class User extends MegaProtoUser[User] {
 		override def displayName = "Personal Image"
 		override def defaultValue = "/images/img.png" 
 	}
+	
+	object coordinates extends MappedString(this, 100){
+		override def displayName = "Coordonates"
+		override def defaultValue = "NotSet" 
+	}
 }
