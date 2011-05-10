@@ -34,6 +34,11 @@ class Messager(port: Int) extends Actor {
 				println("File System: saved "+path+" (actually this is fake. it's just an example, we did not save it yet)")
 				sender ! "File System: saved "+path+" (actually this is fake. it's just an example, we did not save it yet)"
 			}
+			
+			case Compiled(id: Int, path: String) => {
+				println("File System: compiled "+path+" with id " +id+ " (actually this is fake. it's just an example, we did not implement it yet)")
+				sender ! "File System: compiled "+path+" with id " +id+ " (actually this is fake. it's just an example, we did not implement it yet)"
+			}
 							
 			}
 						
