@@ -1,11 +1,29 @@
 package bootstrap.liftweb
 
-//import org.specs.io.FileWriter
+import java.io.File
+import scala.xml._
 
-object ProjectXML{
-	
-	def content(path: String) = {
-		//println("aa " + FileSystem.filePaths("/"))
+class ProjectXML{
+
+	def dirHTML(path: String):Node = {
+		val list = new File(path).list
+		val fileName = path.split("/")(path.split("/").length - 1)
 		
-	}
+		val result = <li><span class="folder">{ fileName }</span>
+						<ul>
+							{for (aFile <- list) yield
+								<li> {
+								val temp = new File(path +"/"+  aFile)
+								if(!temp.isDirectory){
+									<span class="file">{aFile}</span>
+								}else{
+									dirHTML(path +"/"+aFile)
+								}
+								}</li> 
+							}
+						</ul>
+		</li>
+		
+		return result
+}
 }
