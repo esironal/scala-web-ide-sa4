@@ -109,6 +109,8 @@ class Boot {
      	Right(UserList)
      
    }
+   val test = new ProjectXML
+   println(test.dirHTML("/ciao"))
    
    
     //start messager
