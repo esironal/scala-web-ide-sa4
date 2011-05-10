@@ -3,14 +3,11 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<title class="lift:Menu.title">COLLABORATIVE IDE</title>
 	
-	<script src="http://usiedit.appspot.com/static/compressed_form.js"></script>
-	<script>
-	  mobwrite.syncGateway = 'http://usiedit.appspot.com/scripts/q.py';
-	</script>
 
     <link rel="stylesheet" type="text/css" href="/css/codemirror.css"/>
 	<link rel="stylesheet" type="text/css" href="/css/modaldbox.css"/>
     <link href="/css/style.css" rel="stylesheet" type="text/css" />
+	
 	<!-- <link rel="stylesheet" type="text/css" href="mode/clike/clike.css"/> -->
 	<style type="text/css"> 
 	.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
@@ -19,11 +16,19 @@
 	<!-- /CSS -->
 	
 	<!-- SCRIPTS -->
-	<!-- <script id="jquery" type="text/javascript" src="/classpath/jquery.js"></script>
-    <script id="json" type="text/javascript" src="/classpath/json.js"></script>
-	<script type="text/javascript" src="lib/codemirror.js"></script>	 -->
-	<script type="text/javascript" src="/lib/modaldbox.js"></script>
-	<!-- <script type="text/javascript" src="mode/clike/clike.js"></script> -->
+    <!-- <script id="json" type="text/javascript" src="/classpath/json.js"></script> -->
+	<script type="text/javascript" src="http://usiedit.appspot.com/static/lib/codemirror.js"></script>	
+	<script type="text/javascript" src="http://usiedit.appspot.com/static/lib/modaldbox.js"></script>
+	<script type="text/javascript" src="http://usiedit.appspot.com/static/lib/jquery.js"></script>
+	<SCRIPT SRC="http://usiedit.appspot.com/static/lib/diff_match_patch_uncompressed.js"></SCRIPT>
+	<SCRIPT SRC="http://usiedit.appspot.com/static/lib/mobwrite_core.js"></SCRIPT>
+	<script src="http://usiedit.appspot.com/static/lib/simple_differ.js"></script>
+	<script src="http://usiedit.appspot.com/static/lib/mobwrite_codemirror.js"></script>
+	
+	<script src="http://usiedit.appspot.com/static/compressed_form.js"></script>
+	<script>
+	  mobwrite.syncGateway = 'http://usiedit.appspot.com/scripts/q.py';
+	</script>
 	
 	<script type="text/javascript">
 		var filename;
@@ -38,9 +43,9 @@
 	window.onresize = height_size;
 	
 	function height_size() {
-		var table_height = window.innerHeight - 30;
-		var editor_height = window.innerHeight - 120;
-		var log_height = table_height - editor_height - 15;
+		var table_height = window.innerHeight - 34;
+		var editor_height = window.innerHeight - 140;
+		var log_height = table_height - editor_height - 5;
 		var main_table = document.getElementById("main_table");
 		var editor = document.getElementById(filename);
 		var log = document.getElementById("log");
@@ -48,7 +53,21 @@
 		editor.style.height = editor_height + "px";
 		log.style.height = log_height + "px";
 	}
-	</script>
+	
+		function editor_text() {
+			var demo_editor_text = mobwrite.shareCodeMirror.create('test', {
+		    height: '100%',
+		    width: '100%',
+		    parserfile: ['tokenizejavascript.js', 'parsejavascript.js'],
+		    path: 'http://usiedit.appspot.com/static/lib/',
+			stylesheet: 'http://usiedit.appspot.com/static/lib/jscolors.css',
+		    tabMode: 'shift',
+		    autoMatchParens: true
+		  });
+		}
+	
+		
+	 </script>
 	
 	
 	
@@ -140,7 +159,7 @@
 
 <!-- INSERIRE IL NOME DEL FILE -->
 <!-- <body onload="var name = getURL(); "> -->
-	<body onload="assign_value(); getURL(); height_size(); mobwrite.share(filename);" >
+	<body onload="assign_value(); getURL(); height_size(); setTimeout('mobwrite.share(filename); editor_text();', 1000);" >
 	
 	<!-- body -->
 		<div id="top_menu">

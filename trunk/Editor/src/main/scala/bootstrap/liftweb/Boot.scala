@@ -102,7 +102,62 @@ class Boot {
 				<td id="codearea">
 					<textarea id={filename} name={filename} class="editor"></textarea>
 					<div id="log">
-						LOG
+						<div class='logDiv'>
+
+						<table class='logTable' cellspacing='0'>
+
+						<tr class='logTrErrorFirst'>
+
+						<td class='logTd1'>17</td><td class='logTd2'><a href='http://NetBeansProjects/SA4Game/src/sa4game/Client.scala#17'>NetBeansProjects/SA4Game/src/sa4game/Client.scala:17</a></td>
+
+						</tr>
+
+						<tr class='logTrErrorSecond'>
+
+						<td class='logTd1'></td><td class='logTd2'>Error - not found: type HashMap</td>
+
+						</tr>
+
+						<tr class='logTrErrorSecond'>
+
+						<td class='logTd1'></td><td class='logTd2 logTdFixed'>  var games = new <u>HashMap</u>[String,Array[Array[Array[Character]]]]</td>
+
+						</tr>
+
+						<tr class='logTrErrorFirst'>
+
+						<td class='logTd1'>12345</td><td class='logTd2'><a href='http://NetBeansProjects/SA4Game/src/sa4game/Client.scala#12345'>NetBeansProjects/SA4Game/src/sa4game/Client.scala:12345</a></td>
+
+						</tr>
+
+						<tr class='logTrErrorSecond'>
+
+						<td class='logTd1'></td><td class='logTd2'>Error - not found: type Random</td>
+
+						</tr>
+
+						<tr class='logTrErrorSecond'>
+
+						<td class='logTd1'></td><td class='logTd2 logTdFixed'>    val rnd = new <u>Random</u></td>
+
+						</tr>
+
+						<tr class='logTrFinalError'>
+
+						<td class='logTd1'></td><td class='logTd2'>2 errors found</td>
+
+						</tr>
+
+						<tr class='logTrFinalCompileFailure'>
+
+						<td class='logTd1'></td><td class='logTd2'>COMPILATION FAILED</td>
+
+						</tr>
+
+						</table>
+
+						</div>
+						
 					</div>
 				</td>
 					<td id="right_sidebar" value="true">
