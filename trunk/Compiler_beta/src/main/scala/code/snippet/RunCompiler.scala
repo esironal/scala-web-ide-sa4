@@ -1,8 +1,11 @@
 package code
 package snippet
 
-/**
- * Run the compilation and parsing of generated log.
+import scala.xml._
+import java.io._
+
+/*
+ * Run compiler and parse generated log.
  * @autor: Cristian Bruseghini <cristian.bruseghini@gmail.com>	
  */
  
@@ -25,10 +28,19 @@ class RunCompiler(id: String, path: String, options: Array[String])
 		// copy the file in projectId/src
 		compiler.copyFiles(path)		
 		
+		// create makefile
+		compileHelper.makeMakefile()
+		
 		// compile the file located at a specific path
 		compiler.compile()
 		
 		// parse the log
-		LogParser.getXMLlog(compileHelper.getLog())
+		var log = LogParser.getXMLlog(compileHelper.getLog())
+		
+		// create log.xml
+//		var file = "log/log_compilation_" + compiler.getTime() + ".xml"
+//		val fw = new FileWriter(file)
+		
+//		scala.xml.XML.save(file, <node>{log}</node>)
 	}
 }

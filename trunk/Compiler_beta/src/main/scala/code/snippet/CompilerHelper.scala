@@ -4,12 +4,13 @@ package snippet
 import java.lang.reflect._
 import java.io._
 
-/**
+/*
  * Classed used to provide well formatted paramenteres to the Compiler
  * @autor: Lorenzo Baracchi <lorenzo.baracchi@member.fsf.org>	
  */
-class CompilerHelper (id: Int, var optionList: scala.Array[String]) {
-
+class CompilerHelper (id: Int, var optionList: scala.Array[String]) 
+{
+	// fields:
 	val runTime = Runtime.getRuntime 
 	val projectId = "project"+id
 	
@@ -21,7 +22,7 @@ class CompilerHelper (id: Int, var optionList: scala.Array[String]) {
 	 	projectId
 	 }
 	 
-	 /*
+	/*
 	 * Return location of the log of the compiled file.
 	 */
 	 def getLog() = 
@@ -40,6 +41,7 @@ class CompilerHelper (id: Int, var optionList: scala.Array[String]) {
 	 private def setBinDir() {
 	 	optionList=optionList++scala.Array("-d "+projectId+"/bin")
 	 }
+	 
 	 /*
 	  * Set (as compiler option) the folder where to put source files
 	  */	
@@ -47,7 +49,7 @@ class CompilerHelper (id: Int, var optionList: scala.Array[String]) {
 	 	optionList=optionList++scala.Array("-d "+projectId+"/src")
 	 }
 	
-	/**
+	/*
 	 * Create the directories need to compile the project
 	 * @return true if the process suceeded, false otherwise
 	 */
@@ -72,51 +74,28 @@ class CompilerHelper (id: Int, var optionList: scala.Array[String]) {
   			false
 	}
 	
-	/**
+	/*
 	 * Create a sort of makefile	
 	 */
-	 def makeMakefile() = {
-	 	var cmd="ls -1R --file-type " + getPath + "&> " + projectId + "/.makefile"
+	 def makeMakefile() = 
+	 {	
+	 	var cmd = "ls -1R " + projectId + " &> " + projectId + "/.makefile"
+//		var cmd = "pwd &> " + projectId + "/.makefile"
+	 	println(scala.Console.YELLOW + "CMD (mkfile): " + cmd + scala.Console.RESET)
+	 	
 	 	val c = scala.Array("/bin/bash", "-c", cmd)
-  		val exec = runTime.exec(c)
+  		val pr = runTime.exec(c)
   		
 		// wait for the end of the command execution
-  		exec.waitFor()
+  		pr.waitFor()
   		
-		//return the exit value   
-  		exec.exitValue()
+		// return the exit value   
+  		val returnValue = pr.exitValue()
+  		println(scala.Console.RED + "### MAKEFILE ###: " + returnValue + scala.Console.RESET)
+  		returnValue
 	 }
-	 
-	 /**
-	  *	Create a zip file for the project of the folders bin and log
-	  */
-	 def zipBinAndLog() = {
-  		val c = scala.Array("/bin/bash", "zip -r "+projectId+".zip "+projectId+"/log"+" "+projectId+"/bin")
-  		val exec = runTime.exec(c)
-  		
-		// wait for the end of the command execution
-  		exec.waitFor()
-  		
-		//return the exit value   
-  		exec.exitValue()
-  	}
-  	
-  	/**
-  	 * Unzip the archive at the given path
-  	 * @param zipPath the archive's path (locally!)
-  	 */
-  	def unZip(zipPath: String) = {
-  		val c = scala.Array("/bin/bash", "unzip "+zipPath+" -d "+projectId+"/src")
-  		val exec = runTime.exec(c)
-  		
-		// wait for the end of the command execution
-  		exec.waitFor()
-  		
-		//return the exit value   
-  		exec.exitValue()
-  	}
 	
-	/**
+	/*
 	 * Destroy the directories used to compile the project
 	 * @retrun true if the process suceeded, false otherwise
 	 */

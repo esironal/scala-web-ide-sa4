@@ -25,10 +25,16 @@ class RunCompiler(id: String, path: String, options: Array[String])
 		// copy the file in projectId/src
 		compiler.copyFiles(src)		
 		
+		// create makefile
+		compileHelper.makeMakefile()
+		
 		// compile the file located at a specific path
 		compiler.compile()
 		
 		// parse the log
-		LogParser.getXMLlog(compileHelper.getLog())
+		var log = LogParser.getXMLlog(compileHelper.getLog())
+		
+		// create log.xml
+		
 	}
 }
