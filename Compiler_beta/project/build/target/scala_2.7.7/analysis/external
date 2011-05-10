@@ -1,0 +1,4 @@
+#External Dependencies
+#Tue May 10 13:14:53 CEST 2011
+/Applications/lift-lift_23_sbt-68e7db1/lift_basic/project/boot/scala-2.7.7/org.scala-tools.sbt/sbt/0.7.5/sbt_2.7.7-0.7.5.jar=LiftProject.scala
+/Applications/lift-lift_23_sbt-68e7db1/lift_basic/project/boot/scala-2.7.7/lib/scala-library.jar=LiftProject.scala
