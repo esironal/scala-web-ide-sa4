@@ -9,17 +9,18 @@ class ProjectXML{
 		val list = new File(path).list
 		val fileName = path.split("/")(path.split("/").length - 1)
 		
-		val result = <li><span class="folder">{ fileName }</span>
+		val result = <li>
+						<span class="folder">{ fileName }</span>
 						<ul>
 							{for (aFile <- list) yield
-								<li> {
+								{
 								val temp = new File(path +"/"+  aFile)
-								if(!temp.isDirectory){
-									<span class="file">{aFile}</span>
+								if(temp.isFile){
+									<li> <span class="file">{aFile}</span></li> 
 								}else{
 									dirHTML(path +"/"+aFile)
 								}
-								}</li> 
+								}						
 							}
 						</ul>
 		</li>
