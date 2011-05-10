@@ -93,13 +93,13 @@ class Boot {
   	
   	def content(filename:String):NodeSeq = {	
   	 <lift:surround with="default" at="content">
-		<br />
 		<!--<hr>-->
 		<table id="main_table">
 			<tr>
 				<td id="left_sidebar" value="true">
+				FILE BROWSER
 				</td>			
-				<td id="codearea" valign="top">
+				<td id="codearea">
 					<textarea id={filename} name={filename} class="editor"></textarea>
 					<div id="log">
 						LOG

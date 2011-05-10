@@ -24,13 +24,7 @@
 	<script type="text/javascript" src="lib/codemirror.js"></script>	 -->
 	<script type="text/javascript" src="/lib/modaldbox.js"></script>
 	<!-- <script type="text/javascript" src="mode/clike/clike.js"></script> -->
-	<script type="text/javascript" charset="utf-8">
-	function height_size() {
-		var height = window.innerHeight - 30;
-		var main_table = document.getElementById("main_table");
-		main_table.style.height = height + "px";
-	}
-	</script>
+	
 	<script type="text/javascript">
 		var filename;
 		function getURL() {
@@ -40,55 +34,113 @@
 		}
 	</script>
 	
+	<script type="text/javascript" charset="utf-8">
+	window.onresize = height_size;
+	
+	function height_size() {
+		var table_height = window.innerHeight - 30;
+		var editor_height = window.innerHeight - 120;
+		var log_height = table_height - editor_height - 15;
+		var main_table = document.getElementById("main_table");
+		var editor = document.getElementById(filename);
+		var log = document.getElementById("log");
+		main_table.style.height = table_height + "px";
+		editor.style.height = editor_height + "px";
+		log.style.height = log_height + "px";
+	}
+	</script>
+	
+	
 	
 	<script type="text/javascript">
-	function left_sidebar() {
-		var sidebar = document.getElementById("left_sidebar");
-		var button = document.getElementById("left_button");
-		var img = document.getElementById("left_img");
-
-
-		if(sidebar.value == 'true') {
-			sidebar.style.display = "none";
-			sidebar.style.background = "-moz-linear-gradient(90% 200% 180deg, #b8c3c7, #71787a)";
-			sidebar.value = "false";
-			button.value = "Show Project Browser";
-			img.src = "/img/open_active.png";
+	function assign_value() {
+		var left = document.getElementById("left_sidebar");
+		var right = document.getElementById("right_sidebar");
+		left.value = "true";
+		right.value = "true";
+	}
+	function sidebar(side) {
+		var codearea = document.getElementById("codearea");
+		var left = document.getElementById("left_sidebar");
+		var right = document.getElementById("right_sidebar");
+		var left_button = document.getElementById("left_button");
+		var right_button = document.getElementById("right_button");
+		
+		if(side == 'left') {
+			
+			if(left.value == 'true') {
+				
+				left.style.display = "none";
+				
+				if(right.value == "true") {
+					codearea.style.width = "90%";
+				} else {
+					codearea.style.width = "100%";
+				}
+				
+				left.value = "false";
+				left_button.value = "Show Project Browser";
+				
+			} else {
+				
+				left.style.display = "inline";
+				
+				if(right.value == "true") {
+					codearea.style.width = "80%";
+				} else {
+					codearea.style.width = "90%";
+				}
+				
+				left.value = "true";
+				left_button.value = "Hide Project Browser";
+				
+			}
 		} else {
-			sidebar.style.display = "inline";
-			sidebar.value = "true";
-			button.value = "Hide Project Browser";
-			img.src = "/img/open_inactive.png";
-
+			
+			if(right.value == "true") {
+				
+				right.style.display = "none";
+				
+				if(left.value == "true") {
+					codearea.style.width = "90%";
+				} else {
+					codearea.style.width = "100%";
+				}
+				
+				right.value = "false";
+				right_button.value = "Show Chat";
+				
+			} else {
+				
+				right.style.display = "inline";
+				
+				if(left.value == "true") {
+					codearea.style.width = "80%";
+				} else {
+					codearea.style.width = "90%";
+				}
+				
+				right.value = "true";
+				right_button.value = "Hide Chat";	
+			}
 		}
 	}
 
-	function right_sidebar() {
-		var sidebar = document.getElementById("right_sidebar");
-		var button = document.getElementById("right_button");
-		var img = document.getElementById("right_img");
-
-		if(sidebar.value == "true") {
-			sidebar.style.display = "none";
-			sidebar.style.background = "-moz-linear-gradient(90% 200% 180deg, #71787a, #b8c3c7)";
-			sidebar.value = "false";
-			button.value = "Show Chat";
-			img.src = "/img/chat_active.png";
-
-		} else {
-			sidebar.style.display = "inline";
-			sidebar.value = "true";
-			button.value = "Hide Chat";
-			img.src = "/img/chat_inactive.png";
-		}
-	}
+	// var img = document.getElementById("left_img");
+	// sidebar.style.background = "-moz-linear-gradient(90% 200% 180deg, #b8c3c7, #71787a
+	// img.src = "/img/open_active.png";
+	// img.src = "/img/open_inactive.png";
+	// var img = document.getElementById("right_img");
+	// sidebar.style.background = "-moz-linear-gradient(90% 200% 180deg, #71787a, #b8c3c7)";
+	// img.src = "/img/chat_active.png";
+	// img.src = "/img/chat_inactive.png";
 	</script>
 	
   </head>
 
 <!-- INSERIRE IL NOME DEL FILE -->
 <!-- <body onload="var name = getURL(); "> -->
-	<body onload="getURL(); mobwrite.share(filename);">
+	<body onload="assign_value(); getURL(); height_size(); mobwrite.share(filename);" >
 	
 	<!-- body -->
 		<div id="top_menu">
@@ -104,19 +156,17 @@
 				<li><img src="/img/run.png" />Run</li>
 				<li class="nohover">|</li>
 				<li><img src="/img/lock.png" />Lock</li>
-				<li class="nohover"><input type="button" value="Hide Project Browser" id="left_button" onclick="left_sidebar()">
-					<img id="left_img" src="/img/open_inactive.png" width="16" heght="16" alt="submit" /></input>
+				<li class="nohover"><input type="button" value="Hide Project Browser" id="left_button" onclick="sidebar('left')">
+					<!-- <img id="left_img" src="/img/open_inactive.png" width="16" heght="16" alt="submit" /> --></input>
 				</li>
-				<li class="nohover"><input type="button" value="Hide Chat" id="right_button" onclick="right_sidebar()">
-					<img id="right_img" src="/img/chat_inactive.png" width="16" heght="16" alt="submit" />
+				<li class="nohover"><input type="button" value="Hide Chat" id="right_button" onclick="sidebar('right')">
+					<!-- <img id="right_img" src="/img/chat_inactive.png" width="16" heght="16" alt="submit" /> -->
 				</input></li>
 			</ul>
 		</div>
-    <div class="container">
 
         <div id="content">The main content will get bound here</div>
 
 
-    </div>
   </body>
 </html>
