@@ -110,7 +110,7 @@ class Boot {
      
    }
    val test = new ProjectXML
-   println(test.dirHTML("/ciao"))
+   println(test.finalHTML("/ciao"))
    
    
     //start messager
