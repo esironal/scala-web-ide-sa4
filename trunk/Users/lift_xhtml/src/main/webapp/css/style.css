@@ -4,28 +4,29 @@
  	
  	}
 .ProfileContainer{
-	width:480px;
+	width:900px;
 	
 	
 	}
 
 .profileImg{
-	width:64px;
-	height:64px;
+	width:100px;
+	height:100%;
 	float:left;
-	margin-right:30px;
+
 	}
 	
 .userData{
-	height:64px;
+
 	margin-left:10px;
 	float:left;
-	width:400px;
+	width:750px;
 	
 	}
 	
 textarea{
 	height:50px;
+	width:350px;
 
 	margin-left:5px;
 	-moz-border-radius: 5px 5px 5px 5px;
@@ -79,11 +80,35 @@ textarea{
     text-shadow: 1px 1px 0 #FFFFFF;
     width: 120px;
 	font-size:120%;}
-.FormMessage{
-	width:400px;
-	left-margin:5px;
-	top-margin:20px;
+#formMSG{
+	width:900px;
+    merge-top: 500px;
+    
+
 	
 	
 	}
-		
+.msgComment{
+	width:600px;
+
+	
+	}
+.msgsComments{
+	width:600px;
+	float:left;
+	}
+.msgContainer{
+	width:600px;
+	}
+.lftSmallImg{
+	width:70px;
+	height:70px;
+	margin:5px;
+
+	}	
+.rightComments{
+	width:520px;
+	float:left;
+	margin:5px;
+	
+	}
