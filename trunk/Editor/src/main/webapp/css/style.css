@@ -1,60 +1,14 @@
-/*#editor {
-	width: 100%;
-	height: 94%;
-	margin: auto;
-	border: solid 1px black;
-}*/
-
-html, body { 
-margin: 0; 
-padding: 0; 
-width: 100%;
-height: 100%;
-
-}
-
 body {
 	margin: 0;
 	padding: 0;
 }
 
-table#main_table
-{
-	display:block;
-    position: absolute;
-	top: 28px;
-	left: 0;
-	
-	width:100%;
-	height: 100%;
-	margin: 0 auto;
-
-}
-
-#left_sidebar
-{/*
-	background: -moz-linear-gradient(90% 200% 180deg, #b8c3c7, #71787a);
-	background: -webkit-gradient(linear, left center, right center, from(#71787a), to(#b8c3c7));*/
-	width:10%;
-	height: 100%;
-	background: yellow;
-}
-
-#right_sidebar
-{
-/*	background: -moz-linear-gradient(90% 200% 180deg, #71787a, #b8c3c7);
-	background: -webkit-gradient(linear, right center, left center, from(#71787a), to(#b8c3c7));*/
-	width:10%;
-	height: 100%;
-	background: red;
-	
-}
 
 
-#top_menu
-{
-	display:block;
-	
+/***************************************** TOP MENU **********************************************/
+
+#top_menu {
+	display: block;
 	background: -moz-linear-gradient(90% 140% 90deg, #71787a, #b8c3c7);
 	background: -webkit-gradient(linear, center bottom, center top, from(#71787a), to(#b8c3c7));
 	width:100%;
@@ -62,32 +16,23 @@ table#main_table
 	height:28px;
 }
 
-#top_menu ul
-{
+#top_menu ul {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 }
 
-#top_menu li
-{
+#top_menu li {
 	font-family: Tahoma;
 	font-size: 13px;
-	margin-top: 1px;
-	margin-left: 11px;
-	margin-right: 11px;
-	margin-bottom: 1px;
+	margin: 1px 11px 1px 11px;
 	padding-top:3px;
 	float: left;
 	cursor:pointer;
 }
 
-#top_menu li:hover
-{
-	margin-top: 0;
-	margin-left: 10px;
-	margin-right: 10px;
-	margin-bottom: 0;
+#top_menu li:hover {
+	margin: 0 10px 0 10px;
 	height: 23px;
 	background-color: #e7f5fa;
 	cursor: pointer;
@@ -99,10 +44,7 @@ table#main_table
 	background: -moz-linear-gradient(90% 140% 90deg, #71787a, #b8c3c7);
 	background: -webkit-gradient(linear, center bottom, center top, from(#71787a), to(#b8c3c7));
 	border: none;
-	margin-top: 1px;
-	margin-left: 11px;
-	margin-right: 11px;
-	margin-bottom: 1px;
+	margin: 1px 11px 1px 11px
 	cursor: default;
 }
 
@@ -111,34 +53,41 @@ table#main_table
 	margin-right: 5px;
 }
 
-/*tr td
-{
-	height:620px;
-}*/
 
-#codearea {
-	width: 80%;
+/************************************************** MAIN TABLE ***********************************************/
+
+#main_table {
+	width: 100%;
+}
+
+#main_table tr {
+	width: 100%;
+}
+
+
+/***************************************** LEFT SIDEBAR - FILE MANAGER ****************************************/
+
+#left_sidebar {
+/*
+	background: -moz-linear-gradient(90% 200% 180deg, #b8c3c7, #71787a);
+	background: -webkit-gradient(linear, left center, right center, from(#71787a), to(#b8c3c7));*/
+	width:10%;
 	height: 100%;
-}
-
-.editor
-{
-
-	width: 100%;
-	border: none;
-	background: green;
-	overflow: auto;
-}
-
-.log
-{
-
-	width: 100%;
-	margin-right: 0;
-	border: none;
+	background: yellow;
 }
 
 
+
+
+/***************************************** RIGHT SIDEBAR - CHAT **********************************************/
+
+#right_sidebar {
+/*	background: -moz-linear-gradient(90% 200% 180deg, #71787a, #b8c3c7);
+	background: -webkit-gradient(linear, right center, left center, from(#71787a), to(#b8c3c7));*/
+	width:10%;
+	height: 100%;
+	background: red;	
+}
 
 #chat_in{
 	border:1px solid #bdc7d8;
@@ -163,4 +112,34 @@ input#chat_in{
 
 #chat_content ul li{
 	width: 20px;
+}
+
+
+
+/********************************************** EDITOR ************************************************/
+
+#codearea {
+	width: 80%;
+	height: 100%;
+
+}
+
+.editor
+{
+	resize: none;
+	width: 98%;
+	margin-bottom: 0;
+	margin-right: 1%;
+	margin-left: 1%;
+	background: green;
+	overflow: auto;
+}
+
+#log
+{
+	width: 98%;
+	height: 12%;
+	margin-right: 1%;
+	margin-left: 1%;
+	background: blue;
 }
