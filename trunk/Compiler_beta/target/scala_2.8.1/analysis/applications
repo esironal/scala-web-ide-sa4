@@ -1,0 +1,6 @@
+#Classes with main methods
+#Tue May 10 13:14:54 CEST 2011
+src/main/scala/code/snippet/Compiler.scala=code.snippet.Compiler
+src/main/scala/code/snippet/sources/HelloWorld.scala=HelloWorld
+src/main/scala/code/snippet/LogParser.scala=code.snippet.LogParser
+src/main/scala/code/snippet/CompilerHelper.scala=code.snippet.CompilerHelper

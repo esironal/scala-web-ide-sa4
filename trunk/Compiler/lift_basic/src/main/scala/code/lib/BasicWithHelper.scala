@@ -15,6 +15,20 @@ import scala.xml._
  * using the basic Lift tools
  */
 object BasicWithHelper extends RestHelper {
+	
+	  def compile(): Box[String] =
+	    for {
+	      file <- S.param("file") ?~ "file parameter missing" ~> 400
+	    } yield {
+			//TODO
+	    }
+
+	  serveJx {
+	    case Post("compile" :: _, _) => compile()
+	  }
+
+
+
   /*
    * Serve the URL, but have a helpful error message when you
    * return a 404 if the item is not found
@@ -93,5 +107,5 @@ object BasicWithHelper extends RestHelper {
         Item.find(item) ?~ "The item you're looking for isn't here"
     }
   }
-  
+ 
 }
