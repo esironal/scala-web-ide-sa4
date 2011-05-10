@@ -18,7 +18,7 @@ class CompilerHelper (id: Int, var optionList: scala.Array[String]) {
 	 */
 	 def getPath() = 
 	 {
-	 	projectId+"/src"
+	 	projectId
 	 }
 	 
 	 /*

@@ -14,6 +14,8 @@ class Compiler(sourcesDirectory: String, optionList: scala.Array[String]) {
 	
 
   	val runTime = Runtime.getRuntime 
+  	var filesToCompile = ""
+  	
 	
 	/**
 	 * send the given commad to the system which will execute it
@@ -81,6 +83,21 @@ class Compiler(sourcesDirectory: String, optionList: scala.Array[String]) {
 		}
 		newS
 	}
+	
+	/**
+	 * Read the makefile and generates the list of all files to compile
+	 */
+	def readMakefile() {
+		val mkfile = scala.io.Source.fromFile(sourcesDirectory+"/.makefile").mkString
+		var listFile = mkfile.split("\n")
+		var lastDir = ""
+		for(s <- listFile) {
+			if(s.endsWith(":"))
+				lastDir=s.substring(0,s.length()-1)+"/"
+			if(s.endsWith(".scala"))
+				filesToCompile=filesToCompile+" "+lastDir+s
+		}
+	}
   	
   	/** 
   	 * As the name says: it compiles
@@ -93,12 +110,13 @@ class Compiler(sourcesDirectory: String, optionList: scala.Array[String]) {
 	  		//for(file <- filesList) {
 	  		//	s=s+" "+file
 	  		//}
-			s=s+" "+sourcesDirectory+"/*"
+	  		readMakefile()
+			s=s+" "+filesToCompile
 	  		var gc= new GregorianCalendar();
 	  		var time=gc.getTime().toString()
 	  		time=time.replace(" ", "_")
 	  		println(s+ " log at log/log_compilation_"+time)
-	  		var r= exec(s, "/Applications/lift-lift_23_sbt-68e7db1/lift_basic/src/main/scala/code/snippet/log/log_compilation_"+time)
+	  		var r= exec(s, sourcesDirectory+"/log/log_compilation_"+time)
 	  		r match{
 	  		  	case 0 => println("Copilation successful "+r)
 	  			case 1 => println("Error occurred "+r)
@@ -118,7 +136,7 @@ class Compiler(sourcesDirectory: String, optionList: scala.Array[String]) {
 object Compiler {
 	def main(args: scala.Array[String]){
 		var lo = scala.Array("-verbose")
-  		var c = new Compiler("sources", lo);
+  		var c = new Compiler("project1", lo);
   		c.compile();
   	}
 }
