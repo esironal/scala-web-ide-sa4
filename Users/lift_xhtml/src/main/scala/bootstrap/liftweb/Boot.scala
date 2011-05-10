@@ -110,5 +110,10 @@ class Boot {
      
    }
    
+   
+    //start messager
+    val messager = new code.comet.Messager(8082)
+    messager.start
+   
  }
 }
