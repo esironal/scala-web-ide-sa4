@@ -37,26 +37,39 @@ object Profile extends LiftView {
  		  		<div id="main" class="lift:surround?with=default;at=content">
                  {if (User.loggedIn_?){
                  {if(userProfile!= Empty){
-                 <div class="ProfileContainer">	<div class="profileImg">
-                <img src={user.personalImageURL} style="width:100px; height:100px;"/></div>
-                     <div class="userData">
-                     <h2>{ user.accountID}</h2>
-                     <div style="float:left;">{"Name: " +user.firstName.is + " " + user.lastName.is}</div>
-                     <div style="float:left;">{"Gender: " + user.gender.is }</div>
-                     <br/>
-                     <div style="float:left;">{"Email: " + user.email.is }</div>
-                    
-                     <div style="float:left;">{"SkypeID: " + user.skypeID.is }</div>
-                     
-                    
+                 <div class="ProfileContainer">
+                 	<div class="profileImg">
+              			  <img src={user.personalImageURL} style="width:100px; height:100px;"/>
+              		</div>
+                    <div class="userData">
+                     	<span style="width:70px; left:float;">
+                     		<h2>{ user.accountID}</h2>
+                     	</span>
+                     	<span style="width:70px; left:float;">
+                     		{"Name: " }<b>{user.firstName.is + " " + user.lastName.is}</b>
+                     	</span>                     						
+                     	<span style="width:50px; left:float;">
+                     		{"Gender: " }<b>{ user.gender.is }</b>
+                     	</span>
+                     	<br/>
+                    	<span style="width:50px;  left:float;">
+                    		{"Email: " }<b>{ user.email.is }</b>
+                    	</span>   
+                     	<span style="width:50px;  left:float;" >
+                     		{"SkypeID: "} <b>{user.skypeID.is}</b>
+                     	</span>
+                     	<hr/>
+                     	<br/>
+                     	<br/>
+                     	<div class="msgComment">
+                      		<div class="lift:FormMessage" id="formMSG"> 
+                      		</div>
+							<div class="msgsComments">
+								{for(message <- msgs) yield(printMessage(message))}
+							</div>
                      </div>
-                     
-                     <br />
-                      <div class="lift:FormMessage"> </div>
-                     <hr/>
-                     </div>
-                     <div>{for(message <- msgs) yield(printMessage(message))
-                     }</div>
+                    </div>
+                  </div>
                      
                      }else 
                      <h2>{"User doesn't exist"}</h2>
@@ -76,15 +89,26 @@ object Profile extends LiftView {
          }
          
           def printMessage(msg: ProfileMessage): NodeSeq = {
-         	
          	val fromUser: Box[User] = User.find(By(User.id, msg.fromID.is))
-         	val user: User = fromUser.openOr(null)
-         	
-         	<span>
-         	<img src={user.personalImageURL} style="width:64px; height:64px;"></img><span>{"" + msg.messageNumber.is + ":  "}</span><b><a href={"/profile/"+user.accountID.is}>{""+user.accountID.is}</a></b><span>{"\t " + msg.date.is}</span>
-         	<br/>
-         	<span>{"" + msg.text.is}</span>
-         	<hr/>
-         	</span>
+         	val user: User = fromUser.openOr(null)  
+             	
+         	 <div class="msgContainer">
+         		<div class="lftSmallImg">
+         			<img src={user.personalImageURL} style="width:50px; height:50px;"></img>
+         		</div>
+         		<div class="rightComments">
+         			<span>
+         				<b>
+         					<a href={"/profile/"+user.accountID.is}>{""+user.accountID.is}</a>
+         				</b>
+         					{"\t " + msg.date.is + "" + msg.messageNumber.is + "    "}
+         			</span>
+         			<br/>
+         			<span>
+         				{"" + msg.text.is}
+         			</span>
+             </div>
+            </div>
+            <br/>
          }
      }
