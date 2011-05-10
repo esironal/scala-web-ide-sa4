@@ -57,17 +57,31 @@ body {
 	margin: 0 10px 0 10px;
 	height: 23px;
 	background-color: #e7f5fa;
+	color: rgb(59,58,59);
 	cursor: pointer;
 	border: solid 1px #9de2fb;
 }
 
 #top_menu li.nohover:hover
 {
-	background: -moz-linear-gradient(90% 140% 90deg, #71787a, #b8c3c7);
-	background: -webkit-gradient(linear, center bottom, center top, from(#71787a), to(#b8c3c7));
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.05, rgb(59,58,59)),
+	    color-stop(0.48, rgb(102,102,102)),
+	    color-stop(0.88, rgb(156,156,156))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(59,58,59) 5%,
+	    rgb(102,102,102) 48%,
+	    rgb(156,156,156) 88%
+	);
 	border: none;
-	margin: 1px 11px 1px 11px
+	margin: 1px 11px 1px 11px;
 	cursor: default;
+	color: white;
 }
 
 #top_menu li img
@@ -145,6 +159,10 @@ body {
 	
 input#chat_in{
 	width: 90%;
+}
+
+#chat_content {
+	overflow: auto;
 }
 
 #chat_content ul {
