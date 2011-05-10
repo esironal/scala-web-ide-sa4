@@ -15,6 +15,7 @@ class Compiler(sourcesDirectory: String, optionList: scala.Array[String]) {
 
   	val runTime = Runtime.getRuntime 
   	var filesToCompile = ""
+  	var time = ""
   	
 	
 	/**
@@ -98,6 +99,14 @@ class Compiler(sourcesDirectory: String, optionList: scala.Array[String]) {
 				filesToCompile=filesToCompile+" "+lastDir+s
 		}
 	}
+	
+	/*
+	 * Return the time of compilation.
+	 */
+	 def getTime =
+	 {
+	 	time
+	 }
   	
   	/** 
   	 * As the name says: it compiles
@@ -113,8 +122,7 @@ class Compiler(sourcesDirectory: String, optionList: scala.Array[String]) {
 	  		readMakefile()
 			s=s+" "+filesToCompile
 	  		var gc= new GregorianCalendar();
-	  		var time=gc.getTime().toString()
-	  		time=time.replace(" ", "_")
+	  		time=gc.getTime().toString().replace(" ", "_")
 	  		println(s+ " log at log/log_compilation_"+time)
 	  		var r= exec(s, sourcesDirectory+"/log/log_compilation_"+time)
 	  		r match{

@@ -9,50 +9,43 @@ import java.util.GregorianCalendar
  * Class used to compile the source file passed as parameters
  * @autor: Lorenzo Baracchi <lorenzo.baracchi@member.fsf.org>	
  */
-class Compiler(sourcesDirectory: String, optionList: scala.Array[String]) {
+class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
 
-	
-
+	// fields:
   	val runTime = Runtime.getRuntime 
   	var filesToCompile = ""
+  	var time = ""
   	
-	
-	/**
-	 * send the given commad to the system which will execute it
-	 * and save the result to the given log file
+  	/*
+	 * Return the time of compilation.
 	 */
-  	def exec (cmd: String, log: String) = {
-  		//execute the command and redirect the output to a log (both stdout and stderr)
-  		val command= scala.Array("/bin/bash", "-c", cmd+" &> "+log)
-  		val pr = runTime.exec(command)
-  		
-		// wait for the end of the command execution
-  		pr.waitFor()
-  		
-		//return the exit value   
-  		pr.exitValue()
-  	}
+	 def getTime() =
+	 {
+	 	time
+	 }
   	
   	/*
   	 * Execute the given command from the terminal
   	 */
   	def copyFiles(src: String) =
   	{
-  		val c = scala.Array("/bin/bash", "-c curl -O " + src)
-  		val exec = runTime.exec(c)
+  		val c = scala.Array("/bin/bash", "-c", "cd " + projectDirectory + "/src && curl -O " + src)
+  		val pr = runTime.exec(c)
   		
 		// wait for the end of the command execution
-  		exec.waitFor()
+  		pr.waitFor()
   		
-		//return the exit value   
-  		exec.exitValue()
+		// return the exit value   
+  		val returnValue = pr.exitValue()
+  		println(scala.Console.RED + "### COPY ###: " + returnValue + scala.Console.RESET)
+  		returnValue
   	}
 
-	/** 
+	/* 
 	 * check if the given option could be recognized by the compiler
 	 * @return true if it is recognized, false otherwise
 	 */
-	def checkOptionExists (option: String) = {
+	def checkOptionExists(option: String) = {
 		var op=option.substring(option.indexOf(" ")+1)
 		op match {
 			case "-verbose" => true
@@ -68,12 +61,12 @@ class Compiler(sourcesDirectory: String, optionList: scala.Array[String]) {
 		}
 	}
 
-	/**
+	/*
 	 * Add a list of option to the command
 	 * @return the command as a String
 	 * @throws IllegalArgumentException if one of the option is not recognized
 	 */
-	def addOptionList (s: String) = {
+	def addOptionList(s: String) = {
 		var newS=s
 		for(opt <- optionList) {
 			if(checkOptionExists(opt))
@@ -84,43 +77,88 @@ class Compiler(sourcesDirectory: String, optionList: scala.Array[String]) {
 		newS
 	}
 	
-	/**
+	/*
 	 * Read the makefile and generates the list of all files to compile
 	 */
-	def readMakefile() {
-		val mkfile = scala.io.Source.fromFile(sourcesDirectory+"/.makefile").mkString
+	def readMakefile() 
+	{
+		val mkfile = scala.io.Source.fromFile(projectDirectory+"/.makefile").mkString
 		var listFile = mkfile.split("\n")
+		
+//		for(q <- listFile)
+//		{
+//			println(scala.Console.YELLOW + "listFile: " + q + scala.Console.RESET)
+//		}
+
+//		println(scala.Console.YELLOW + "filesToCompile: " + filesToCompile + scala.Console.RESET)
+		
 		var lastDir = ""
-		for(s <- listFile) {
+		for(s <- listFile) 
+		{
 			if(s.endsWith(":"))
-				lastDir=s.substring(0,s.length()-1)+"/"
+			{
+				lastDir = s.substring(0, s.length()-1) + "/"
+			}
 			if(s.endsWith(".scala"))
-				filesToCompile=filesToCompile+" "+lastDir+s
+			{
+				filesToCompile = filesToCompile + " " + lastDir + s
+			}
 		}
 	}
+	 
+	/*
+	 * Send the given commad to the system which will execute it
+	 * and save the result to the given log file.
+	 */
+  	def execute(cmd: String, log: String) = 
+  	{
+  		println(scala.Console.YELLOW + "CMD (exec): " + cmd + scala.Console.RESET)
+  		println(scala.Console.YELLOW + "LOG (exec): " + log + scala.Console.RESET)
+  		
+  		// execute the command and redirect the output to a log (both stdout and stderr)
+  		val command = scala.Array("/bin/bash", "-c", cmd + " &> " + log)
+  		val pr = runTime.exec(command)
+  		
+		// wait for the end of the command execution
+  		pr.waitFor()
+  		
+		// return the exit value   
+  		val returnValue = pr.exitValue()
+  		println(scala.Console.RED + "### EXECUTE ###: " + returnValue + scala.Console.RESET)
+  		returnValue
+  	}
   	
-  	/** 
+  	/*
   	 * As the name says: it compiles
   	 */
-  	def compile () = {
-  		println("Please wait, Compiling...")
-  		var s = "scalac " 
+  	def compile () = 
+  	{
+  		println("[" + scala.Console.GREEN + "Compiling..." + scala.Console.RESET + "]")
+  		var s = "scalac" 
 		try{
-			s=addOptionList(s)
+			s = addOptionList(s)
 	  		//for(file <- filesList) {
 	  		//	s=s+" "+file
 	  		//}
+	  		
+	  		// get files to be compiled from the makefile
 	  		readMakefile()
-			s=s+" "+filesToCompile
-	  		var gc= new GregorianCalendar();
-	  		var time=gc.getTime().toString()
-	  		time=time.replace(" ", "_")
-	  		println(s+ " log at log/log_compilation_"+time)
-	  		var r= exec(s, sourcesDirectory+"/log/log_compilation_"+time)
-	  		r match{
-	  		  	case 0 => println("Copilation successful "+r)
-	  			case 1 => println("Error occurred "+r)
-	  			case _ => println("Unknown error "+r)
+	  		
+			s = s + filesToCompile
+	  		var gc = new GregorianCalendar();
+	  		time = gc.getTime().toString().replace(" ", "_")
+//	  		println(s + "log at log/log_compilation_" + time)
+	  		
+	  		var r = execute(s, projectDirectory + "/log/log_compilation_" + time)
+//			var r = execute("pwd", projectDirectory + "/where.txt")
+	  		
+	  		r match
+	  		{
+	  			case 0 => println(scala.Console.GREEN + "Compilation successful!" 
+	  			+ scala.Console.RESET)
+	  			case 1 => println(scala.Console.RED + "Error occurred" + scala.Console.RESET)
+	  			case _ => println(scala.Console.RED_B + scala.Console.BLINK + "Unknown error..." +
+	  			scala.Console.RESET)
 	  		}
 		}
 		catch {
