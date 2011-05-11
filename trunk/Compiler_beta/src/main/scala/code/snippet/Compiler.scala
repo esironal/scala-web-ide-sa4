@@ -7,7 +7,7 @@ import java.util.GregorianCalendar
 
 /**
  * Class used to compile the source file passed as parameters
- * @autor: Lorenzo Baracchi <lorenzo.baracchi@member.fsf.org>	
+ * @author: Lorenzo Baracchi <lorenzo.baracchi@member.fsf.org>	
  */
 class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
 
@@ -136,7 +136,7 @@ class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
   	def compile () = 
   	{
   		println("[" + scala.Console.GREEN + "Compiling..." + scala.Console.RESET + "]")
-  		var s = "scalac" 
+  		var s = "scala-2.8.1.final/bin/scalac" 
 		try{
 			s = addOptionList(s)
 	  		//for(file <- filesList) {
@@ -158,13 +158,14 @@ class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
 	  		{
 	  			case 0 => println(scala.Console.GREEN + "Compilation successful!" 
 	  			+ scala.Console.RESET)
-	  			case 1 => println(scala.Console.RED + "Error occurred" + scala.Console.RESET)
+	  			case 1 => println(scala.Console.RED + "Error: compilation failed" 
+	  			+ scala.Console.RESET)
 	  			case _ => println(scala.Console.RED_B + scala.Console.BLINK + "Unknown error..." +
 	  			scala.Console.RESET)
 	  		}
 		}
 		catch {
-  			case e:IllegalArgumentException => println("Error occurred: "+e.getMessage())
+  			case e:IllegalArgumentException => println("Exception thrown: "+e.getMessage())
 		}
   	}
 
