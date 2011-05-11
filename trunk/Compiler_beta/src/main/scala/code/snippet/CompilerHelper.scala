@@ -55,7 +55,7 @@ class CompilerHelper (id: Int, var optionList: scala.Array[String])
 	 */
 	def createCompilerBox() = {
 		setBinDir()
-		setSrcDir()
+		//setSrcDir()
 		// create a command to do that!
 		var cmd = "mkdir -p "+projectId+" "+projectId+"/log"+" "+projectId+"/src"+" "+projectId+"/bin"
 		val command= scala.Array("/bin/bash", "-c", cmd)
