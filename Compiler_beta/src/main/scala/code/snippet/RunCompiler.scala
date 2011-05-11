@@ -9,7 +9,7 @@ import java.io._
  * @autor: Cristian Bruseghini <cristian.bruseghini@gmail.com>	
  */
  
-class RunCompiler(id: String, path: String, options: Array[String])
+class RunCompiler(id: String, path: String,var options: Array[String])
 {
 	def run() = 
 	{		
@@ -18,6 +18,9 @@ class RunCompiler(id: String, path: String, options: Array[String])
 		
 		// create new project_folder with the specific id
 		compileHelper.createCompilerBox()
+		
+		//update the option's list
+		options=compileHelper.getOptionList
 		
 		val src = compileHelper.getPath()
 		

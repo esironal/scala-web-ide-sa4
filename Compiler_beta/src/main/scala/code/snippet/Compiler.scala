@@ -46,16 +46,17 @@ class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
 	 * @return true if it is recognized, false otherwise
 	 */
 	def checkOptionExists(option: String) = {
-		var op=option.substring(option.indexOf(" ")+1)
-		op match {
+		println(option)
+
+		option match{
 			case "-verbose" => true
 			case "-nowarn" => true
 			case "-optimise" => true
-			case "-classpath" => true
-			case "-sourcepath" => true
-			case "-bootclasspath" => true
-			case "-d" => true
-			case "-target" => true
+			case  s:String if(s.startsWith("-classpath")) => true
+			case  s:String if(s.startsWith("-sourcepath")) => true
+			case  s:String if(s.startsWith("-bootclasspath")) => true
+			case  s:String if(s.startsWith("-d")) => true
+			case  s:String if(s.startsWith("-target")) => true
 			case "-explaintypes" => true
 			case _ => false
 		}
@@ -69,6 +70,7 @@ class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
 	def addOptionList(s: String) = {
 		var newS=s
 		for(opt <- optionList) {
+			//println(opt)
 			if(checkOptionExists(opt))
 				newS=newS+" "+opt
 			else
