@@ -11,8 +11,6 @@ import scala.actors.remote.RemoteActor._
 import scala.actors.remote._
 import code.lib._
 
-
-
 	
 
 class Messager(port: Int) extends Actor {
@@ -34,7 +32,13 @@ class Messager(port: Int) extends Actor {
 				println("File System: saved "+path+" (actually this is fake. it's just an example, we did not save it yet)")
 				sender ! "File System: saved "+path+" (actually this is fake. it's just an example, we did not save it yet)"
 			}
-							
+			
+			case Compile(path: String, userId: Long, options: Array[String]) => {
+				println("Compile(path: "+path+", userId: "+userId+", options:"+options+")")
+				sender ! FileManager.compile(path, userId, options)
+			}
+			
+			
 			}
 						
 		} 
