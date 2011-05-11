@@ -3,6 +3,7 @@ package snippet
 
 import java.lang.String
 import scala.xml._
+import java.io._
 
 object LogParser{
   var logTest = "warning: there were deprecation warnings; re-run with -deprecation for details\none warning found"
@@ -10,8 +11,40 @@ object LogParser{
   var logTest3 = "NetBeansProjects/SA4Game/src/sa4game/Client.scala:17: error: not found: type HashMap\n  var games = new HashMap[String,Array[Array[Array[Character]]]]\n                  ^\nNetBeansProjects/SA4Game/src/sa4game/Client.scala:6969: error: not found: type Random\n    val rnd = new Random\n                  ^\n2 errors found"
   var logTest4 = ""
 
-  def parseLog(string: String): collection.mutable.HashMap[String,String] =
-  {
+  def parseLog(logFile: String): collection.mutable.HashMap[String,String] =
+  {		
+  	println(scala.Console.RED + "### LOG PARSER ###" + scala.Console.RESET)
+  	
+  	/* read file */
+  	var string = ""
+  	try 
+  	{
+  		// Set up a file reader to read one character at a time
+        val input = new FileReader(logFile)
+         
+        // Set up a BufferedReader Read a line at time
+		val bufRead = new BufferedReader(input)
+         
+        var line = bufRead.readLine()
+        string = ""
+            
+        // Read through file one line at time
+        while (line != null)
+        {
+            string = string + "\n" + line
+            line = bufRead.readLine()
+        }
+        
+        println(string)
+                
+        bufRead.close()
+              
+	}
+	catch
+	{
+    	case e: IOException => println("Exception thrown: " + e.getMessage())
+    }
+  	
     var amount = 0
     var errorDisplay = "-"
     var warningDisplay = "-"

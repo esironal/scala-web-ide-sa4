@@ -6,10 +6,10 @@ import java.io._
 
 /*
  * Run compiler and parse generated log.
- * @autor: Cristian Bruseghini <cristian.bruseghini@gmail.com>	
+ * @author: Cristian Bruseghini <cristian.bruseghini@gmail.com>	
  */
  
-class RunCompiler(id: String, path: String,var options: Array[String])
+class RunCompiler(id: String, path: String, var options: Array[String])
 {
 	def run() = 
 	{		
@@ -19,8 +19,8 @@ class RunCompiler(id: String, path: String,var options: Array[String])
 		// create new project_folder with the specific id
 		compileHelper.createCompilerBox()
 		
-		//update the option's list
-		options=compileHelper.getOptionList
+		// update the options' list
+		options = compileHelper.getOptionList
 		
 		val src = compileHelper.getPath()
 		
@@ -37,13 +37,9 @@ class RunCompiler(id: String, path: String,var options: Array[String])
 		// compile the file located at a specific path
 		compiler.compile()
 		
-		// parse the log
-		var log = LogParser.getXMLlog(compileHelper.getLog())
-		
 		// create log.xml
-//		var file = "log/log_compilation_" + compiler.getTime() + ".xml"
-//		val fw = new FileWriter(file)
-		
-//		scala.xml.XML.save(file, <node>{log}</node>)
+		val logFile = src + "/log/log_compilation_" + compiler.getTime()
+		val log = LogParser.getXMLlog(logFile)
+		scala.xml.XML.save(logFile + ".xml", <node>{log}</node>)
 	}
 }

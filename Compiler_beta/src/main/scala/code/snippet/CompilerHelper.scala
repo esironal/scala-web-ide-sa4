@@ -6,7 +6,7 @@ import java.io._
 
 /*
  * Classed used to provide well formatted paramenteres to the Compiler
- * @autor: Lorenzo Baracchi <lorenzo.baracchi@member.fsf.org>	
+ * @author: Lorenzo Baracchi <lorenzo.baracchi@member.fsf.org>	
  */
 class CompilerHelper (id: Int, var optionList: scala.Array[String]) 
 {
