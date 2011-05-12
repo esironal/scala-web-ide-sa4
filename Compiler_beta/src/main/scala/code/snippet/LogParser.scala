@@ -6,49 +6,48 @@ import scala.xml._
 import java.io._
 
 object LogParser{
-  var logTest = "warning: there were deprecation warnings; re-run with -deprecation for details\none warning found"
-  var logTest2 = "NetBeansProjects/SA4Game/src/sa4game/Server.scala:12: warning: method removeKey in trait MapLike is deprecated: Use `remove' instead\n    ab.removeKey(\"pol\")\n       ^\nNetBeansProjects/SA4Game/src/sa4game/Server.scala:13: warning: method removeKey in trait MapLike is deprecated: Use `remove' instead\n    ab.removeKey(\"pol\")\n       ^\ntwo warnings found"
-  var logTest3 = "NetBeansProjects/SA4Game/src/sa4game/Client.scala:17: error: not found: type HashMap\n  var games = new HashMap[String,Array[Array[Array[Character]]]]\n                  ^\nNetBeansProjects/SA4Game/src/sa4game/Client.scala:6969: error: not found: type Random\n    val rnd = new Random\n                  ^\n2 errors found"
-  var logTest4 = ""
+  def parseLog(logFile: String): String =
+  {
+    var string = ""
+    try
+    {
+      // Set up a file reader to read one character at a time
+      val input = new FileReader(logFile)
 
-  def parseLog(logFile: String): collection.mutable.HashMap[String,String] =
-  {		
-  	println(scala.Console.RED + "### LOG PARSER ###" + scala.Console.RESET)
-  	
-  	/* read file */
-  	var string = ""
-  	try 
-  	{
-  		// Set up a file reader to read one character at a time
-        val input = new FileReader(logFile)
-         
-        // Set up a BufferedReader Read a line at time
-		val bufRead = new BufferedReader(input)
-         
-        var line = bufRead.readLine()
-        string = ""
-            
-        // Read through file one line at time
-        while (line != null)
-        {
-            string = string + "\n" + line
-            line = bufRead.readLine()
-        }
-        
-        println(string)
-                
-        bufRead.close()
-              
-	}
-	catch
-	{
-    	case e: IOException => println("Exception thrown: " + e.getMessage())
+      // Set up a BufferedReader Read a line at time
+      val bufRead = new BufferedReader(input)
+
+      var line = bufRead.readLine()
+      string = ""
+
+      // Read through file one line at time
+      while (line != null)
+      {
+        string = string + "\n" + line
+        line = bufRead.readLine()
+      }
+
+      println(string)
+
+      bufRead.close()
     }
-  	
+    catch
+    {
+      case e: IOException => println("LogParser - Exception thrown: " + e.getMessage())
+    }
+
     var amount = 0
-    var errorDisplay = "-"
-    var warningDisplay = "-"
-    var logArray = string.split("\n")
+    var preLogArray = string.split("\n")
+    var logArray:scala.collection.mutable.ArrayBuffer[String] = new scala.collection.mutable.ArrayBuffer;
+    var length = 0
+    for (i <- 0 until preLogArray.length)
+    {
+      if(!(preLogArray(i).length < 2 || preLogArray(i).startsWith("[") && preLogArray(i).endsWith("]")))
+      {
+        logArray += preLogArray(i)
+        length = length + 1
+      }
+    }
     val logTd1 = "logTd1"
     val logTd2 = "logTd2"
     val logTdFixed = "logTdFixed"
@@ -65,26 +64,29 @@ object LogParser{
     var logTrFinal=""
     var logTrFirst = ""
     var logTrSecond = ""
-    if(logArray(logArray.length-1).endsWith("error found") || logArray(logArray.length-1).endsWith("errors found"))
-    {
-      logTrFinal = logTrFinalError
-      logTrFinalCompile = logTrFinalCompileFailure
-      logTrFirst = logTrErrorFirst
-      logTrSecond = logTrErrorSecond
-    }
-    else if(logArray(logArray.length-1).endsWith("warning found") || logArray(logArray.length-1).endsWith("warnings found"))
-    {
-      logTrFinal = logTrFinalWarning
-      logTrFinalCompile = logTrFinalCompileWarning
-      logTrFirst = logTrWarningFirst
-      logTrSecond = logTrWarningSecond
-    }
     var log = ""
-    if(logArray.length > 1)
+    if(length > 0)
     {
-      for (i <- 0 until logArray.length)
+      if(logArray(length-1).endsWith("error found") || logArray(length-1).endsWith("errors found"))
       {
-        if(i == logArray.length-1)
+        logTrFinal = logTrFinalError
+        logTrFinalCompile = logTrFinalCompileFailure
+        logTrFirst = logTrErrorFirst
+        logTrSecond = logTrErrorSecond
+      }
+      else if(logArray(length-1).endsWith("warning found") || logArray(length-1).endsWith("warnings found"))
+      {
+        logTrFinal = logTrFinalWarning
+        logTrFinalCompile = logTrFinalCompileWarning
+        logTrFirst = logTrWarningFirst
+        logTrSecond = logTrWarningSecond
+      }
+    }
+    if(length > 1)
+    {
+      for (i <- 0 until length)
+      {
+        if(i == length-1)
         {
           logArray(i) = "\n<tr class='" + logTrFinal + "'>\n<td class='" + logTd1 +
           "'></td><td class='" + logTd2 + "'>" + logArray(i) + "</td>\n</tr>"
@@ -131,57 +133,20 @@ object LogParser{
     }
     if(logTrFinalCompile == logTrFinalCompileFailure)
     {
-      errorDisplay = amount.toString
-      warningDisplay = "?"
       log += "\n<tr class='" + logTrFinalCompile + "'>\n<td class='" + logTd1 +
       "'></td><td class='" + logTd2 + "'>COMPILATION FAILED</td>\n</tr>"
     }
     else
     {
-      if(logTrFinalCompile == logTrFinalCompileWarning)
-      {
-        if(amount == 0)
-        {
-          warningDisplay = "*"
-        }
-        else
-        {
-          warningDisplay = amount.toString
-        }
-      }
       log += "\n<tr class='" + logTrFinalCompile + "'>\n<td class='" + logTd1 +
       "'></td><td class='" + logTd2 + "'>COMPILATION SUCCESSFUL</td>\n</tr>"
     }
     log = "<div class='logDiv'>\n<table class='logTable' cellspacing='0'>" + log + "\n</table>\n</div>"
-    var result = new collection.mutable.HashMap[String,String]
-    result("errorDisplay") = errorDisplay
-    result("warningDisplay") = warningDisplay
-    result("log") = log
-    return result
+    return log
   }
 
-  def getXMLlog(string: String): NodeSeq = {
-    val xmlLog = XML.loadString(parseLog(string)("log"))
+  def getXMLlog(logFile: String): NodeSeq = {
+    val xmlLog = XML.loadString(parseLog(logFile))
     return xmlLog
-  }
-
-  def main(args: Array[String]): Unit = {
-    var parsed = parseLog(logTest)
-    println("<p>errors: " + parsed("errorDisplay") + ", warnings: " + parsed("warningDisplay") + "</p>")
-    println(parsed("log"))
-    println("<p></p>")
-    parsed = parseLog(logTest2)
-    println("<p>errors: " + parsed("errorDisplay") + ", warnings: " + parsed("warningDisplay") + "</p>")
-    println(parsed("log"))
-    println("<p></p>")
-    parsed = parseLog(logTest3)
-    println("<p>errors: " + parsed("errorDisplay") + ", warnings: " + parsed("warningDisplay") + "</p>")
-    println(parsed("log"))
-    println("<p></p>")
-    parsed = parseLog(logTest4)
-    println("<p>errors: " + parsed("errorDisplay") + ", warnings: " + parsed("warningDisplay") + "</p>")
-    println(parsed("log"))
-    println("<p></p>")
-    println(getXMLlog(logTest2))
   }
 }
