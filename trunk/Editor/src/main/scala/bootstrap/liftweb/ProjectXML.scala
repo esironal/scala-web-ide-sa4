@@ -16,8 +16,7 @@ import Loc._
 import mapper._
 import scala.xml.NodeSeq
 
-class ProjectXML{
-
+object ProjectXML{
 
 	def projectHTML(myId: Long):Node = {
 		
