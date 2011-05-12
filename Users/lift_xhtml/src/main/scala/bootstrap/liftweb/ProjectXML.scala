@@ -2,18 +2,18 @@ package bootstrap.liftweb
 
 import java.io.File
 import scala.xml._
+import code.model._
 
 
 class ProjectXML{
 
 
-	def projectHTML(myId: String) = {
-		val myId
+	def projectHTML(myId: String):Node = {
 		val projBox: Box[Project] = Project.find(By(Project.id,  myId))
 		val project : Project = project.openOr(null)
 
 		val path: String = project.path.id
-		finalHTML(path)
+		return finalHTML(path)
 
 	}
 
