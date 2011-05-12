@@ -20,6 +20,7 @@ import code.model._
 import code.comet.ChatServer
 import scala.collection.immutable._
 
+
 object Chat extends LiftView {
   	def dispatch = {
   		case filename:String => () => Full(content(filename))	
@@ -31,7 +32,7 @@ object Chat extends LiftView {
 		<table id="main_table">
 			<tr>
 				<td id="left_sidebar" value="true">
-				FILE BROWSER
+				{ProjectXML.projectHTML(1)}
 				</td>			
 				<td id="codearea">
 					<textarea id={filename} name={filename} class="editor"></textarea>

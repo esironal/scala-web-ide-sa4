@@ -21,8 +21,8 @@ object Delete extends LiftView {
      		val users: List[User] = User.findAll()
      		val msgs: List[ProfileMessage] = ProfileMessage.findAll()
      		
-     		for(user <- users) User.delete_!(user)
-     		for(msg <- msgs)  ProfileMessage.delete_!(msg)
+//     		for(user <- users) User.delete_!(user)
+//     		for(msg <- msgs)  ProfileMessage.delete_!(msg)
      	
      	
      		<html>
