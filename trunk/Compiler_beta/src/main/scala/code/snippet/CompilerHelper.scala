@@ -83,7 +83,7 @@ class CompilerHelper(id: Int, var optionList: scala.Array[String])
   		
 		// return the exit value   
   		val returnValue = pr.exitValue()
-  		println(scala.Console.RED + "### MAKEFILE ###: " + returnValue + scala.Console.RESET)
+  		println(scala.Console.BLUE + "### MAKEFILE ###: " + returnValue + scala.Console.RESET)
   		returnValue
 	 }
 	
@@ -115,12 +115,14 @@ class CompilerHelper(id: Int, var optionList: scala.Array[String])
 	 */
 	 def zipBinAndLog() = {
 	   
-		val c = scala.Array("/bin/bash", "zip -r "+projectId+".zip "+projectId+"/log"+" "+projectId+"/bin") 
-	   	val exec = runTime.exec(c)  
-	   	// wait for the end of the command execution 
-	   	exec.waitFor()
-	   	//return the exit value
-	   	exec.exitValue() 
+		val c = scala.Array("/bin/bash", "-c", "zip -r "+projectId+".zip "+projectId+"/log"+" "+projectId+"/bin") 
+	   	val pr = runTime.exec(c)  
+	   	// wait for the end of the command execution
+  		pr.waitFor()
+		// return the exit value   
+  		val returnValue = pr.exitValue()
+  		println(scala.Console.BLUE + "### ZIP ###: " + returnValue + scala.Console.RESET)
+  		returnValue
 	}
 	 
 	/**
@@ -129,12 +131,14 @@ class CompilerHelper(id: Int, var optionList: scala.Array[String])
 	  */
 	 def unZip(zipPath: String) = {
 	    
-		val c = scala.Array("/bin/bash", "unzip "+zipPath+" -d "+projectId+"/src")   
-	   	val exec = runTime.exec(c)  
-	   	// wait for the end of the command execution  
-	   	exec.waitFor()
-	   	//return the exit value   
-	   	exec.exitValue()
+		val c = scala.Array("/bin/bash", "-c", "unzip "+zipPath+" -d "+projectId+"/src")   
+	   	val pr = runTime.exec(c)  
+	   	// wait for the end of the command execution
+  		pr.waitFor()
+		// return the exit value   
+  		val returnValue = pr.exitValue()
+  		println(scala.Console.BLUE + "### UNZIP ###: " + returnValue + scala.Console.RESET)
+  		returnValue
 	}
 
 }
