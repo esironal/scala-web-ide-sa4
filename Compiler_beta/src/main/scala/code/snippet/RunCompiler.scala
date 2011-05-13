@@ -3,6 +3,11 @@ package snippet
 
 import scala.xml._
 import java.io._
+import scala.actors.Actor._
+import scala.actors.Actor
+import scala.actors.remote.RemoteActor._
+import scala.actors.remote._
+
 import code.comet._
 
 /*
@@ -47,8 +52,8 @@ class RunCompiler(id: String, path: String, var options: Array[String])
 		compileHelper.zipBinAndLog()
 		      
 		// send case class Compiled to notify end of compilation
-		//		val compiled = new Compiled(s)
-		//		val server = select(Node("localhost", 8082),'server)
-		//		val result = server ! compiled
+		val compiled = new Compiled(Integer.parseInt(id), path)
+		val server = select(scala.actors.remote.Node("localhost", 8082),'server)
+		val result = server ! compiled
 	}
 }
