@@ -45,7 +45,8 @@ object FileIn {
                     //SetValById("fileId", filePathInProject) &
                     //SetHtml("fileName", <span>{ filePathInProject }</span>)
           //  }, <span>{ filePathInProject }</span>)
-          <span>{"TODO"}</span>
+          <span>{"TODO"}</span>	
+			
         }
 
         def deleteFile(filePath: String) = {

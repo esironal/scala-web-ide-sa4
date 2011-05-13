@@ -24,6 +24,6 @@ object ProjectScreen extends LiftScreen {
 			}
 			case _ => S.error("You must be logged in")
 		}
-		S.redirectTo("/projectList/")
+		S.redirectTo("/projectList")
 	}
 }

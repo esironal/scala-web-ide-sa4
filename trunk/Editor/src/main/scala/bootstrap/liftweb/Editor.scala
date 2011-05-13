@@ -19,20 +19,53 @@ import scala.xml.NodeSeq
 import code.model._
 import code.comet.ChatServer
 import scala.collection.immutable._
+import code.model.Project
 
 
-object Chat extends LiftView {
+object Editor extends LiftView {
   	def dispatch = {
-  		case filename:String => () => Full(content(filename))	
+  		case filename:String => () => Full(newEditor(filename))	
   	}
+
+	def newEditor(fileName:String): NodeSeq = {
+		
+		val s: Array[String] = fileName.trim.split(":")
+		
+		if(s.length == 2) {
+				var projectBox: Box[Project] = Project.find(By(Project.id, java.lang.Long.parseLong(s(0))))
+				var project: Project = projectBox.openOr(null)
+
+				if(project == null) {
+					errorPage()
+				} else {
+					content(fileName, project.id.is)
+				}
+		} else if (s.length == 1) {
+			var projectBox: Box[Project] = Project.find(By(Project.id, java.lang.Long.parseLong(fileName)))
+			var project: Project = projectBox.openOr(null)
+
+			if(project == null) {
+				errorPage()
+			} else {
+				content(fileName, project.id.is)
+			}
+		} else { 
+			errorPage()
+		}
+	}
+	
+	def errorPage(): NodeSeq = {
+		<span>{"TODO"}</span>
+	}
   	
-  	def content(filename:String):NodeSeq = {	
+  	def content(filename: String, index: Long):NodeSeq = {	
+	
   	 <lift:surround with="default" at="content">
 		<!--<hr>-->
 		<table id="main_table">
 			<tr>
 				<td id="left_sidebar" value="true">
-				{ProjectXML.projectHTML(1)}
+				{ProjectXML.projectHTML(index)}
 				</td>			
 				<td id="codearea">
 					<textarea id={filename} name={filename} class="editor"></textarea>

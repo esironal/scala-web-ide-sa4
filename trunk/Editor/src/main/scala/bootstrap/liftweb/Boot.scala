@@ -74,8 +74,8 @@ class Boot {
      Menu(Loc("Project", Link(List("project"), true, "/project"), "Project")),
      Menu(Loc("ProjectList",
               Link(List("projectList"), true, "/projectList"), "ProjectList")),
-	  Menu(Loc("Chat", Link(List("chat"), true, "/chat/"), 
-	       "Chat Content"))     )
+	  Menu(Loc("Editor", Link(List("editor"), true, "/editor/"), 
+	       "Editor Content"))     )
 
     def sitemapMutators = User.sitemapMutator
 
@@ -95,8 +95,8 @@ class Boot {
     LiftRules.early.append(_.setCharacterEncoding("UTF-8"))
     
     LiftRules.viewDispatch.append {
-    	case "chat" :: Nil => 
-    		Right(Chat)
+    	case "editor" :: Nil => 
+    		Right(Editor)
     	case "profile"::Nil =>
        		Right(Profile)
      	case "stats"::Nil =>
