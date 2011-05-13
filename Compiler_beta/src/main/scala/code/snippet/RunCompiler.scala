@@ -40,6 +40,6 @@ class RunCompiler(id: String, path: String, var options: Array[String])
 		// create log.xml
 		val logFile = src + "/log/log_compilation_" + compiler.getTime()
 		val log = LogParser.getXMLlog(logFile)
-		scala.xml.XML.save(logFile + ".xml", <node>{log}</node>)
+		scala.xml.XML.save(logFile + ".xml", log)
 	}
 }
