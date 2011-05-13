@@ -109,6 +109,34 @@ class CompilerHelper(id: Int, var optionList: scala.Array[String])
   		else
   			false
 	}
+	
+	/**
+	 *Create a zip file for the project of the folders bin and log
+	 */
+	 def zipBinAndLog() = {
+	   
+		val c = scala.Array("/bin/bash", "zip -r "+projectId+".zip "+projectId+"/log"+" "+projectId+"/bin") 
+	   	val exec = runTime.exec(c)  
+	   	// wait for the end of the command execution 
+	   	exec.waitFor()
+	   	//return the exit value
+	   	exec.exitValue() 
+	}
+	 
+	/**
+	  * Unzip the archive at the given path
+	  * @param zipPath the archive's path (locally!)
+	  */
+	 def unZip(zipPath: String) = {
+	    
+		val c = scala.Array("/bin/bash", "unzip "+zipPath+" -d "+projectId+"/src")   
+	   	val exec = runTime.exec(c)  
+	   	// wait for the end of the command execution  
+	   	exec.waitFor()
+	   	//return the exit value   
+	   	exec.exitValue()
+	}
+
 }
 
 /*
