@@ -77,5 +77,15 @@ class Boot {
 
     // Make a transaction span the whole HTTP request
     S.addAround(DB.buildLoanWrapper)
+//    
+//    try {
+    val aray = new Array[String](1)
+    aray(0) = "zizzu"
+    	val test = code.comet.FileManager.compile("/buba/ciao", 1, aray)
+//    } catch {
+   // 	case e:Exception => println("exception eheh")
+   // }
+    
+    
   }
 }
