@@ -37,7 +37,7 @@ class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
   		
 		// return the exit value   
   		val returnValue = pr.exitValue()
-  		println(scala.Console.RED + "### COPY ###: " + returnValue + scala.Console.RESET)
+  		println(scala.Console.BLUE + "### COPY ###: " + returnValue + scala.Console.RESET)
   		returnValue
   	}
 
@@ -126,7 +126,7 @@ class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
   		
 		// return the exit value   
   		val returnValue = pr.exitValue()
-  		println(scala.Console.RED + "### EXECUTE ###: " + returnValue + scala.Console.RESET)
+  		println(scala.Console.BLUE + "### EXECUTE ###: " + returnValue + scala.Console.RESET)
   		returnValue
   	}
   	
