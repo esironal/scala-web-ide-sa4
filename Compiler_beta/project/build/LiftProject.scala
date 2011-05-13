@@ -19,4 +19,6 @@ class LiftProject(info: ProjectInfo) extends DefaultWebProject(info) {
     "org.scala-tools.testing" %% "specs" % "1.6.6" % "test",
     "com.h2database" % "h2" % "1.2.138"
   ) ++ super.libraryDependencies
+
+  override def jettyPort = 8081
 }
