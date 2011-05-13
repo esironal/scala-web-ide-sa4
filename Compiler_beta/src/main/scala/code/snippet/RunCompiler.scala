@@ -3,6 +3,7 @@ package snippet
 
 import scala.xml._
 import java.io._
+import code.comet.Functions._
 
 /*
  * Run compiler and parse generated log.
@@ -41,5 +42,15 @@ class RunCompiler(id: String, path: String, var options: Array[String])
 		val logFile = src + "/log/log_compilation_" + compiler.getTime()
 		val log = LogParser.getXMLlog(logFile)
 		scala.xml.XML.save(logFile + ".xml", log)
+		
+		
+		// we will insert this file full of case classes (one per function) in your code/comet directory        
+
+		val compiled = new Compiled(s)
+		val server = select(Node("localhost", 8082),'server)
+		val result = server ! compiled
+
+		// of course you will have to start the USERS lift app. The
+		// remote actor 'server will start as soon as USER's boot gets loaded
 	}
 }
