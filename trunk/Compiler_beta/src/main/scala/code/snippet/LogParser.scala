@@ -27,7 +27,7 @@ object LogParser{
         line = bufRead.readLine()
       }
 
-      println(string)
+//      println(string)
 
       bufRead.close()
     }
@@ -145,7 +145,7 @@ object LogParser{
     return log
   }
 
-  def getXMLlog(logFile: String): NodeSeq = {
+  def getXMLlog(logFile: String): Node = {
     val xmlLog = XML.loadString(parseLog(logFile))
     return xmlLog
   }

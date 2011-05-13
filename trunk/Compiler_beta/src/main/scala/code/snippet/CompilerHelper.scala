@@ -8,11 +8,11 @@ import java.io._
  * Classed used to provide well formatted paramenteres to the Compiler
  * @author: Lorenzo Baracchi <lorenzo.baracchi@member.fsf.org>	
  */
-class CompilerHelper (id: Int, var optionList: scala.Array[String]) 
+class CompilerHelper(id: Int, var optionList: scala.Array[String]) 
 {
 	// fields:
 	val runTime = Runtime.getRuntime 
-	val projectId = "project"+id
+	val projectId = "project_"+id
 	
 	/*
 	 * Return location of the locally stored copy of the file.
