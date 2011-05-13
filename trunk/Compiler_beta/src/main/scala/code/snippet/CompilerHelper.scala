@@ -17,37 +17,29 @@ class CompilerHelper(id: Int, var optionList: scala.Array[String])
 	/*
 	 * Return location of the locally stored copy of the file.
 	 */
-	 def getPath() = 
-	 {
-	 	projectId
-	 }
+	def getPath() = 
+	{
+		projectId
+	}
 	 
 	/*
-	 * Return location of the log of the compiled file.
+	 * @return the list of options	
 	 */
-	 def getLog() = 
-	 {
-	 	projectId+"/log"
-	 }
+	def getOptionList = optionList 
 	 
-	 /*
-	  * @return the list of options	
-	  */
-	 def getOptionList = optionList 
+	/*
+	 * Set (as compiler option) the folder where to put bins
+	 */	
+	private def setBinDir() {
+		optionList=optionList++scala.Array("-d "+projectId+"/bin")
+	}
 	 
-	 /*
-	  * Set (as compiler option) the folder where to put bins
-	  */	
-	 private def setBinDir() {
-	 	optionList=optionList++scala.Array("-d "+projectId+"/bin")
-	 }
-	 
-	 /*
-	  * Set (as compiler option) the folder where to put source files
-	  */	
-	 private def setSrcDir() {
-	 	optionList=optionList++scala.Array("-d "+projectId+"/src")
-	 }
+	/*
+	 * Set (as compiler option) the folder where to put source files
+	 */	
+	private def setSrcDir() {
+		optionList=optionList++scala.Array("-d "+projectId+"/src")
+	}
 	
 	/*
 	 * Create the directories need to compile the project
