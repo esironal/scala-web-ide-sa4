@@ -18,36 +18,47 @@ import scala.xml.NodeSeq
 
 object ProjectXML{
 
+	var counter: Int = 1
+	
 	def projectHTML(myId: Long):Node = {
 		
 		val projBox: Box[Project] = Project.find(By(Project.id,  myId))
 		val project : Project = projBox.openOr(null)
 
 		val path: String = project.path
-		return <ul id="example" class="filetree">{dirHTML(path)}</ul>
+		return <div id="demo1" class="demo" ><ul>{dirHTML(path)}</ul></div>
 
 	}
 
-	def dirHTML(path: String):Node = {
+	def dirHTML(path: String):Node = {	
+		var idT: String = "phtml_" + counter
 		val list = new File(path).list
 		val fileName = path.split("/")(path.split("/").length - 1)
-
-		val result = <li>
-		<span class="folder">{ fileName }</span>
-		<ul>
+		var result = <li id={idT}> 
+						<a href="#">{fileName}</a>
+		{counter = counter + 1
+		if(list.length > 0){
+					  <ul>
+		
 		{for (aFile <- list) yield
 			{
 			val temp = new File(path +"/"+  aFile)
 			if(temp.isFile){
-				<li> <span class="file">{aFile}</span></li> 
+				//missing increasing counter
+							<li id={idT} rel="file">
+								<a href="#">{aFile}</a>
+							</li> 
 
 			}else{
 				dirHTML(path +"/"+aFile)
 			}
-			}						
+			}					
 		}
-		</ul>
+		 </ul>
+}
+		}
 		</li>
+		
 
 		return result
 	}
