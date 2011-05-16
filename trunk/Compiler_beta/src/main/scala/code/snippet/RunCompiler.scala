@@ -15,9 +15,11 @@ import code.comet._
  * @author: Cristian Bruseghini <cristian.bruseghini@gmail.com>	
  */
  
-class RunCompiler(id: String, path: String, var options: Array[String])
+class RunCompiler(id: String, path: String, var options: Array[String]) extends Actor
 {
-	def run() = 
+	classLoader = getClass.getClassLoader
+	
+	def act
 	{		
 		// create a new CompilerHelper in order to create logs
 		val compileHelper = new CompilerHelper(Integer.parseInt(id), options)
@@ -50,10 +52,12 @@ class RunCompiler(id: String, path: String, var options: Array[String])
 		
 		// zip binary files and log
 		compileHelper.zipBinAndLog()
-		      
+
 		// send case class Compiled to notify end of compilation
+		println(scala.Console.BLUE + "### SEND NOTIFICATION ###" + scala.Console.RESET)
 		val compiled = new Compiled(Integer.parseInt(id), path)
 		val server = select(scala.actors.remote.Node("localhost", 8082),'server)
-		val result = server ! compiled
+		val result = server !? compiled
+		println(scala.Console.BLUE + "### RECEIVED NOTIFICATION ###" + scala.Console.RESET)
 	}
 }
