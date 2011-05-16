@@ -104,8 +104,7 @@ object Compilable {
 		var id = link.id
 		var path = link.path
 		var opt = link.options
-  		var rc = new RunCompiler(id, path, opt)
-  		scala.actors.Actor.actor{rc.run()}
+  		(new RunCompiler(id, path, opt)).start
 		add(link)
 	}
  
