@@ -31,12 +31,15 @@ object ProjectXML{
 	}
 
 	def dirHTML(path: String):Node = {	
-		var idT: String = "phtml_" + counter
+		def idT: String = {	
+			counter = counter + 1
+			"phtml_" + counter
+		}
 		val list = new File(path).list
 		val fileName = path.split("/")(path.split("/").length - 1)
 		var result = <li id={idT}> 
 						<a href="#">{fileName}</a>
-		{counter = counter + 1
+		{
 		if(list.length > 0){
 					  <ul>
 		
@@ -44,7 +47,6 @@ object ProjectXML{
 			{
 			val temp = new File(path +"/"+  aFile)
 			if(temp.isFile){
-				//missing increasing counter
 							<li id={idT} rel="file">
 								<a href="#">{aFile}</a>
 							</li> 
@@ -62,4 +64,6 @@ object ProjectXML{
 
 		return result
 	}
+	
+	
 }
