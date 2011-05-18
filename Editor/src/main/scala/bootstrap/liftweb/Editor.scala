@@ -25,6 +25,8 @@ import code.comet.FileManager
 
 object Editor extends LiftView {
 
+	LiftRules.useXhtmlMimeType = false
+
 	val joker :String = "_-_" 
 
 	def dispatch = {

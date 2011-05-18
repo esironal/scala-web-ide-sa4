@@ -24,9 +24,8 @@
 	<link type="text/css" rel="stylesheet" href="/lib/tree/_docs/syntax/!style.css"/>
 	<link type="text/css" rel="stylesheet" href="/lib/tree/_docs/!style.css"/>
 	<script type="text/javascript" src="/lib/tree/_docs/syntax/!script.js"></script>
-  	<script src="/lib/tree/treeJS.js"></script>
+  	<!-- <script type="text/javascript" src="/lib/tree/treeJS.js"></script> -->
 	
-    <!-- <script id="json" type="text/javascript" src="/classpath/json.js"></script> -->
 	<script type="text/javascript" src="http://usiedit.appspot.com/static/lib/codemirror.js"></script>	
 	<script type="text/javascript" src="http://usiedit.appspot.com/static/lib/modaldbox.js"></script>
 	<script type="text/javascript" src="http://usiedit.appspot.com/static/lib/jquery.js"></script>
@@ -44,7 +43,7 @@
 		var filename;
 		function getURL() {
 			var strHref = window.location.href;
-			var url = strHref.split("/");
+			var url = strHref.split('/');
 			window.filename = url.pop();
 		}
 	</script>
@@ -56,24 +55,24 @@
 		var table_height = window.innerHeight - 34;
 		var editor_height = window.innerHeight - 140;
 		var log_height = table_height - editor_height - 5;
-		var main_table = document.getElementById("main_table");
+		var main_table = document.getElementById('main_table');
 		var editor = document.getElementById(filename);
-		var log = document.getElementById("log");
-		main_table.style.height = table_height + "px";
-		editor.style.height = editor_height + "px";
-		log.style.height = log_height + "px";
+		var log = document.getElementById('log');
+		main_table.style.height = table_height + 'px';
+		editor.style.height = editor_height + 'px';
+		log.style.height = log_height + 'px';
 	}
 	
 		function editor_text() {
-			var demo_editor_text = mobwrite.shareCodeMirror.create('test', {
-		    height: '100%',
-		    width: '100%',
-		    parserfile: ['tokenizejavascript.js', 'parsejavascript.js'],
-		    path: 'http://usiedit.appspot.com/static/lib/',
-			stylesheet: 'http://usiedit.appspot.com/static/lib/jscolors.css',
-		    tabMode: 'shift',
-		    autoMatchParens: true
-		  });
+			// var demo_editor_text = mobwrite.shareCodeMirror.create(filename, {
+			// 		    height: '100%',
+			// 		    width: '100%',
+			// 		    parserfile: ['tokenizejavascript.js', 'parsejavascript.js'],
+			// 		    path: 'http://usiedit.appspot.com/static/lib/',
+			// stylesheet: 'http://usiedit.appspot.com/static/lib/jscolors.css',
+			// 		    tabMode: 'shift',
+			// 		    autoMatchParens: true
+			// 		  });
 		}
 	
 		
@@ -82,95 +81,80 @@
 	
 	
 	<script type="text/javascript">
-	function assign_value() {
-		var left = document.getElementById("left_sidebar");
-		var right = document.getElementById("right_sidebar");
-		left.value = "true";
-		right.value = "true";
-	}
+
+	
 	function sidebar(side) {
-		var codearea = document.getElementById("codearea");
-		var left = document.getElementById("left_sidebar");
-		var right = document.getElementById("right_sidebar");
-		var left_button = document.getElementById("left_button");
-		var right_button = document.getElementById("right_button");
+		
 		
 		if(side == 'left') {
 			
 			if(left.value == 'true') {
 				
-				left.style.display = "none";
+				left.style.display = 'none';
 				
-				if(right.value == "true") {
-					codearea.style.width = "90%";
+				if(right.value == 'true') {
+					codearea.style.width = '90%';
 				} else {
-					codearea.style.width = "100%";
+					codearea.style.width = '100%';
 				}
 				
-				left.value = "false";
-				left_button.value = "Show Project Browser";
+				left.value = 'false';
+				left_button.value = 'Show Project Browser';
 				
 			} else {
 				
-				left.style.display = "inline";
+				left.style.display = 'inline';
 				
-				if(right.value == "true") {
-					codearea.style.width = "80%";
+				if(right.value == 'true') {
+					codearea.style.width = '80%';
 				} else {
-					codearea.style.width = "90%";
+					codearea.style.width = '90%';
 				}
 				
-				left.value = "true";
-				left_button.value = "Hide Project Browser";
+				left.value = 'true';
+				left_button.value = 'Hide Project Browser';
 				
 			}
 		} else {
 			
-			if(right.value == "true") {
+			if(right.value == 'true') {
 				
-				right.style.display = "none";
+				right.style.display = 'none';
 				
-				if(left.value == "true") {
-					codearea.style.width = "90%";
+				if(left.value == 'true') {
+					codearea.style.width = '90%';
 				} else {
-					codearea.style.width = "100%";
+					codearea.style.width = '100%';
 				}
 				
-				right.value = "false";
-				right_button.value = "Show Chat";
+				right.value = 'false';
+				right_button.value = 'Show Chat';
 				
 			} else {
 				
-				right.style.display = "inline";
+				right.style.display = 'inline';
 				
-				if(left.value == "true") {
-					codearea.style.width = "80%";
+				if(left.value == 'true') {
+					codearea.style.width = '80%';
 				} else {
-					codearea.style.width = "90%";
+					codearea.style.width = '90%';
 				}
 				
-				right.value = "true";
-				right_button.value = "Hide Chat";	
+				right.value = 'true';
+				right_button.value = 'Hide Chat';	
 			}
 		}
 	}
 
-	// var img = document.getElementById("left_img");
-	// sidebar.style.background = "-moz-linear-gradient(90% 200% 180deg, #b8c3c7, #71787a
-	// img.src = "/img/open_active.png";
-	// img.src = "/img/open_inactive.png";
-	// var img = document.getElementById("right_img");
-	// sidebar.style.background = "-moz-linear-gradient(90% 200% 180deg, #71787a, #b8c3c7)";
-	// img.src = "/img/chat_active.png";
-	// img.src = "/img/chat_inactive.png";
 	</script>
-	
+		
   </head>
 
 <!-- INSERIRE IL NOME DEL FILE -->
 <!-- <body onload="var name = getURL(); "> -->
-	<body onload="assign_value(); getURL(); height_size(); setTimeout('mobwrite.share(filename); editor_text();', 1000);" >
+	<body onload="getURL(); height_size(); mobwrite.share(filename); editor_text();" >
 	
+		
 	<!-- body -->
 		<div id="top_menu">
 			<ul>
@@ -196,6 +180,57 @@
 
         <div id="content">The main content will get bound here</div>
 
+		<script type="text/javascript" charset="utf-8">
+			var codearea = document.getElementById('codearea');
+			var left = document.getElementById('left_sidebar');
+			var right = document.getElementById('right_sidebar');
+			var left_button = document.getElementById('left_button');
+			var right_button = document.getElementById('right_button');
+			left.value = 'true';
+			right.value = 'true';
+		</script>
+		
+		<script type="text/javascript" charset="utf-8">
+				// TO CREATE AN INSTANCE
+				// select the tree container using jQuery
+				$('#demo1').jstree({
+						'types' : {
+							'valid_children' : [ 'file' ],
+							'types' : {
+								'file' : {
+									'icon' : { 
+										'image' : 'img/file.gif'
+									},
+									'valid_children' : [ 'default' ],
+									'max_depth' : -1,
+									'hover_node' : false,
+									'max_children' : 0,
+									'select_node' : function () {return false;}
+								},
+								'default' : {
+									'valid_children' : [ 'default' ]
+								}
+							}
+						},
+						'plugins' : ['themes','html_data','ui','crrm','hotkeys', 'contextmenu', 'types'],
+					})
+					.bind('loaded.jstree', function (event, data) {
+					});
+				// INSTANCES
+				// 1) you can call most functions just by selecting the container and calling `.jstree('func',`
+				setTimeout(function () { $('#demo1').jstree('set_focus'); }, 500);
+				// with the methods below you can call even private functions (prefixed with `_`)
+				// 2) you can get the focused instance using `$.jstree._focused()`. 
+				setTimeout(function () { $.jstree._focused().select_node('#phtml_1'); }, 1000);
+				// 3) you can use $.jstree._reference - just pass the container, a node inside it, or a selector
+				setTimeout(function () { $.jstree._reference('#phtml_1').close_node('#phtml_1'); }, 1500);
+				// 4) when you are working with an event you can use a shortcut
+				$('#demo1').bind('open_node.jstree', function (e, data) {
+					// data.inst is the instance which triggered this event
+					data.inst.select_node('#phtml_2', true);
+				});
+				setTimeout(function () { $.jstree._reference('#phtml_1').open_node('#phtml_1'); }, 2500);
+		</script>
 
   </body>
 </html>
