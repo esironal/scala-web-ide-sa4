@@ -8,6 +8,7 @@ import scala.io.Source
 import code.model.User
 import net.liftweb.http.S
 import code.model.Project
+import scala.collection.mutable.HashMap
 
 
 object FileManager extends LiftActor with ListenerManager {
@@ -88,11 +89,13 @@ object FileManager extends LiftActor with ListenerManager {
     	out.close;
     }
 
-    def createUpdate = {}
+    val dirMap = new HashMap[String,String]
+    def createUpdate = dirMap
 
     override def lowPriority = {
         case ('new, projectPath: String, s: String) => newFile(projectPath, s); updateListeners()
         case ('delete, filePath: String) => deleteFile(filePath); updateListeners()
+        case ('chdir, formId: String, filePath: String) => dirMap += (formId -> filePath)
         case _ => println("NOTHING")
     }
 }
