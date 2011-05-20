@@ -11,8 +11,98 @@
 	<!-- <link rel="stylesheet" type="text/css" href="mode/clike/clike.css"/> -->
 	<style type="text/css"> 
 	.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
-	.activeline {background: #f0fcff !important;}
+	.activeline {background: #fff !important;}
 	</style>
+	<style type="text/css">
+/* <![CDATA[ */
+.edit_error_class {
+  display: block;
+  color: red;
+}
+
+.userMenu{
+	float:left;
+	width:100%;
+	list-style:none;
+	font-weight:bold;
+	
+	margin-top:0px;
+}
+.userMenu li{
+	float:left;
+	margin-right:10px;
+	/* position:relative; */
+	display:block;
+}
+.userMenu li a{
+	display:block;
+	padding:0px;
+	color:#fff;
+	background:#B6C2C7;
+	text-decoration:none;
+
+	text-shadow:1px 1px 1px rgba(0,0,0,0.75); /* Text shadow to lift it a little */
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+}
+.userMenu li a:hover{
+	color:#4B717A;
+	background:#9DE2FB; /* Solid colour fall-back */
+	background:rgba(157,226,251,0.75); /* It'll look nice semi-transparent */
+
+	text-decoration:underline;
+}
+#userMenuID{
+	margin-top:0px;
+	}
+
+/************/
+/*
+.userMenu ul{
+	list-style:none;
+	position:absolute;
+	left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
+	opacity:0; /* Set initial state to transparent */
+	-webkit-transition:0.25s linear opacity; /* Make the dropdown fade-in in Webkit */
+}
+.userMenu ul li{
+	padding-top:1px; /* Introducing a padding between the li and the a give the illusion spaced items */
+	float:none;
+}
+.userMenu ul a{
+	white-space:nowrap; /* Stop text wrapping and creating multi-line dropdown items */
+	display:block;
+}
+.userMenu li:hover ul{ /* Display the dropdown on hover */
+	left:0; /* Bring back on-screen when needed */
+	opacity:1; /* Fade to opaque */
+}
+.userMenu li:hover a{ /* Set styles for top level when dropdown is hovered */
+
+	background:#6b0c36; /* Solid colour fall-back */
+	background:rgba(107,12,54,0.75); /* It'll look nice semi-transparent */
+	text-decoration:underline;
+}
+.userMenu li:hover ul a{ /* Override some top level styles when dropdown is hovered */
+	text-decoration:none;
+	-webkit-transition:-webkit-transform 0.075s linear;
+}
+.userMenu li:hover ul li a:hover{ /* Set styles for dropdown when items are hovered */
+	background:#333; /* Solid colour fall-back */
+
+	background:rgba(51,51,51,0.75); /* It'll look nice semi-transparent */
+	text-decoration:underline;
+	-moz-transform:scale(1.05);
+	-webkit-transform:scale(1.05);
+}
+
+*/
+
+
+  /* ]]> */
+  </style>
+
 	<!-- /CSS -->
 	
 	<!-- SCRIPTS -->
@@ -154,6 +244,9 @@
 <!-- <body onload="var name = getURL(); "> -->
 	<body onload="assign_value(); getURL(); height_size(); mobwrite.share(filename); editor_text();" >
 	
+	<div class="userMenu"><span id="userMenuID" class="lift:Menu.builder"></span></div>
+			<br /><br />
+
 		
 	<!-- body -->
 		<div id="top_menu">
