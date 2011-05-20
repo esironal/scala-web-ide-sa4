@@ -79,6 +79,21 @@ object Editor extends LiftView {
 	def content(filename: String, index: Long, file: Boolean):NodeSeq = {	
 
 		<lift:surround with="default" at="content">
+		
+		
+<!--	
+  	 	<form class="lift:form.ajax">
+  	 	    <input type="hidden" class="lift:Download" id="contents"/>
+  	 	    <input type="hidden" name="filename" value={filename}/>
+			</script>
+			<input type="submit" value="Download"/>
+  	 	</form>
+-->
+
+  	 	<form class="lift:Download?form=post">
+			<input type="hidden" name="filename" value={filename}/>
+			<input type="submit" value="Download"/>
+			
 		<!--<hr>-->
 		<table id="main_table">
 		<tr>
@@ -167,6 +182,8 @@ object Editor extends LiftView {
 		</td>
 		</tr>
 		</table>
+		</form>
+		
 		<div id="box" class="dialog">
 		<div style="text-align:center"><span id="txt">A nice file viewer</span><br />
 		<button>OK</button></div>

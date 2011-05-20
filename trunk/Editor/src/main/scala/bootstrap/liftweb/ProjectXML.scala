@@ -47,9 +47,9 @@ object ProjectXML{
 			{
 			val temp = new File(path +"/"+  aFile)
 			if(temp.isFile){
-							<li id={idT} rel="file">
-								<a href="#">{aFile}</a>
-							</li> 
+				<li id={idT} rel="file">
+					<a href="#">{aFile}</a>
+				</li> 
 
 			}else{
 				dirHTML(path +"/"+aFile)
@@ -61,9 +61,6 @@ object ProjectXML{
 		}
 		</li>
 		
-
 		return result
-	}
-	
-	
+	}	
 }
