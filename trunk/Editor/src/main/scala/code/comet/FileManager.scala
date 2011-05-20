@@ -13,8 +13,8 @@ import scala.collection.mutable.HashMap
 
 object FileManager extends LiftActor with ListenerManager {
 
-    def fileList(projectPath:String): List[String] = {
-        (new File(projectPath).listFiles.map(_.getPath)).toList
+    def fileList(dirPath:String): List[String] = {
+        (new File(dirPath).listFiles.map(_.getPath)).toList
     }
 
     def newFile(projectPath:String, name: String) = {
@@ -95,7 +95,7 @@ object FileManager extends LiftActor with ListenerManager {
     override def lowPriority = {
         case ('new, projectPath: String, s: String) => newFile(projectPath, s); updateListeners()
         case ('delete, filePath: String) => deleteFile(filePath); updateListeners()
-        case ('chdir, formId: String, filePath: String) => dirMap += (formId -> filePath)
+        case ('chdir, formId: String, filePath: String) => dirMap += (formId -> filePath); updateListeners()
         case _ => println("NOTHING")
     }
 }

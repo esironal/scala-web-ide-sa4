@@ -15,7 +15,7 @@ object FileIn {
         val projectId = S.param("id").open_!.toString
         <lift:comet type="FileList" name={ projectId }>
             <div id="projectName">Project Name</div>
-            <div id="dirName">Current Directory</div>
+            <div id="dirName">Current Directory</div><span id="backlink">back</span>
             <ul>
                 <li><a href="#">file name</a>-<a href="#">delete</a></li>
             </ul>
@@ -44,23 +44,36 @@ object FileIn {
         Run("")
     })
 
-    def listFiles(projectId: String, dir: String, formId: String) = {
-        val projectPath = Project.getProjectByIdAndByCurrentUser(projectId).path
+    private def goToFolderLink(formId: String, filePath: String, text: String) = {
+      SHtml.a(() => {
+          FileManager ! ('chdir, formId, filePath)
+          Run("")
+        }, Text(text))
+    }
+
+    def backlink(project: Project, currentDir: String, formId: String) = {
+        if(project.path == currentDir) {
+          Text("")
+        } else {
+          val backFolder = new java.io.File(currentDir).getParent
+          val filePathInProject = backFolder.substring(project.path.length)
+          goToFolderLink(formId, backFolder, "back");
+        }
+    }
+
+    def listFiles(project: Project, currentDir: String, formId: String) = {
 
         def openFile(filePath: String) = {
-            val filePathInProject = filePath.substring(projectPath.length)
-            if ((new java.io.File(filePathInProject).isDirectory))
-            SHtml.a(() => {
-                FileManager ! ('chdir, formId, filePath)
-                SetHtml("dirName", <span>{ filePathInProject }</span>)
-            }, <span>{ filePathInProject }</span>)
+            val filePathInProject = filePath.substring(project.path.length)
+            if ((new java.io.File(filePath).isDirectory))
+              goToFolderLink(formId, filePath, "dir: "+filePathInProject);
             else
-            SHtml.a(() => {
+              SHtml.a(() => {
                 SetValById("fileContent", FileManager.openFile(filePath)) &
-                SetValById("projectId", projectId) &
+                SetValById("projectId", project.id.is) &
                 SetValById("fileId", filePathInProject) &
                 SetHtml("fileName", <span>{ filePathInProject }</span>)
-            }, <span>{ filePathInProject }</span>)
+              }, <span>file: { filePathInProject }</span>)
         }
 
         def deleteFile(filePath: String) = {
@@ -70,7 +83,7 @@ object FileIn {
             }, <span>delete</span>)
         }
 
-        for (filePath <- FileManager.fileList(projectPath + "/" + dir)) yield {
+        for (filePath <- FileManager.fileList(currentDir)) yield {
             openFile(filePath) :+ Text(" - ") :+ deleteFile(filePath)
         }
     }
