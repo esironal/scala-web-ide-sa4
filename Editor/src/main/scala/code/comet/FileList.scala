@@ -16,7 +16,7 @@ class FileList extends CometActor with CometListener {
 
     val formId: String = Id.next.toString
 
-    var dirName: String = ""
+    var dirName: String = "" 
 
     def registerWith = FileManager
 
@@ -33,9 +33,16 @@ class FileList extends CometActor with CometListener {
     }
 
     def render = {
+      def currentProject = Project.getProjectByIdAndByCurrentUser(name.open_!)
+      if(dirName == "") {
+        dirName = currentProject.path
+      }
+      
+        
         "#dirName" #> dirName &
-        "li *" #> FileIn.listFiles(name.open_!, dirName, formId) &
-        "#projectName" #> Project.getProjectByIdAndByCurrentUser(name.open_!).name.is
+        "li *" #> FileIn.listFiles(currentProject, dirName, formId) &
+        "#projectName" #> currentProject.name.is &
+        "#backlink" #> FileIn.backlink(currentProject, dirName, formId)
 
     }
 
