@@ -78,7 +78,7 @@ object Editor extends LiftView {
 
 	def content(filename: String, index: Long, file: Boolean):NodeSeq = {	
 
-		<lift:surround with="default" at="content">
+		<lift:surround with="editorFile" at="content">
 		
 		
 <!--	

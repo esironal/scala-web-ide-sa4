@@ -13,7 +13,7 @@ object LoginRedirect {
  def render = {
      
     if(User.loggedIn_?)  {
-        S.redirectTo("/profile/"+User.currentUser.openOr(null).accountID.is)
+        S.redirectTo("/projectList")
     }
     else {
         
