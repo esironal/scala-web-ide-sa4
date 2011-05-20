@@ -262,19 +262,22 @@
 <!-- INSERIRE IL NOME DEL FILE -->
 <!-- <body onload="var name = getURL(); "> -->
 	<body onload="assign_value(); getURL(); height_size(); mobwrite.share(filename); editor_text();" >
-		
-		<div>
+		<div align="center">
+		<div align="center" style="width:350px; margin: 0 auto;">
 			
 					
-					<span  class="userMenu"><lift:Menu.builder></lift:Menu.builder></span>
+					<span  class="userMenu" align="center"><lift:Menu.builder></lift:Menu.builder></span>
 			
+		</div>
+		<div style="width:350px; margin: 0 auto;">
+		<img src="/img/logo.gif" />
 		</div>
 		
 	<!-- body -->
-  <br/>  <br/>  <br/>  <br/>  <br/>  <br/>
+  <br/>
 		
         <div id="content" style="margin-top:50px;">The main content will get bound here</div>
-
+       </div>
 		<script type="text/javascript" charset="utf-8">
 			var codearea = document.getElementById('codearea');
 			var left = document.getElementById('left_sidebar');
