@@ -114,6 +114,5 @@ class Boot {
 
     // Make a transaction span the whole HTTP request
     S.addAround(DB.buildLoanWrapper)
- 
   }
 }
