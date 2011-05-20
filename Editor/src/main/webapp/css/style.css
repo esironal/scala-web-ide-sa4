@@ -1,9 +1,123 @@
 body {
 	margin: 0;
 	padding: 0;
-	background-image: url("/img/pattern.png");
+	/* background-image: url("/img/pattern.png"); */
+	
+	font: Tahoma;
+	background-color:#E7F5FA;
 }
+/*****Style from User Project *******/
+.ProfileContainer{
+	width:900px;
+	
+	
+	}
 
+.profileImg{
+	width:100px;
+	height:100%;
+	float:left;
+
+	}
+	
+.userData{
+
+	margin-left:10px;
+	float:left;
+	width:750px;
+	
+	}
+	
+textarea{
+	height:50px;
+	width:350px;
+
+	margin-left:5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+    border: 1px solid #DDDDDD;
+    font-size: 14px;
+    padding: 8px;
+    width: 42%;
+
+	
+	}
+	input[type="text"]{
+    -moz-border-radius: 5px 5px 5px 5px;
+	webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+    border: 1px solid #DDDDDD;
+    font-size: 14px;
+    margin: 5px 5px 5px 30px;
+    padding: 8px;
+    width: 275px;
+		
+		}
+		
+ input[type="password"]{
+    -moz-border-radius: 5px 5px 5px 5px;
+	webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+    border: 1px solid #DDDDDD;
+    font-size: 14px;
+    margin: 5px 5px 5px 30px;
+    padding: 8px;
+    width: 275px;
+		
+		}
+		
+		input[type="submit"] {
+    -moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
+    background: url("/images/bg-btn.gif") repeat-x scroll 0 0 #DDDDDD;
+    border-color: #DDDDDD #DDDDDD #CCCCCC;
+    border-style: solid;
+    border-width: 1px;
+    color: #333333;
+    cursor: pointer;
+    font: 11px/14px "Lucida Grande",sans-serif;
+    margin: 0;
+    overflow: visible;
+    padding: 4px 8px 5px;
+    text-shadow: 1px 1px 0 #FFFFFF;
+    width: 120px;
+	font-size:120%;}
+#formMSG{
+	width:900px;
+    merge-top: 500px;
+    
+
+	
+	
+	}
+.msgComment{
+	width:600px;
+
+	
+	}
+.msgsComments{
+	width:600px;
+	float:left;
+	}
+.msgContainer{
+	width:600px;
+	}
+.lftSmallImg{
+	width:70px;
+	height:70px;
+	margin:5px;
+
+	}	
+.rightComments{
+	width:520px;
+	float:left;
+	margin:5px;
+	
+	}
+	
+/*********** End Style User Project********/
 
 
 /***************************************** TOP MENU **********************************************/
@@ -41,7 +155,7 @@ body {
 #top_menu ul {
 	list-style: none;
 	padding: 0;
-	margin: 0;
+	margin: 50 0 0 0;
 }
 
 #top_menu li {
