@@ -21,7 +21,7 @@
 }
 
 .userMenu{
-	float:left;
+	float:right;
 	width:100%;
 	list-style:none;
 	font-weight:bold;
@@ -29,7 +29,7 @@
 	margin-top:0px;
 }
 .userMenu li{
-	float:left;
+	float:right;
 	margin-right:10px;
 	/* position:relative; */
 	display:block;
@@ -57,9 +57,8 @@
 	margin-top:0px;
 	}
 
-
 /************/
-/*
+
 .userMenu ul{
 	list-style:none;
 	position:absolute;
@@ -116,7 +115,7 @@
 	-moz-transform:scale(1.05);
 	-webkit-transform:scale(1.05);
 }
-*/
+
 
 
   /* ]]> */
@@ -263,17 +262,44 @@
 <!-- <body onload="var name = getURL(); "> -->
 	<body onload="assign_value(); getURL(); height_size(); mobwrite.share(filename); editor_text();" >
 		
-		<div>
-			
-					
+		<div style="width: 200px; float:right;">
+			<ul class="userMenu">
+				<li>
+					<a href="#">About</a>
 					<span  class="userMenu"><lift:Menu.builder></lift:Menu.builder></span>
-			
+				</li>
+			</ul>
 		</div>
 		
 	<!-- body -->
-  <br/>  <br/>  <br/>  <br/>  <br/>  <br/>
+
+		<div id="top_menu">
+			<ul style="width:970px;">
+				<li><img src="/img/new.png" /><span onclick="sm('box',800,400)">New</span></li>
+				<li><img src="/img/open.png" />Open</li>
+				<li><img src="/img/save.png" />Save</li>
+				<li class="nohover">|</li>
+				<li><img src="/img/upload.png" />Upload</li>
+				<li><img src="/img/download.png" />Download</li>
+				<li class="nohover">|</li>
+				<li><img src="/img/build.png" />Build</li>
+				<li><img src="/img/run.png" />Run</li>
+				<li class="nohover">|</li>
+				<li><img src="/img/lock.png" />Lock</li>
+				<li class="nohover"><input type="button" value="Hide Project Browser" id="left_button" onclick="sidebar('left')">
+					<!-- <img id="left_img" src="/img/open_inactive.png" width="16" heght="16" alt="submit" /> --></input>
+				</li>
+				<li class="nohover"><input type="button" value="Hide Chat" id="right_button" onclick="sidebar('right')">
+					<!-- <img id="right_img" src="/img/chat_inactive.png" width="16" heght="16" alt="submit" /> -->
+				</input></li>
+				
+			</ul>
+			
+		</div>
 		
-        <div id="content" style="margin-top:50px;">The main content will get bound here</div>
+	
+		<br /><br /><br /><br /><br />
+        <div id="content">The main content will get bound here</div>
 
 		<script type="text/javascript" charset="utf-8">
 			var codearea = document.getElementById('codearea');
