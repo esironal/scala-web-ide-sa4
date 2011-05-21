@@ -27,7 +27,14 @@ object FileManager extends LiftActor with ListenerManager {
     }
 
     def deleteFile(filePath: String) = {
-    	new File(filePath).delete
+        def delete(file: File): Unit = {
+          if(file.isDirectory) {
+            file.listFiles.foreach(delete(_))
+          }
+          file.delete
+        }
+        
+    	delete(new File(filePath))
     }
 
     def openFile(filePath: String): String = {
