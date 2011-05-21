@@ -108,4 +108,10 @@ object FileIn {
         val projectId = S.param("id").open_!.toString
         <input type="hidden" id="id" name="id" value={ projectId }/>
     }
+
+    def addUserLink = {
+        val projectId = S.param("id").open_!.toString
+        SHtml.link("/invite?id=" + projectId, () => (), Text("Add users to collaborate"))
+    }
+
 }
