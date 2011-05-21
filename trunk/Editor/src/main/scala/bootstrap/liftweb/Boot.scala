@@ -78,6 +78,8 @@ class Boot {
      Menu(Loc("Project", Link(List("project"), true, "/project"), "Project" ,loggedIn)),
      Menu(Loc("ProjectList",
               Link(List("projectList"), true, "/projectList"), "ProjectList" ,loggedIn)),
+     Menu(Loc("Invite",
+              Link(List("invite"), true, "/invite"), "Invite")),
 	  Menu(Loc("Editor", Link(List("editor"), true, "/editor/"), 
 	       "Editor Content" ,loggedIn))     )
 
