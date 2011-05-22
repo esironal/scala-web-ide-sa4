@@ -4,7 +4,7 @@ body {
 	/* background-image: url("/img/pattern.png"); */
 	
 	font: Tahoma;
-	background-color:#E7F5FA;
+	background-color:#E7F5FA !important;
 }
 /*****Style from User Project *******/
 .ProfileContainer{
