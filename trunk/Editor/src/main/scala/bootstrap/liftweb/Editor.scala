@@ -78,7 +78,12 @@ object Editor extends LiftView {
 
 	def content(filename: String, index: Long, file: Boolean):NodeSeq = {	
 		
-		<lift:surround with="default" at="content">
+		<lift:surround with="editorFile" at="content">
+		
+		<script type="text/javascript">
+		  var filename = '{filename}';
+		  var key = '{filename + joker + index}';
+        </script>
 
 		<div id="save_form">
         <form class="lift:form.ajax" name="save_form">
@@ -190,6 +195,7 @@ object Editor extends LiftView {
 		<div style="text-align:center"><span id="txt">A nice file viewer</span><br />
 		<button>OK</button></div>
 		</div>
+
 		</lift:surround>
 	}	
 
