@@ -37,11 +37,18 @@ class FileList extends CometActor with CometListener {
       if(dirName == "") {
         dirName = currentProject.path
       }
+
+      val pathInProject =
+        if(dirName == currentProject.path) {
+          "/"
+        } else {
+          dirName.substring(currentProject.path.length)
+        }
+
       
         
-        "#dirName" #> dirName &
+        "#dirName" #> pathInProject &
         "li *" #> FileIn.listFiles(currentProject, dirName, formId) &
-        "#projectName" #> currentProject.name.is &
         "#backlink" #> FileIn.backlink(currentProject, dirName, formId)
 
     }

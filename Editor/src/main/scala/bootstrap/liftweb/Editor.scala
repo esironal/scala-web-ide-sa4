@@ -105,7 +105,40 @@ object Editor extends LiftView {
 		<table id="main_table">
 		<tr>
 		<td id="left_sidebar" value="true">
-		{ProjectXML.projectHTML(index)}
+
+                    <div class="tree lift:FileIn.cometFileList">
+                        <span id="backlink">back</span>
+                        <img src="/filelist-template/img/current_folder.png"/>
+                        <span id="dirName">Current folder</span>
+                        <hr/>
+                        <div class="scrollable">
+                            <ul class="list">
+                                <li><a href="#">file name</a>-<a href="#">delete</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <form class="lift:form.ajax">
+                            <div class="lift:FileIn.hiddenProjectId"></div>
+                            <input type="hidden" id="currentDir" name="currentDir" value=""/>
+                            <input class="lift:FileIn.newFile" id="fileIn"/>
+                            <input type="radio" name="type" value="file" checked="ckecked" /> 
+                            File <input type="radio" name="type" value="folder" /> 
+                            Folder <br/>
+                            <input type="submit" value="New"/>
+                        </form>
+                        <hr/>
+                        <form id="create_file">
+                          Name: <input type="text" name="name" />	 
+                          <input type="radio" name="type" value="file" checked="ckecked" /> 
+                          File <input type="radio" name="type" value="folder" /> 
+                          Folder <br/>
+                          <input id="submit" type="submit" value="Create!" style="float:right;"/>
+                        </form>
+                    </div>
+
+
+
 		</td>			
 		<td id="codearea">
 		<textarea id={filename + joker + index} name={filename + joker + index} class="editor">{if(file){addText(filename, index)}}</textarea>

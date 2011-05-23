@@ -1,0 +1,49 @@
+.list {
+    margin:						0;
+    padding:					0 0 0 0px;
+
+}
+
+.list li{
+    font:						20px/45px Helvetica, Arial, sans-serif;
+    margin:						0;
+    padding:					0 0 0 12px;
+    list-style-type: none;
+    border-top: 				1px solid #CCC;
+}
+
+.tree{
+    width: 350px;
+    height: 400px;
+    padding:					0 0 0 0px;
+}
+
+#dirName, #create_file, #submit{
+    font:						20px/45px Helvetica, Arial, sans-serif;
+    margin:						0;
+    padding:					0 0 0 0px;
+}
+
+.delete{
+    float: right;
+    margin-top: 15px;
+}
+
+.right{
+    margin-left:						10px;
+}
+
+#back_img{
+    margin-right:						10px;
+}
+
+.tree a { text-decoration:none;
+    color: black;
+    }
+
+    .scrollable{
+        height: 100%;
+
+        background-color:#ffffff;
+        overflow:auto
+}

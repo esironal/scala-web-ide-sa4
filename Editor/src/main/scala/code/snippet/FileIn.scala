@@ -8,17 +8,15 @@ import net.liftweb.http.js.JE._
 import code.model.User
 import code.model.Project
 import scala.xml.Text
+import scala.xml.NodeSeq
+import java.io.File
 
 object FileIn {
 
-    def cometFileList = {
+    def cometFileList(in: NodeSeq): NodeSeq = {
         val projectId = S.param("id").open_!.toString
         <lift:comet type="FileList" name={ projectId }>
-            <div id="projectName">Project Name</div>
-            <div id="dirName">Current Directory</div><span id="backlink">back</span>
-            <ul>
-                <li><a href="#">file name</a>-<a href="#">delete</a></li>
-            </ul>
+          {in}
         </lift:comet>
     }
 
@@ -36,7 +34,11 @@ object FileIn {
         val project = Project.getProjectByIdAndByCurrentUser(projectId)
         val dirPath = project.path + currentDir
 
-        FileManager ! ('new, dirPath, s)
+        if(S.param("type").open_!.toString == "folder") {
+          FileManager ! ('newdir, dirPath, s)
+        } else {
+          FileManager ! ('newfile, dirPath, s)
+        }
         SetValById("fileIn", "")
     })
 
@@ -48,12 +50,12 @@ object FileIn {
         Run("")
     })
 
-    private def goToFolderLink(formId: String, fullFolderPath: String, folderPathInProject: String, text: String) = {
+    private def goToFolderLink(formId: String, fullFolderPath: String, folderPathInProject: String, linkBody: NodeSeq) = {
       SHtml.a(() => {
           FileManager ! ('chdir, formId, fullFolderPath)
           // Not sending the real path to the browser!
           SetValById("currentDir", folderPathInProject)
-        }, Text(text))
+        }, linkBody)
     }
 
     def backlink(project: Project, currentDir: String, formId: String) = {
@@ -62,34 +64,45 @@ object FileIn {
         } else {
           val backFolder = new java.io.File(currentDir).getParent
           val filePathInProject = backFolder.substring(project.path.length)
-          goToFolderLink(formId, backFolder, filePathInProject, "back");
+          goToFolderLink(
+            formId, backFolder, filePathInProject, 
+            <img id="back_img" src="/filelist-template/img/back.png"/>
+          )
         }
     }
 
     def listFiles(project: Project, currentDir: String, formId: String) = {
 
-        def openFile(filePath: String) = {
+        def openFile(file: File) = {
+            val filePath = file.getPath
             val filePathInProject = filePath.substring(project.path.length)
             if ((new java.io.File(filePath).isDirectory))
-              goToFolderLink(formId, filePath, filePathInProject, filePathInProject);
+              goToFolderLink(
+                formId, filePath, filePathInProject, 
+                <img src="/filelist-template/img/folder.jpeg"/> :+
+                Text(file.getName) :+ <img class="right" src="/filelist-template/img/right.png"/>
+                
+              )
             else
               SHtml.a(() => {
                 SetValById("fileContent", FileManager.openFile(filePath)) &
                 SetValById("projectId", project.id.is) &
                 SetValById("fileId", filePathInProject) &
                 SetHtml("fileName", <span>{ filePathInProject }</span>)
-              }, Text(filePathInProject))
+              }, <img src="/filelist-template/img/file.jpeg"/> :+ Text(file.getName) 
+            )
         }
 
-        def deleteFile(filePath: String) = {
+        def deleteFile(file: File) = {
+            val filePath = file.getPath
             SHtml.a(() => {
                 FileManager ! ('delete -> filePath)
                 Run("")
-            }, Text("delete"))
+            }, <img class="delete" src="/filelist-template/img/delete.png"/>)
         }
 
-        for (filePath <- FileManager.fileList(currentDir)) yield {
-            openFile(filePath) :+ Text(" - ") :+ deleteFile(filePath)
+        for (file <- FileManager.fileList(currentDir)) yield {
+            openFile(file) :+ deleteFile(file)
         }
     }
 
