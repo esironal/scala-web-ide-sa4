@@ -1,7 +1,17 @@
                 <div id="main" class="lift:surround?with=editorFile;at=content">
                     <div class="lift:FileIn.addUserLink"></div>
-                    
-                    <div class="lift:FileIn.cometFileList"></div>
+                    <hr/>
+                    <div class="tree lift:FileIn.cometFileList">
+                        <span id="backlink">back</span>
+                        <img src="/filelist-template/img/current_folder.png"/>
+                        <span id="dirName">Current folder</span>
+                        <hr/>
+                        <div class="scrollable">
+                            <ul class="list">
+                                <li><a href="#">file name</a>-<a href="#">delete</a></li>
+                            </ul>
+                        </div>
+                    </div>
                     <div>
                         <form class="lift:form.ajax">
                             <div class="lift:FileIn.hiddenProjectId"></div>

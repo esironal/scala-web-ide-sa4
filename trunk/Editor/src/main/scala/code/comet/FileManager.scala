@@ -18,12 +18,16 @@ import java.io.Reader
 
 object FileManager extends LiftActor with ListenerManager {
 
-    def fileList(dirPath:String): List[String] = {
-        (new File(dirPath).listFiles.map(_.getPath)).toList
+    def fileList(dirPath:String): List[File] = {
+        new File(dirPath).listFiles.toList
     }
 
     def newFile(projectPath:String, name: String) = {
     	new File(projectPath, name).createNewFile
+    }
+
+    def newDir(projectPath:String, name: String) = {
+    	new File(projectPath, name).mkdir
     }
 
     def saveFile(filePath: String, content: String) = {
@@ -119,7 +123,8 @@ object FileManager extends LiftActor with ListenerManager {
     def createUpdate = dirMap
 
     override def lowPriority = {
-        case ('new, projectPath: String, s: String) => newFile(projectPath, s); updateListeners()
+        case ('newfile, projectPath: String, s: String) => newFile(projectPath, s); updateListeners()
+        case ('newdir, projectPath: String, s: String) => newDir(projectPath, s); updateListeners()
         case ('delete, filePath: String) => deleteFile(filePath); updateListeners()
         case ('chdir, formId: String, filePath: String) => dirMap += (formId -> filePath); updateListeners()
         case _ => println("NOTHING")
