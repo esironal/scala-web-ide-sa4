@@ -27,6 +27,8 @@ import code.model.UserProject
 import code.model.FileChatMessage
 import code.model.ProjectChatMessage
 
+import code.comet._
+
 
 /**
  * A class that's instantiated early and run.  It allows the application
@@ -79,8 +81,9 @@ class Boot {
      Menu(Loc("ProjectList",
               Link(List("projectList"), true, "/projectList"), "ProjectList" ,loggedIn)),
      Menu(Loc("Invite",
-              Link(List("invite"), true, "/invite"), "Invite")),
-	  Menu(Loc("Editor", Link(List("editor"), true, "/editor/"), 
+               Link(List("invite"), true, "/invite"), "Invite")),
+        	   
+     Menu(Loc("Editor", Link(List("editor"), true, "/editor/"), 
 	       "Editor Content" ,loggedIn))     )
 
 
@@ -120,5 +123,28 @@ class Boot {
 
     // Make a transaction span the whole HTTP request
     S.addAround(DB.buildLoanWrapper)
+    
+    // start sefver for incoming messages from compiler
+    val server = new Messager(8082)
+	server.start
+	
+	//--- start of compile request
+	
+	// setting parameters (in this example just one: -verbose)
+	//val parameters = new Array[String](1)
+	//parameters(0) = "-verbose"
+	  
+	// userID is a Long  
+	//val userID = 1
+	
+	// projectName is a String
+	//val projectName = "project_2"
+	  
+	// returns a Tuple2(binPath:String,logPath:String)
+	//val compile = code.comet.FileManager.compile(projectName, userID, parameters)
+
+	//--- end of compile request
+    
+    
   }
 }
