@@ -9,7 +9,12 @@ import code.model.User
 import net.liftweb.http.S
 import code.model.Project
 import scala.collection.mutable.HashMap
-
+import java.io.BufferedReader
+import java.io.File
+import java.io.IOException
+import java.io.OutputStream
+import java.io.PrintStream
+import java.io.Reader
 
 object FileManager extends LiftActor with ListenerManager {
 
@@ -27,14 +32,14 @@ object FileManager extends LiftActor with ListenerManager {
     }
 
     def deleteFile(filePath: String) = {
-        def delete(file: File): Unit = {
-          if(file.isDirectory) {
-            file.listFiles.foreach(delete(_))
-          }
-          file.delete
-        }
-        
-    	delete(new File(filePath))
+    	def delete(file: File): Unit = {
+    	          if(file.isDirectory) {
+    	            file.listFiles.foreach(delete(_))
+    	          }
+    	          file.delete
+    	        }
+    	        
+    	    	delete(new File(filePath))
     }
 
     def openFile(filePath: String): String = {
@@ -42,20 +47,29 @@ object FileManager extends LiftActor with ListenerManager {
     }
     
     // creates a zip file of the file on the given projectPath and returns its path
-    def zipFile(projectPath: String, userId: Long): String = {
-    	val projArr = projectPath.split("/")
-    	val i: Int = projArr.length - 1
-    	val fileName = projArr(i)
-    	val newProj = fileName+"_"+userId
-    	val c = scala.Array(projectPath+"/..", "zip -r "+newProj+".zip "+fileName)
+    def zipFile(path: String, projectName:String, userId: Long): String = {
+    	
+    	
+
+    	//val a = Runtime.getRuntime.exec("wget -P,  --directory-prefix=PREFIX  http://www.dreamshade.ch/immagini/facebook/media")
+    	
+    	
+    	
+    	
+    	val c = scala.Array("/bin/bash","-c", "cd "+path+" && zip -r ../compiled_projects/user_"+userId+"/"+projectName+".zip "+projectName)
+    	// later, for compiled projects use: ../compiled_projects/user_"+userId+"/"+projectName+".zip"
+    	
+    	
   		val exec = Runtime.getRuntime.exec(c)
   		
 		// wait for the end of the command execution
   		exec.waitFor()
   		
 		//return the exit value   
-  		if(exec.exitValue() == 0) {
-  			return projectPath+"/../"+newProj+".zip"
+  		val v = exec.exitValue()
+  		println("zipFile: exec.exitValue() = " + v)
+  		if(v == 0) {
+  			return path+projectName+".zip"
   		}
     	return "failed"
 	}
@@ -65,13 +79,15 @@ object FileManager extends LiftActor with ListenerManager {
     // through a JSON object
     // if the operation failed, a string with "failed" will be sent returned
     // and no JSON will be sent
-    def compile(projectPath: String, userId: Long, options: Array[String]): String = {
-    	var zip = zipFile(projectPath, userId)
+    def compile(projectName: String, userId: Long, options: Array[String]): String = {
+    	var zip = zipFile("./src/main/webapp/projects/",projectName, userId)
     	if(!zip.equals("failed")) {
     		var json = createJson(userId, zip, options)
     		put(json, "http://localhost:8081/compiler/link")
-    		return "compiling..."
+    		println("compiling...")
+    		return "ok"
     	}
+    	println("failed")
     	return "failed"
     }
     
@@ -82,18 +98,21 @@ object FileManager extends LiftActor with ListenerManager {
     		optstr = optstr +"\"" +opt+ "\"" +", "
     	}
     	optstr = optstr.substring(0,optstr.length - 3) 
-    	return "{\"id\":\""+userId+"\"; \"path\":\""+path+"\"; \"options\": ["+optstr+"]}"
+    	return "{\"id\":\""+userId+"\", \"path\":\""+path+"\", \"options\": ["+optstr+"\"]}"
     }
 
     // the HTTP PUT request method!
     def put(json: String, link: String) = {
-    	val url: URL = new URL(link);
-    	val httpCon: HttpURLConnection = (url.openConnection).asInstanceOf[HttpURLConnection];
-    	httpCon.setDoOutput(true);
-    	httpCon.setRequestMethod("PUT");
-    	val out: OutputStreamWriter = new OutputStreamWriter(httpCon.getOutputStream);
-    	out.write("Resource content");
-    	out.close;
+    	val url: URL = new URL(link)
+    	val httpCon: HttpURLConnection = (url.openConnection).asInstanceOf[HttpURLConnection]
+    	httpCon.setDoOutput(true)
+    	httpCon.setRequestMethod("PUT")
+    	httpCon.setRequestProperty("Content-Type","application/json")
+    	
+    	val out: OutputStreamWriter = new OutputStreamWriter(httpCon.getOutputStream)
+    	out.write(json)
+    	out.close
+    	println(httpCon.getResponseMessage)
     }
 
     val dirMap = new HashMap[String,String]

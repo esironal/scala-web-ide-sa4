@@ -38,6 +38,12 @@ class Messager(port: Int) extends Actor {
 				sender ! FileManager.compile(path, userId, options)
 			}
 			
+			case ('compiled, id: Int, path: String) => {
+				println("Compiled(Id: "+id+", path: "+path+")")
+				
+				sender ! "Notification received: Compiled(Id: "+id+", path: "+path+")"
+			}
+			
 			
 			}
 						
