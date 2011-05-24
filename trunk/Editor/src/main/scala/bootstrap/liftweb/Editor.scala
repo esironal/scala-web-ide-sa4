@@ -64,7 +64,7 @@ object Editor extends LiftView {
 				content(fileName, project.id.is, false)
 			}
 		} else { 
-			errorPage("Non trovo un cazzo: lenght = " + s.length)
+			errorPage("Non trovo niente: lenght = " + s.length)
 		}
 	}
 
@@ -87,12 +87,12 @@ object Editor extends LiftView {
 
 		<div id="save_form">
         <form class="lift:form.ajax" name="save_form">
-        <lift:SaveBuffer filename="/tmp/docsaved.txt">
+        <lift:SaveBuffer filename={"/tmp/" + filename + ".txt"}>
     	<textarea style="display:none" id="buffer" name="buffer"/>
       	<!--
     	<input type="hidden" id="buffer" name="buffer"/>
       	-->
-      	<input type="hidden" id={filename} name="filename" value="/tmp/docsaved.txt"/>
+      	<input type="hidden" id={filename} name="filename" value={"/tmp/" + filename + ".txt"}/>
   		</lift:SaveBuffer>
         </form>
       	</div>
