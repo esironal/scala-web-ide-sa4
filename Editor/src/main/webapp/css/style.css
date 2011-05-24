@@ -583,4 +583,49 @@ input#chat_in{
 	background-color: #ffd;
 
 }
+/*******************************  Home ******************************************/
+
+.logInBox{
+	
+	margin-left: auto;
+	margin-right: auto;
+	float:left;
+
+	border: 1px solid #c8ddee;
+	-moz-box-shadow: 0 0 5px 5px #a6ceeb;
+    -webkit-box-shadow: 0 0  5px 5px #a6ceeb;
+    box-shadow: 0 0 5px 5px #a6ceeb;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	width: 500px;
+    height:250px;
+	
+}
+
+
+.logInHome{
+	padding-top:50px;
+	width: 500px;
+    height:200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
