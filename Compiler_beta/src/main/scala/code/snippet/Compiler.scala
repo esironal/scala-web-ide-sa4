@@ -39,22 +39,14 @@ class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
 		// return the exit value   
   		val returnValue = pr.exitValue()
   		println(scala.Console.BLUE + "### COPY AND UNZIP ###: " + returnValue + scala.Console.RESET)
-  		returnValue
   	}
-  	
-  	/*
-     * Retrieve location of the compiled files
-     */
-     def getCompiledFiles() = 
-     {
-	 	// TODO
-     }
 
 	/* 
 	 * check if the given option could be recognized by the compiler
 	 * @return true if it is recognized, false otherwise
 	 */
-	def checkOptionExists(option: String) = {
+	def checkOptionExists(option: String) = 
+	{
 		println(option)
 
 		option match{
@@ -76,7 +68,8 @@ class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
 	 * @return the command as a String
 	 * @throws IllegalArgumentException if one of the option is not recognized
 	 */
-	def addOptionList(s: String) = {
+	def addOptionList(s: String) = 
+	{
 		var newS=s
 		for(opt <- optionList) {
 			//println(opt)
@@ -91,7 +84,7 @@ class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
 	/*
 	 * Read the makefile and generates the list of all files to compile
 	 */
-	def readMakefile() 
+	def readMakefile() =
 	{
 		val mkfile = scala.io.Source.fromFile(projectDirectory+"/.makefile").mkString
 		var listFile = mkfile.split("\n")
@@ -170,7 +163,6 @@ class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
   			case e:IllegalArgumentException => println("Exception thrown: "+e.getMessage())
 		}
   	}
-
 }
 
 /*

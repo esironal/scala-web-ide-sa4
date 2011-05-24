@@ -11,6 +11,7 @@ import java.io._
 class CompilerHelper(id: Int, var optionList: scala.Array[String]) 
 {
 	// fields:
+	val DOWNLOAD_LOCATION = "src/main/webapp/download/"
 	val runTime = Runtime.getRuntime 
 	val projectId = "project_"+id
 	
@@ -30,14 +31,16 @@ class CompilerHelper(id: Int, var optionList: scala.Array[String])
 	/*
 	 * Set (as compiler option) the folder where to put bins
 	 */	
-	private def setBinDir() {
+	private def setBinDir() = 
+	{
 		optionList=optionList++scala.Array("-d "+projectId+"/bin")
 	}
 	 
 	/*
 	 * Set (as compiler option) the folder where to put source files
 	 */	
-	private def setSrcDir() {
+	private def setSrcDir() = 
+	{
 		optionList=optionList++scala.Array("-d "+projectId+"/src")
 	}
 	
@@ -45,7 +48,8 @@ class CompilerHelper(id: Int, var optionList: scala.Array[String])
 	 * Create the directories need to compile the project
 	 * @return true if the process suceeded, false otherwise
 	 */
-	def createCompilerBox() = {
+	def createCompilerBox() = 
+	{
 		setBinDir()
 		//setSrcDir()
 		// create a command to do that!
@@ -83,7 +87,7 @@ class CompilerHelper(id: Int, var optionList: scala.Array[String])
   		
 		// return the exit value   
   		val returnValue = pr.exitValue()
-  		println(scala.Console.BLUE + "### MAKEFILE ###: " + returnValue + scala.Console.RESET)
+  		println(scala.Console.BLUE + "[" + id + "] ### MAKEFILE ###: " + returnValue + scala.Console.RESET)
   		returnValue
 	 }
 	
@@ -91,9 +95,10 @@ class CompilerHelper(id: Int, var optionList: scala.Array[String])
 	 * Destroy the directories used to compile the project
 	 * @retrun true if the process suceeded, false otherwise
 	 */
-	def destroyCompilerBox() = {
+	def destroyCompilerBox() = 
+	{
 		// create a command to do that!
-		var cmd = "rm -rf "+projectId+"&& rm -rf "+projectId+".zip"
+		var cmd = "rm -rf "+projectId+"&& rm -rf ./"+DOWNLOAD_LOCATION+projectId+".zip"
 		val command= scala.Array("/bin/bash", "-c", cmd)
 		
 		val pr = runTime.exec(command)
@@ -103,7 +108,7 @@ class CompilerHelper(id: Int, var optionList: scala.Array[String])
   		
 		//get the exit value   
   		var exitStatus = pr.exitValue()
-  		
+		println(scala.Console.BLUE + "[" + id + "] ### REMOVED FILES ###: " + exitStatus + scala.Console.RESET)
   		if(exitStatus==0)
   			true
   		else
@@ -113,15 +118,15 @@ class CompilerHelper(id: Int, var optionList: scala.Array[String])
 	/**
 	 *Create a zip file for the project of the folders bin and log
 	 */
-	 def zipBinAndLog() = {
-	   
-		val c = scala.Array("/bin/bash", "-c", "zip -r "+projectId+".zip "+projectId+"/log"+" "+projectId+"/bin") 
+	def zipBinAndLog() = 
+	{
+		val c = scala.Array("/bin/bash", "-c", "zip -r ./src/main/webapp/download/"+projectId+".zip "+projectId+"/log"+" "+projectId+"/bin") 
 	   	val pr = runTime.exec(c)  
 	   	// wait for the end of the command execution
   		pr.waitFor()
 		// return the exit value   
   		val returnValue = pr.exitValue()
-  		println(scala.Console.BLUE + "### ZIP ###: " + returnValue + scala.Console.RESET)
+  		println(scala.Console.BLUE + "[" + id + "] ### ZIP ###: " + returnValue + scala.Console.RESET)
   		returnValue
 	}
 }
@@ -129,7 +134,7 @@ class CompilerHelper(id: Int, var optionList: scala.Array[String])
 /*
  * Just for testing
  */
- object CompilerHelper  {
+ object CompilerHelper {
 	def main(args: scala.Array[String]){
   		var ch = new CompilerHelper(1, scala.Array("-verbose"));
   		var o=ch.createCompilerBox();
