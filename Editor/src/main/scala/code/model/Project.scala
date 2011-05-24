@@ -8,7 +8,7 @@ object Project extends Project with LongKeyedMetaMapper[Project] {
 
     override def fieldOrder = List(id, name)
     
-    val basePath = "/tmp/"
+    val basePath = "./projectfiles/"
 
     def getProjectByIdAndByCurrentUser(projectId: String) = {
     	val currentUser = User.currentUser.open_! 
