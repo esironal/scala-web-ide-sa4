@@ -128,7 +128,6 @@
 	<!-- SCRIPTS -->
 	<!--projectHTML(myId: Long)-->
 	
-	<!--
 	<script type="text/javascript" src="http://usiedit.appspot.com/static/lib/codemirror.js"></script>	
 	<script type="text/javascript" src="http://usiedit.appspot.com/static/lib/modaldbox.js"></script>
 	<script type="text/javascript" src="/classpath/jquery.js"></script>
@@ -141,33 +140,9 @@
 	<script>
 	  mobwrite.syncGateway = 'http://usiedit.appspot.com/scripts/q.py';
 	</script>
-	-->
 	
-    <script id="jquery" src="/classpath/jquery.js" type="text/javascript"></script>
-    <script id="json" src="/classpath/json.js" type="text/javascript"></script>
-
-	<script src="/static/mobwrite/static/compressed_codemirror.js"></script>
-    <script src="/static/mobwrite/static/codemirror/js/codemirror.js"></script>
-    <script>
-      mobwrite.syncGateway = 'http://mobwrite3.appspot.com/scripts/q.py';
-    </script>
-
 	<script type="text/javascript">
-  function saveBuffer() {
-    var buffer = jQuery('#buffer')[0];
-    buffer.value = demo_editor_text.getCode();
-    var form = jQuery('#save_form form')[0];
-    // this doesn't work!
-    // form.submit();
-    var onsubmit = form.getAttribute('onsubmit');
-    var fs = 'function xyzzy() { ' + onsubmit + ' };';
-    // alert('buffer ' + buffer.value);
-    eval(fs);
-    xyzzy();
-  }
-</script>
-
-	<script type="text/javascript">
+		var filename;
 		function getURL() {
 			var strHref = window.location.href;
 			var url = strHref.split('/');
@@ -183,14 +158,26 @@
 		var editor_height = window.innerHeight - 140;
 		var log_height = table_height - editor_height - 5;
 		var main_table = document.getElementById('main_table');
-		var editor = document.getElementById(key);
+		var editor = document.getElementById(filename);
 		var log = document.getElementById('log');
 		main_table.style.height = table_height + 'px';
 		editor.style.height = editor_height + 'px';
 		log.style.height = log_height + 'px';
 	}
 	
-			
+		function editor_text() {
+			// var demo_editor_text = mobwrite.shareCodeMirror.create(filename, {
+			// 		    height: '100%',
+			// 		    width: '100%',
+			// 		    parserfile: ['tokenizejavascript.js', 'parsejavascript.js'],
+			// 		    path: 'http://usiedit.appspot.com/static/lib/',
+			// stylesheet: 'http://usiedit.appspot.com/static/lib/jscolors.css',
+			// 		    tabMode: 'shift',
+			// 		    autoMatchParens: true
+			// 		  });
+		}
+	
+		
 	 </script>
 	
 	
@@ -267,7 +254,7 @@
 
 <!-- INSERIRE IL NOME DEL FILE -->
 <!-- <body onload="var name = getURL(); "> -->
-	<body onload="getURL(); height_size(); mobwrite.share(demo_editor_text);" >
+	<body onload="assign_value(); getURL(); height_size(); mobwrite.share(filename); editor_text();" >
 		
 		<div style="width: 200px; float:right;">
 			<ul class="userMenu">
@@ -318,19 +305,47 @@
 			right.value = 'true';
 		</script>
 		
-		
-    <script type="text/javascript">
-      var demo_editor_text = mobwrite.shareCodeMirror.create(
-        key, {
-          height: '100%',
-          width: '100%',
-          parserfile: ['tokenizejavascript.js', 'parsejavascript.js'],
-          path: '/static/mobwrite/static/codemirror/js/',
-          stylesheet: '/static/mobwrite/static/codemirror/css/jscolors.css',
-          tabMode: 'shift',
-          autoMatchParens: true
-        });
-    </script>
+		<script type="text/javascript" charset="utf-8">
+				// TO CREATE AN INSTANCE
+				// select the tree container using jQuery
+				$('#demo1').jstree({
+						'types' : {
+							'valid_children' : [ 'file' ],
+							'types' : {
+								'file' : {
+									'icon' : { 
+										'image' : 'img/file.gif'
+									},
+									'valid_children' : [ 'default' ],
+									'max_depth' : -1,
+									'hover_node' : false,
+									'max_children' : 0,
+									'select_node' : function () {return false;}
+								},
+								'default' : {
+									'valid_children' : [ 'default' ]
+								}
+							}
+						},
+						'plugins' : ['themes','html_data','ui','crrm','hotkeys', 'contextmenu', 'types'],
+					})
+					.bind('loaded.jstree', function (event, data) {
+					});
+				// INSTANCES
+				// 1) you can call most functions just by selecting the container and calling `.jstree('func',`
+				setTimeout(function () { $('#demo1').jstree('set_focus'); }, 500);
+				// with the methods below you can call even private functions (prefixed with `_`)
+				// 2) you can get the focused instance using `$.jstree._focused()`. 
+				setTimeout(function () { $.jstree._focused().select_node('#phtml_1'); }, 1000);
+				// 3) you can use $.jstree._reference - just pass the container, a node inside it, or a selector
+				setTimeout(function () { $.jstree._reference('#phtml_1').close_node('#phtml_1'); }, 1500);
+				// 4) when you are working with an event you can use a shortcut
+				$('#demo1').bind('open_node.jstree', function (e, data) {
+					// data.inst is the instance which triggered this event
+					data.inst.select_node('#phtml_2', true);
+				});
+				setTimeout(function () { $.jstree._reference('#phtml_1').open_node('#phtml_1'); }, 2500);
+		</script>
 
   </body>
 </html>

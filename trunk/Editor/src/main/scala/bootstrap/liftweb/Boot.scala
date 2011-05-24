@@ -107,7 +107,7 @@ class Boot {
     
     LiftRules.viewDispatch.append {
     	case "editor" :: Nil => 
-    		Right(Editor)
+    		Left(Editor.newEditor _)
     	case "profile"::Nil =>
        		Right(Profile)
      	case "stats"::Nil =>
