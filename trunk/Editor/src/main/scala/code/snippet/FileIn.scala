@@ -1,14 +1,19 @@
 package code.snippet
+
 import net.liftweb.http._
 import net.liftweb.common._
-import code.comet.FileManager
+import net.liftweb.util.Helpers
 import net.liftweb.http.js.JsCmds._
 import net.liftweb.http.js._
 import net.liftweb.http.js.JE._
+
 import code.model.User
 import code.model.Project
+import code.comet.FileManager
+
 import scala.xml.Text
 import scala.xml.NodeSeq
+
 import java.io.File
 
 object FileIn {
@@ -84,13 +89,7 @@ object FileIn {
                 
               )
             else
-              SHtml.a(() => {
-                SetValById("fileContent", FileManager.openFile(filePath)) &
-                SetValById("projectId", project.id.is) &
-                SetValById("fileId", filePathInProject) &
-                SetHtml("fileName", <span>{ filePathInProject }</span>)
-              }, <img src="/filelist-template/img/file.jpeg"/> :+ Text(file.getName) 
-            )
+              <a href={Helpers.appendParams("editor", ("id" -> project.id.is.toString) :: ("path" -> filePathInProject) :: Nil)}><img src="/filelist-template/img/file.jpeg"/><span>{file.getName}</span></a>
         }
 
         def deleteFile(file: File) = {
@@ -101,8 +100,12 @@ object FileIn {
             }, <img class="delete" src="/filelist-template/img/delete.png"/>)
         }
 
-        for (file <- FileManager.fileList(currentDir)) yield {
+        try {
+          for (file <- FileManager.fileList(currentDir)) yield {
             openFile(file) :+ deleteFile(file)
+          }
+        } catch {
+          case e: java.io.FileNotFoundException => Text("Project folder not found")
         }
     }
 

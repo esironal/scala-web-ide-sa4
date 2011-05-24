@@ -19,11 +19,14 @@ import java.io.Reader
 object FileManager extends LiftActor with ListenerManager {
 
     def fileList(dirPath:String): List[File] = {
-        new File(dirPath).listFiles.toList
+        new File(dirPath).listFiles match {
+          case null => throw new java.io.FileNotFoundException
+          case fileList => fileList.toList
+        }
     }
 
-    def newFile(projectPath:String, name: String) = {
-    	new File(projectPath, name).createNewFile
+    def newFile(filePath:String, name: String) = {
+    	new File(filePath, name).createNewFile
     }
 
     def newDir(projectPath:String, name: String) = {
