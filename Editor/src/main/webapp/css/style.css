@@ -4,7 +4,7 @@ body {
 	/* background-image: url("/img/pattern.png"); */
 	
 	font: Tahoma;
-	background-color:#E7F5FA !important;
+	background-color:#eee !important;
 }
 /*****Style from User Project *******/
 .ProfileContainer{
@@ -591,10 +591,10 @@ input#chat_in{
 	margin-right: auto;
 	float:left;
 
-	border: 1px solid #c8ddee;
-	-moz-box-shadow: 0 0 5px 5px #a6ceeb;
-    -webkit-box-shadow: 0 0  5px 5px #a6ceeb;
-    box-shadow: 0 0 5px 5px #a6ceeb;
+	border: 1px solid #ccc;
+	-moz-box-shadow: 0 0 5px 5px #ddd;
+    -webkit-box-shadow: 0 0  5px 5px #ddd;
+    box-shadow: 0 0 5px 5px #ddd;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
