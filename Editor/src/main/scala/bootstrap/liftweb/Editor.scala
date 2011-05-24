@@ -30,42 +30,35 @@ object Editor extends LiftView {
 	val joker :String = "_-_" 
 
 	def dispatch = {
-		case filename:String => () => Full(newEditor(filename))	
+		case filename:String => () => Full(newEditor().openOr(null))	
 	}
 
-	def newEditor(fileName:String): NodeSeq = {
+	def newEditor(): Box[NodeSeq] = {
+		val id = S.param("id");
+		val path = S.param("path");	
 
-		val s: Array[String] = fileName.trim.split(joker)
-
-
-		if(s.length == 2) {
-			val projectBox: Box[Project] = Project.find(By(Project.id, java.lang.Long.parseLong(s(1))))
-			val project: Project = projectBox.openOr(null)
-
-			if(project == null) {
-				errorPage()
-			} else {
-				try { 
-
-					FileManager.openFile(project.path + "/" + s(0) + ".scala")
-					content(s(0), project.id.is, true)
-
-				} catch {
-					case e: Exception => errorPage(e + "     /" + project.path + "/" + s(0) + ".scala")
-				}
-			}
-		} else if (s.length == 1) {
-			var projectBox: Box[Project] = Project.find(By(Project.id, java.lang.Long.parseLong(fileName)))
-			var project: Project = projectBox.openOr(null)
-
-			if(project == null) {
-				errorPage()
-			} else {
-				content(fileName, project.id.is, false)
-			}
-		} else { 
-			errorPage("Non trovo niente: lenght = " + s.length)
-		}
+					if(id.openOr("filenotfound") == "filenotfound"){
+						errorPage("Specify a project id in the URL")
+					} else {
+						val mypath = path.open_!
+						val myid = id.open_!
+						val projectBox: Box[Project] = Project.find(By(Project.id, java.lang.Long.parseLong(myid)))
+						val project: Project = projectBox.openOr(null)
+						if(project == null) {
+							errorPage("The project you specified is not accessible or it doesn't exists")
+						} else {
+							try { 
+				
+								FileManager.openFile(project.path + "/" + mypath + ".scala")
+								content(mypath, project.id.is, true)
+				
+							} catch {
+								case e: Exception => errorPage(e + "/" + project.path + "/" + mypath)
+							}
+						}
+				
+					}
+		
 	}
 
 	def errorPage(): NodeSeq = {
@@ -77,13 +70,8 @@ object Editor extends LiftView {
 	}
 
 	def content(filename: String, index: Long, file: Boolean):NodeSeq = {	
-		
-		<lift:surround with="editorFile" at="content">
-		
-		<script type="text/javascript">
-		  var filename = '{filename}';
-		  var key = '{filename + joker + index}';
-        </script>
+
+		<lift:surround with="default" at="content">
 
 		<div id="save_form">
         <form class="lift:form.ajax" name="save_form">
@@ -99,9 +87,9 @@ object Editor extends LiftView {
 
 		<input type="button" value="Save" onclick="javascript:saveBuffer()"/>
 
-		
-		
-		
+
+
+
 		<table id="main_table">
 		<tr>
 		<td id="left_sidebar" value="true">
