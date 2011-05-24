@@ -34,26 +34,33 @@ object User extends User with MetaMegaProtoUser[User] {
   override def loginXhtml = <div class="logInBox"><div class="logInHome">
   								<form action="/user_mgt/login" method="post">
 	  							<table> 
-	  								<tr><td>Email Address</td>
-	  									<td><input name="username" type="text" id="F20368288323150F" />
+	  								<tr><td class="fontTahoma">Email Address</td>
+	  									<td class="marginLeft"><input  name="username" type="text" id="F20368288323150F" />
 	  									<script type="text/javascript"> 
 	  										// <![CDATA[
 	  										jQuery(document).ready(function() {if (document.getElementById("F20368288323150F")) {document.getElementById("F20368288323150F").focus();};});
 	  											// ]]>
 	  									</script></td></tr> 
-          							<tr><td>Password</td><td><input type="password" name="password" /></td></tr> 
-          							<tr><td><a href="/user_mgt/lost_password">Recover Password</a></td><td><input value="Log In" type="submit" /></td></tr></table> 
+          							<tr><td class="fontTahoma"> Password</td><td class="marginLeft"><input type="password" name="password" /></td></tr> 
+          							<tr><td></td><td><input id="btnLogin" value="Log In" type="submit" /></td></tr></table> 
   								</form>
 	  							
 	  							</div></div> 
 	 
   override def signupXhtml(user : User) = <div class="signUpBox">
-  											<div class="SignUpHome">{ super.signupXhtml(user) }</div>
-  										 </div>  										
+  												<div class="signUpHome fontTahoma">
+  													{ super.signupXhtml(user) }
+  												</div>
+  										   </div>  										
+   override def editXhtml(user : User) = <div class="editBox fontTahoma">
+  												<div class="editPage">
+  													{ super.editXhtml(user) }
+  												</div>
+  										   </div>  	
   
   
-  
-  override def changePasswordXhtml = <div id="changeBox">{ super.changePasswordXhtml }</div> 
+  override def changePasswordXhtml = <div id="changeBox"><div class="changePage fontTahoma">{ super.changePasswordXhtml }</div> </div>
+  override def lostPasswordXhtml = <div id="lostBox" class="fontTahoma"><div class="marginTop">{ super.lostPasswordXhtml }</div></div> 
  
   override def skipEmailValidation = true
 }

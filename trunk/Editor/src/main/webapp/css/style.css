@@ -598,8 +598,8 @@ input#chat_in{
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
-	width: 500px;
-    height:250px;
+	width: 550px;
+    height:240px;
 	
 }
 
@@ -612,9 +612,123 @@ input#chat_in{
 	margin-right: auto;
 }
 
+.signUpBox{
+	
+	margin-left: auto;
+	margin-right: auto;
+	float:left;
+
+	border: 1px solid #ccc;
+	-moz-box-shadow: 0 0 5px 5px #ddd;
+    -webkit-box-shadow: 0 0  5px 5px #ddd;
+    box-shadow: 0 0 5px 5px #ddd;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	width: 550px;
+    height:500px;
+	
+}
 
 
+.signUpHome{
+	padding-top:50px;
+	width: 500px;
+    height:450px;
+	margin-left: auto;
+	margin-right: auto;
+}
 
+.signUpHome  td {
+	
+	
+}
+
+.signUpHome input[type="submit"]{
+	
+	margin-left:200px;
+	
+}
+
+.signUpdHome  input[type="password"]{
+	width:100px;
+	
+}
+
+#changeBox{
+	
+		border: 1px solid #ccc;
+	-moz-box-shadow: 0 0 5px 5px #ddd;
+    -webkit-box-shadow: 0 0  5px 5px #ddd;
+    box-shadow: 0 0 5px 5px #ddd;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	width: 550px;
+    height:320px;
+	
+	
+}
+ 
+#lostBox{
+     border: 1px solid #ccc;
+	 -moz-box-shadow: 0 0 5px 5px #ddd;
+     -webkit-box-shadow: 0 0  5px 5px #ddd;
+     box-shadow: 0 0 5px 5px #ddd;
+	 -webkit-border-radius: 10px;
+	 -moz-border-radius: 10px;
+	 border-radius: 10px;
+	 width: 550px;
+     height:220px;
+	 padding:30px auto;	
+	
+}
+ .changePage{
+	padding-top:50px;
+	width: 500px;
+    height:320px;
+	margin-left: auto;
+	margin-right: auto;
+}
+ .editBox{
+ 	
+	border: 1px solid #ccc;
+	-moz-box-shadow: 0 0 5px 5px #ddd;
+    -webkit-box-shadow: 0 0  5px 5px #ddd;
+    box-shadow: 0 0 5px 5px #ddd;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	width: 550px;
+    height:370px;
+ 	
+ }
+ 
+ .editPage{
+	padding-top:50px;
+	width: 500px;
+    height:370px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+ 
+ #btnLogin{
+ 	margin-left:32px;
+	margin-top:5;
+ }
+ 
+ .fontTahoma{
+ 	font-family:Tahoma;
+	font-size:14px;
+ }
+.marginLeft{
+	
+	margin-left:5px;
+}
+.marginTop{
+	margin-top:60px;
+}
 
 
 
