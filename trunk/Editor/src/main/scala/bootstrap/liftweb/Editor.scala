@@ -113,15 +113,7 @@ object Editor extends LiftView {
                             <input type="radio" name="type" value="file" checked="ckecked" /> 
                             File <input type="radio" name="type" value="folder" /> 
                             Folder <br/>
-                            <input type="submit" value="New"/>
-                        </form>
-                        <hr/>
-                        <form id="create_file">
-                          Name: <input type="text" name="name" />	 
-                          <input type="radio" name="type" value="file" checked="ckecked" /> 
-                          File <input type="radio" name="type" value="folder" /> 
-                          Folder <br/>
-                          <input id="submit" type="submit" value="Create!" style="float:right;"/>
+                            <input type="submit" value="Create"/>
                         </form>
                     </div>
 
