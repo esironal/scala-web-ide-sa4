@@ -18,6 +18,8 @@ import code.comet._
  
 class RunCompiler(id: String, path: String, var options: Array[String]) extends Actor
 {
+	val WEBAPP_IP = "localhost"
+	
 	classLoader = getClass.getClassLoader
 	
 	def act
@@ -53,32 +55,22 @@ class RunCompiler(id: String, path: String, var options: Array[String]) extends 
 		
 		// zip binary files and log
 		compileHelper.zipBinAndLog()
-		
-		// get Server IP
-		val ServerIP = getIP()
-		println(scala.Console.BLUE + "### IP ###: " + ServerIP + scala.Console.RESET)
-		
-		val CompiledFilesPath = compiler.getCompiledFiles()
-		println(scala.Console.BLUE + "### PATH ###: " + CompiledFilesPath + scala.Console.RESET)
 
 		// send case class Compiled to notify end of compilation
 		println(scala.Console.BLUE + "[" + id + "] ### SEND NOTIFICATION ###" + scala.Console.RESET)
 		
-		val server = select(scala.actors.remote.Node("localhost", 8082),'server)
-		val result = server !? (('compiled, Integer.parseInt(id), path))
+		val link = "http://" + getLocalIP() + ":8081/download/project_" + id + ".zip"
+		val server = select(scala.actors.remote.Node(WEBAPP_IP, 8082),'server)
+		val result = server !? (('compiled, Integer.parseInt(id), link))
 		
 		println(scala.Console.BLUE + "[" + id + "] ### RECEIVED NOTIFICATION ###: " + result 
 		+ scala.Console.RESET)
-		
-		// remove project and zip file
-		compileHelper.destroyCompilerBox()
-		println(scala.Console.BLUE + "[" + id + "] ### REMOVED PROJECT ###" + scala.Console.RESET)
 	}
 	
 	/*
-	 * Retrieve Server IP
+	 * Retrieve Local Server IP
 	 */
-	def getIP(): String = 
+	def getLocalIP(): String = 
 	{
     	try
     	{
