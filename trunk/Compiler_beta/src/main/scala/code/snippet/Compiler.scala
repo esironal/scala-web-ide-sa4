@@ -29,7 +29,8 @@ class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
   	 */
   	def copyFiles(src: String) =
   	{
-  		val c = scala.Array("/bin/bash", "-c", "cd " + projectDirectory + "/src && curl -O " + src)
+  		val c = scala.Array("/bin/bash", "-c", "cd " + projectDirectory + "/src && curl -O " + src +
+  		" && unzip *.zip")
   		val pr = runTime.exec(c)
   		
 		// wait for the end of the command execution
@@ -37,9 +38,17 @@ class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
   		
 		// return the exit value   
   		val returnValue = pr.exitValue()
-  		println(scala.Console.BLUE + "### COPY ###: " + returnValue + scala.Console.RESET)
+  		println(scala.Console.BLUE + "### COPY AND UNZIP ###: " + returnValue + scala.Console.RESET)
   		returnValue
   	}
+  	
+  	/*
+     * Retrieve location of the compiled files
+     */
+     def getCompiledFiles() = 
+     {
+	 	// TODO
+     }
 
 	/* 
 	 * check if the given option could be recognized by the compiler
@@ -86,13 +95,6 @@ class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
 	{
 		val mkfile = scala.io.Source.fromFile(projectDirectory+"/.makefile").mkString
 		var listFile = mkfile.split("\n")
-		
-//		for(q <- listFile)
-//		{
-//			println(scala.Console.YELLOW + "listFile: " + q + scala.Console.RESET)
-//		}
-
-//		println(scala.Console.YELLOW + "filesToCompile: " + filesToCompile + scala.Console.RESET)
 		
 		var lastDir = ""
 		for(s <- listFile) 

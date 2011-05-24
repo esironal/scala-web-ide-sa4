@@ -124,23 +124,6 @@ class CompilerHelper(id: Int, var optionList: scala.Array[String])
   		println(scala.Console.BLUE + "### ZIP ###: " + returnValue + scala.Console.RESET)
   		returnValue
 	}
-	 
-	/**
-	  * Unzip the archive at the given path
-	  * @param zipPath the archive's path (locally!)
-	  */
-	 def unZip(zipPath: String) = {
-	    
-		val c = scala.Array("/bin/bash", "-c", "unzip "+zipPath+" -d "+projectId+"/src")   
-	   	val pr = runTime.exec(c)  
-	   	// wait for the end of the command execution
-  		pr.waitFor()
-		// return the exit value   
-  		val returnValue = pr.exitValue()
-  		println(scala.Console.BLUE + "### UNZIP ###: " + returnValue + scala.Console.RESET)
-  		returnValue
-	}
-
 }
 
 /*

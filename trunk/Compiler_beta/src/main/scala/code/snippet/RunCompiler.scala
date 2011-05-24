@@ -7,6 +7,7 @@ import scala.actors.Actor._
 import scala.actors.Actor
 import scala.actors.remote.RemoteActor._
 import scala.actors.remote._
+import java.net.{InetAddress, UnknownHostException}
 
 import code.comet._
 
@@ -37,7 +38,7 @@ class RunCompiler(id: String, path: String, var options: Array[String]) extends 
 		val compiler = new Compiler(src, options)
 		
 		// copy the file in projectId/src
-		compiler.copyFiles(path)		
+		compiler.copyFiles(path)	
 		
 		// create makefile
 		compileHelper.makeMakefile()
@@ -52,13 +53,40 @@ class RunCompiler(id: String, path: String, var options: Array[String]) extends 
 		
 		// zip binary files and log
 		compileHelper.zipBinAndLog()
+		
+		// get Server IP
+		val ServerIP = getIP()
+		println(scala.Console.BLUE + "### IP ###: " + ServerIP + scala.Console.RESET)
+		
+		val CompiledFilesPath = compiler.getCompiledFiles()
+		println(scala.Console.BLUE + "### PATH ###: " + CompiledFilesPath + scala.Console.RESET)
 
 		// send case class Compiled to notify end of compilation
-		println(scala.Console.BLUE + "### SEND NOTIFICATION ###" + scala.Console.RESET)
-		// val compiled = new Compiled(Integer.parseInt(id), path)
+		println(scala.Console.BLUE + "[" + id + "] ### SEND NOTIFICATION ###" + scala.Console.RESET)
+		
 		val server = select(scala.actors.remote.Node("localhost", 8082),'server)
-		// val result = server !? compiled
 		val result = server !? (('compiled, Integer.parseInt(id), path))
-		println(scala.Console.BLUE + "### RECEIVED NOTIFICATION ###: " + result + scala.Console.RESET)
+		
+		println(scala.Console.BLUE + "[" + id + "] ### RECEIVED NOTIFICATION ###: " + result 
+		+ scala.Console.RESET)
+		
+		// remove project and zip file
+		compileHelper.destroyCompilerBox()
+		println(scala.Console.BLUE + "[" + id + "] ### REMOVED PROJECT ###" + scala.Console.RESET)
 	}
+	
+	/*
+	 * Retrieve Server IP
+	 */
+	def getIP(): String = 
+	{
+    	try
+    	{
+        	InetAddress.getByName("localhost").getHostAddress()
+      	} 
+      	catch 
+      	{
+        	case _:UnknownHostException => ""
+      	}
+    }
 }
