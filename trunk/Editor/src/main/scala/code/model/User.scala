@@ -32,8 +32,17 @@ object User extends User with MetaMegaProtoUser[User] {
   override def signupFields = List(accountID, firstName, lastName, password, email, gender, skypeID)	
   override def editFields = List(firstName, lastName, password, gender, skypeID, personalImageURL)	
 
-  
-  
+
+
+ def getName(field: String) : String = {
+     
+     if (field == " Repeat ") {
+         return "repeat"
+     }
+     else {
+         return field
+     }
+ }
   
   override def localForm(user: User, ignorePassword: Boolean, fields: List[FieldPointerType]): NodeSeq = {   
     for {   
@@ -42,9 +51,9 @@ object User extends User with MetaMegaProtoUser[User] {
       if field.show_? && (!ignorePassword || !pointer.isPasswordField_?)   
       form <- field.toForm.toList   
     } yield { 
-     <tr><td>{field.displayName}</td>
-     	<td>{form}<lift:Msg id={field.uniqueFieldId.get} errorClass="errorMessage" />
-     </td></tr> 
+     <div class="rowSignUp"><div class="tdlSignUp">{field.displayName}</div>
+     	<div class={"tdrSignUp "+  getName(field.displayName)}>{form}<lift:Msg id={field.uniqueFieldId.get} errorClass="errorMessage" />
+     </div></div> 
     } 
   }   
   
@@ -52,22 +61,22 @@ object User extends User with MetaMegaProtoUser[User] {
   
   override def loginXhtml = <div class="logInBox"><div class="logInHome">
 	  						<form action="/user_mgt/login" method="post">
-	  						<table>
-	  							<tr>
-	  								<td>Email Address</td>
-	  								<td><input name="username" type="text" id="F993430246327ZS4" />
+	  						<div class="loginWidth">
+	  							<div class="loginWidth">
+	  								<div class="loginLeftCol fontTahoma"><label>Email:</label></div>
+	  								<div class="logintRightCol floatLeft" ><input name="username" type="text" id="F993430246327ZS4" />
 	  									<script type="text/javascript">
 	  									//	 <![CDATA[
 	  											jQuery(document).ready(function() {if (document.getElementById("F993430246327ZS4")) {document.getElementById("F993430246327ZS4").focus();};});
 	  									//	 ]]>
-	  									</script></td></tr>
-          								<tr>
-	  										<td>Password</td>	
-	  										<td><input type="password" name="password" /></td>
-	  									</tr>
-          								<tr>
-	  										<td><input value="Log In" type="submit" /></td></tr>
-	  						</table>
+	  									</script></div></div>
+          								<div>
+	  										<div class="loginLeftCol fontTahoma"><label>Password:</label></div>	
+	  										<div class="logintRightCol floatLeft"><input type="password" name="password" /></div>
+	  									</div>
+          								<div  class="submitLogin">
+	  										<input value="Log In" type="submit"  /></div>
+	  						</div>
 	  					</form>
 	  							
   							<lift:Msgs showAll="true"> 
@@ -83,10 +92,10 @@ object User extends User with MetaMegaProtoUser[User] {
 	  
 	  <div class="signUpBox"><div class="signUpHome fontTahoma">
 	  <form method="post" action={ S.uri }> 
-	  <table>
+	  <div class="rowSignUp">
 	  {localForm(user, false, signupFields)}
-	   <tr><td><user:submit/></td></tr>
-	  </table>	 
+	   <div class="submitSignUp"><user:submit/></div>
+	  </div>	 
 	  </form>
 	   </div></div>
 	  
@@ -96,10 +105,10 @@ object User extends User with MetaMegaProtoUser[User] {
    override def editXhtml(user : User) = <div class="editBox fontTahoma">
   												<div class="editPage">
 	  												<form method="post" action={ S.uri }> 
-  														<table>
+  													  <div class="rowSignUp">
   															{localForm(user, false, editFields)}
-	   														<tr><td><user:submit/></td></tr>
-	  													</table>	 
+	   														<div class="submitEdit"><user:submit/></div>
+	  													</div>	 
 	  												</form>
 	   											</div></div>
   
