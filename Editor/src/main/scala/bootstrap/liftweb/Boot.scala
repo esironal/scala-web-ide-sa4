@@ -108,6 +108,8 @@ class Boot {
     LiftRules.viewDispatch.append {
     	case "editor" :: Nil => 
     		Left(Editor.newEditor _)
+		case "editor" :: _ :: Nil => 
+	    	S.redirectTo("/index.html")
     	case "profile"::Nil =>
        		Right(Profile)
      	case "stats"::Nil =>
