@@ -127,7 +127,12 @@ object FileIn {
 
     def addUserLink = {
         val projectId = S.param("id").open_!.toString
-        SHtml.link("/invite?id=" + projectId, () => (), Text("Add users to collaborate"))
+        <a href={"/invite?id=" + projectId}>Share</a>
     }
 
+    def projectNameWithLink = {
+      val projectId = S.param("id").open_!.toString
+      val project = Project.getProjectByIdAndByCurrentUser(projectId)
+      <a href={"/editor?id=" + projectId}>{project.name}</a>
+    }
 }
