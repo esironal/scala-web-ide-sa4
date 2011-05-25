@@ -47,3 +47,7 @@
         background-color:#ffffff;
         overflow:auto
 }
+
+.folder_img, .file_img{
+margin-right: 7px;
+}

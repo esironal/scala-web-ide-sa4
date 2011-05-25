@@ -84,12 +84,12 @@ object FileIn {
             if ((new java.io.File(filePath).isDirectory))
               goToFolderLink(
                 formId, filePath, filePathInProject, 
-                <img src="/filelist-template/img/folder.jpeg"/> :+
+                <img src="/filelist-template/img/folder.jpeg" class="folder_img" /> :+
                 Text(file.getName) :+ <img class="right" src="/filelist-template/img/right.png"/>
                 
               )
             else
-              <a href={Helpers.appendParams("editor", ("id" -> project.id.is.toString) :: ("path" -> filePathInProject) :: Nil)}><img src="/filelist-template/img/file.jpeg"/><span>{file.getName}</span></a>
+              <a href={Helpers.appendParams("editor", ("id" -> project.id.is.toString) :: ("path" -> filePathInProject) :: Nil)}><img src="/filelist-template/img/file.jpeg" class="file_img" /><span>{file.getName}</span></a>
         }
 
         def deleteFile(file: File) = {
