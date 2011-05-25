@@ -56,7 +56,7 @@ class RunCompiler(id: String, path: String, var options: Array[String]) extends 
 		// zip binary files and log
 		compileHelper.zipBinAndLog()
 
-		// send case class Compiled to notify end of compilation
+		// send a tuple to notify end of compilation
 		println(scala.Console.BLUE + "[" + id + "] ### SEND NOTIFICATION ###" + scala.Console.RESET)
 		
 		val link = "http://" + getLocalIP() + ":8081/download/project_" + id + ".zip"
