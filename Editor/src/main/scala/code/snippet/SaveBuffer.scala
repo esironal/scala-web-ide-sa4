@@ -8,6 +8,9 @@ import JsCmds._
 import JE._
 import util.Helpers._
 
+import code.comet.FileManager
+import code.model.Project
+
 /**
  * A snippet transforms input to output... it transforms
  * templates to dynamic content.  Lift's templates can invoke
@@ -20,24 +23,17 @@ import util.Helpers._
  */
 object SaveBuffer {
 
-  def render = {
-    var filename = S.param("filename") openOr "/dev/null"
-
-    def setBuffer(s: String): JsCmd = {
-      val buffer = s
-      var filename = S.param("filename") openOr "/dev/null"
-
-      import java.io._
-      try {
-        val out = new PrintStream(new FileOutputStream(filename))
-        out.print(buffer)
-        out.close
-
-        Alert("Saved " + filename +  " |" + buffer + "|")
-      }
-      catch {
-        case ex: IOException =>
-          Alert("Failed " + filename +  " |" + buffer + "|")
+  def render = {	
+    def setBuffer(buffer: String): JsCmd = {
+      val projectId = S.param("projectId").open_!.toString
+      val projectPath = Project.getProjectByIdAndByCurrentUser(projectId).path
+      val filePathInProject = S.param("filename").open_!.toString
+      try{
+      	FileManager.saveFile(projectPath + filePathInProject, buffer)
+      	Alert("File saved successfully!")
+      }catch {
+      	case ex: java.io.IOException =>
+      		Alert("IOException " + filePathInProject +  " |" + buffer + "|")
       }
     }
 
