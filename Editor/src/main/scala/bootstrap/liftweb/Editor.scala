@@ -54,7 +54,7 @@ object Editor extends LiftView {
 						} else {
 							try { 
 				
-								FileManager.openFile(project.path + "/" + mypath + ".scala")
+								FileManager.openFile(project.path + "/" + mypath)
 								content(mypath, project.id.is, true)
 				
 							} catch {
