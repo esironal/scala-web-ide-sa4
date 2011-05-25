@@ -733,6 +733,18 @@ input#chat_in{
 
 
 
+#lift__noticesContainer__ li {
+	
+	color: red;
+	
+}
+
+
+
+.errorMessage {
+
+	color: red;
+}
 
 
 
