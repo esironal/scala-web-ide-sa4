@@ -114,7 +114,7 @@ object FileIn {
             case Full(user) =>
                 <ul>{
                     user.projects.map(project =>
-                        <li>{ SHtml.link("/project?id=" + project.id.toString, () => (), Text(project.name)) }</li>)
+                        <li>{ SHtml.link("/editor?id=" + project.id.toString, () => (), Text(project.name)) }</li>)
                 }</ul>
             case _ => Text("not logged in")
         }
