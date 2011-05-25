@@ -71,153 +71,156 @@ object Editor extends LiftView {
 
 	def content(filename: String, index: Long, file: Boolean):NodeSeq = {	
 
-		<lift:surround with="default" at="content">
+			<lift:surround with="editorFile" at="content">
 
-		<div id="save_form">
-        <form class="lift:form.ajax" name="save_form">
-        <lift:SaveBuffer filename={"/tmp/" + filename + ".txt"}>
-    	<textarea style="display:none" id="buffer" name="buffer"/>
-      	<!--
-    	<input type="hidden" id="buffer" name="buffer"/>
-      	-->
-      	<input type="hidden" id={filename} name="filename" value={"/tmp/" + filename + ".txt"}/>
-  		</lift:SaveBuffer>
-        </form>
-      	</div>
+			<script type="text/javascript">
+			  var filename = '{filename}';
+			  var key = '{filename + joker + index}';
+	        </script>
 
-		<input type="button" value="Save" onclick="javascript:saveBuffer()"/>
+			<div id="save_form">
+	        <form class="lift:form.ajax" name="save_form">
+	        <lift:SaveBuffer filename={"/tmp/" + filename + ".txt"}>
+	    	<textarea style="display:none" id="buffer" name="buffer"/>
+	      	<!--
+	    	<input type="hidden" id="buffer" name="buffer"/>
+	      	-->
+	      	<input type="hidden" id={filename} name="filename" value={"/tmp/" + filename + ".txt"}/>
+	  		</lift:SaveBuffer>
+	        </form>
+	      	</div>
 
-
-
-
-		<table id="main_table">
-		<tr>
-		<td id="left_sidebar" value="true">
-
-                    <div class="tree lift:FileIn.cometFileList">
-                        <span id="backlink">back</span>
-                        <img src="/filelist-template/img/current_folder.png"/>
-                        <span id="dirName">Current folder</span>
-                        <hr/>
-                        <div class="scrollable">
-                            <ul class="list">
-                                <li><a href="#">file name</a>-<a href="#">delete</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div>
-                        <form class="lift:form.ajax">
-                            <div class="lift:FileIn.hiddenProjectId"></div>
-                            <input type="hidden" id="currentDir" name="currentDir" value=""/>
-                            <input class="lift:FileIn.newFile" id="fileIn"/>
-                            <input type="radio" name="type" value="file" checked="ckecked" /> 
-                            File <input type="radio" name="type" value="folder" /> 
-                            Folder <br/>
-                            <input type="submit" value="Create"/>
-                        </form>
-                    </div>
+			<input type="button" value="Save" onclick="javascript:saveBuffer()"/>
 
 
 
-		</td>			
-		<td id="codearea">
-		<textarea id={filename + joker + index} name={filename + joker + index} class="editor">{if(file){addText(filename, index)}}</textarea>
-		<div id="log">
-		<div class='logDiv'>
 
-		<table class='logTable' cellspacing='0'>
+			<table id="main_table">
+			<tr>
+			<td id="left_sidebar" value="true">
 
-		<tr class='logTrErrorFirst'>
+			                    <div class="tree lift:FileIn.cometFileList">
+			                        <span id="backlink">back</span>
+			                        <img src="/filelist-template/img/current_folder.png"/>
+			                        <span id="dirName">Current folder</span>
+			                        <hr/>
+			                        <div class="scrollable">
+			                            <ul class="list">
+			                                <li><a href="#">file name</a>-<a href="#">delete</a></li>
+			                            </ul>
+			                        </div>
+			                    </div>
+			                    <div>
+			                        <form class="lift:form.ajax">
+			                            <div class="lift:FileIn.hiddenProjectId"></div>
+			                            <input type="hidden" id="currentDir" name="currentDir" value=""/>
+			                            <input class="lift:FileIn.newFile" id="fileIn"/>
+			                            <input type="radio" name="type" value="file" checked="ckecked" /> 
+			                            File <input type="radio" name="type" value="folder" /> 
+			                            Folder <br/>
+			                            <input type="submit" value="Create"/>
+			                        </form>
+			                    </div>
+					</td>			
+			<td id="codearea">
+			<textarea id={filename + joker + index} name={filename + joker + index} class="editor">{if(file){addText(filename, index)}}</textarea>
+			<div id="log">
+			<div class='logDiv'>
 
-		<td class='logTd1'>17</td><td class='logTd2'><a href='http://NetBeansProjects/SA4Game/src/sa4game/Client.scala#17'>NetBeansProjects/SA4Game/src/sa4game/Client.scala:17</a></td>
+			<table class='logTable' cellspacing='0'>
 
-		</tr>
+			<tr class='logTrErrorFirst'>
 
-		<tr class='logTrErrorSecond'>
+			<td class='logTd1'>17</td><td class='logTd2'><a href='http://NetBeansProjects/SA4Game/src/sa4game/Client.scala#17'>NetBeansProjects/SA4Game/src/sa4game/Client.scala:17</a></td>
 
-		<td class='logTd1'></td><td class='logTd2'>Error - not found: type HashMap</td>
+			</tr>
 
-		</tr>
+			<tr class='logTrErrorSecond'>
 
-		<tr class='logTrErrorSecond'>
+			<td class='logTd1'></td><td class='logTd2'>Error - not found: type HashMap</td>
 
-		<td class='logTd1'></td><td class='logTd2 logTdFixed'>  var games = new <u>HashMap</u>[String,Array[Array[Array[Character]]]]</td>
+			</tr>
 
-		</tr>
+			<tr class='logTrErrorSecond'>
 
-		<tr class='logTrErrorFirst'>
+			<td class='logTd1'></td><td class='logTd2 logTdFixed'>  var games = new <u>HashMap</u>[String,Array[Array[Array[Character]]]]</td>
 
-		<td class='logTd1'>12345</td><td class='logTd2'><a href='http://NetBeansProjects/SA4Game/src/sa4game/Client.scala#12345'>NetBeansProjects/SA4Game/src/sa4game/Client.scala:12345</a></td>
+			</tr>
 
-		</tr>
+			<tr class='logTrErrorFirst'>
 
-		<tr class='logTrErrorSecond'>
+			<td class='logTd1'>12345</td><td class='logTd2'><a href='http://NetBeansProjects/SA4Game/src/sa4game/Client.scala#12345'>NetBeansProjects/SA4Game/src/sa4game/Client.scala:12345</a></td>
 
-		<td class='logTd1'></td><td class='logTd2'>Error - not found: type Random</td>
+			</tr>
 
-		</tr>
+			<tr class='logTrErrorSecond'>
 
-		<tr class='logTrErrorSecond'>
+			<td class='logTd1'></td><td class='logTd2'>Error - not found: type Random</td>
 
-		<td class='logTd1'></td><td class='logTd2 logTdFixed'>    val rnd = new <u>Random</u></td>
+			</tr>
 
-		</tr>
+			<tr class='logTrErrorSecond'>
 
-		<tr class='logTrFinalError'>
+			<td class='logTd1'></td><td class='logTd2 logTdFixed'>    val rnd = new <u>Random</u></td>
 
-		<td class='logTd1'></td><td class='logTd2'>2 errors found</td>
+			</tr>
 
-		</tr>
+			<tr class='logTrFinalError'>
 
-		<tr class='logTrFinalCompileFailure'>
+			<td class='logTd1'></td><td class='logTd2'>2 errors found</td>
 
-		<td class='logTd1'></td><td class='logTd2'>COMPILATION FAILED</td>
+			</tr>
 
-		</tr>
+			<tr class='logTrFinalCompileFailure'>
 
-		</table>
+			<td class='logTd1'></td><td class='logTd2'>COMPILATION FAILED</td>
 
-		</div>
+			</tr>
 
-		</div>
-		</td>
-		<td id="right_sidebar" value="true">
-		<div id="chat_content">
-		<lift:comet type="Chat" name={filename}>
-		<h5 style="text-align:center">Chat</h5>
-		<ul>
-		<li>A message</li>
-		</ul>
-		</lift:comet>
+			</table>
 
-		<div>
-		<form class="lift:ChatIn?form=post">
-		<input id="chat_in" />
-		<input type="hidden" name="filename" value={filename}/>
-		<input type="hidden" name="name" value="Jack"/>
-		<input type="submit" value="Send"/>
-		</form>
-		</div>
-		</div>
-		</td>
-		</tr>
-		</table>
+			</div>
 
-		
-		<div id="box" class="dialog">
-		<div style="text-align:center"><span id="txt">A nice file viewer</span><br />
-		<button>OK</button></div>
-		</div>
+			</div>
+			</td>
+			<td id="right_sidebar" value="true">
+			<div id="chat_content">
+			<lift:comet type="Chat" name={filename}>
+			<h5 style="text-align:center">Chat</h5>
+			<ul>
+			<li>A message</li>
+			</ul>
+			</lift:comet>
 
-		</lift:surround>
-	}	
+			<div>
+			<form class="lift:ChatIn?form=post">
+			<input id="chat_in" />
+			<input type="hidden" name="filename" value={filename}/>
+			<input type="hidden" name="name" value="Jack"/>
+			<input type="submit" value="Send"/>
+			</form>
+			</div>
+			</div>
+			</td>
+			</tr>
+			</table>
 
-	def addText(fileName: String, index: Long) : String = {
-		val projectBox: Box[Project] = Project.find(By(Project.id, index))
-		val project: Project = projectBox.openOr(null)
 
-		val s: Array[String] = fileName.trim.split(joker)
-		
-		return FileManager.openFile(project.path + "/" + s(0) + ".scala")
+			<div id="box" class="dialog">
+			<div style="text-align:center"><span id="txt">A nice file viewer</span><br />
+			<button>OK</button></div>
+			</div>
+
+			</lift:surround>
+		}	
+
+		def addText(fileName: String, index: Long) : String = {
+			val projectBox: Box[Project] = Project.find(By(Project.id, index))
+			val project: Project = projectBox.openOr(null)
+
+			val s: Array[String] = fileName.trim.split(joker)
+
+			return FileManager.openFile(project.path + "/" + s(0) + ".scala")
+		}
 	}
-}
+	
