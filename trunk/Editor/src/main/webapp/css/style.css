@@ -203,12 +203,10 @@ textarea{
 	margin-right: 5px;
 }
 
-#top_menu a
-{
-    text-decoration: none;
-    color: white;
+#top_menu a{
+text-decoration:none;
+color:white;
 }
-
 /*#hidden-button
 {
 	display: none;
@@ -619,10 +617,9 @@ input#chat_in{
 }
 
 .signUpBox{
-	
 	margin-left: auto;
 	margin-right: auto;
-	float:left;
+
 
 	border: 1px solid #ccc;
 	-moz-box-shadow: 0 0 5px 5px #ddd;
@@ -631,6 +628,7 @@ input#chat_in{
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
+	
 	width: 550px;
     height:500px;
 	
@@ -641,14 +639,10 @@ input#chat_in{
 	padding-top:50px;
 	width: 500px;
     height:450px;
-	margin-left: auto;
-	margin-right: auto;
+
 }
 
-.signUpHome  td {
-	
-	
-}
+
 
 .signUpHome input[type="submit"]{
 	
@@ -656,10 +650,7 @@ input#chat_in{
 	
 }
 
-.signUpdHome  input[type="password"]{
-	width:100px;
-	
-}
+
 
 #changeBox{
 	
@@ -706,7 +697,7 @@ input#chat_in{
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 	width: 550px;
-    height:370px;
+    height:400px;
  	
  }
  
@@ -755,9 +746,104 @@ input#chat_in{
 
 
 
+.rowSignUp{
+width:450px;
+float:left;
+
+}
+
+.tdlSignUp{
+width:25%;
+float:left;
+}
+.tdrSignUp{
+width:75%;
+float:left;
+}
+
+#users_password{
+
+margin-left:50px;
+}
 
 
 
+.Password  span input{
+width:87px;
+
+}
+.submitSignUp{
+width:450px;
+float:left;
+margin-top:20px;
+margin-left:55px;
+}
+.submitEdit{
+width:450px;
+float:left;
+margin-top:20px;
+margin-left:153px;
+
+}
+
+.Gender select{
+margin-top: 5px;
+margin-bottom: 5px;
+width:135px;
+
+margin-right:128px;
+
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    color: #555555;
+    font: 13px/18px Tahoma Neue,Helvetica,Arial,sans-serif !important;
+   
+    padding: 3px 4px;
+    
 
 
+	-moz-appearance: menulist;
+    -moz-box-sizing: border-box;
+    -moz-user-select: none;
+    background-color: -moz-combobox;
+    border-color: threedface;
+    border-style: inset;
+    border-width: 2px;
+    color: -moz-comboboxtext;
+    cursor: default;
+    font: -moz-list;
+    line-height: normal !important;
+   
+    overflow: -moz-hidden-unscrollable;
+    text-align: start;
+    text-indent: 0;
+    text-shadow: none;
+    white-space: nowrap !important;
+    word-wrap: normal !important;
 
+}
+
+.submitLogin{
+margin-left:162px;
+margin-top:15px;
+width:300px;
+float:left;
+}
+
+
+.floatLeft{
+float:left;
+}
+.loginWidth{
+width:400px;
+}
+.loginLeftCol{
+width:50px;
+float:left;
+margin-top:12px;
+
+}
+.logintRightCol{
+width:300px;
+margin-left:2px;
+}
