@@ -87,12 +87,12 @@ object Editor extends LiftView {
 
 			<div id="save_form">
 	        <form class="lift:form.ajax" name="save_form">
-	        <lift:SaveBuffer filename={S.param("path").open_!.toString}>
+	        <lift:SaveBuffer filename={S.param("path").openOr("").toString}>
 	    	<textarea style="display:none" id="buffer" name="buffer"/>
 	      	<!--
 	    	<input type="hidden" id="buffer" name="buffer"/>
 	      	-->
-	      	<input type="hidden" id={filename} name="filename" value={S.param("path").open_!.toString}/>
+	      	<input type="hidden" id={filename} name="filename" value={S.param("path").openOr("").toString}/>
 	      	<input type="hidden" id="projectId" name="projectId" value={S.param("id").open_!.toString}/>
 	  		</lift:SaveBuffer>
 	        </form>
