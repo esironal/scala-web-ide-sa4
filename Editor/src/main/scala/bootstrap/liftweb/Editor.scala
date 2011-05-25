@@ -40,8 +40,13 @@ object Editor extends LiftView {
 					if(id.openOr("filenotfound") == "filenotfound"){
 						errorPage("Specify a project id in the URL")
 					} else {
-						val mypath = path.open_!
 						val myid = id.open_!
+						
+						if(path.openOr("notspecified") == "notspecified"){
+							content("",  java.lang.Long.parseLong(myid), false)
+						} else {
+							
+ 						val mypath = path.open_!
 						val projectBox: Box[Project] = Project.find(By(Project.id, java.lang.Long.parseLong(myid)))
 						val project: Project = projectBox.openOr(null)
 						if(project == null) {
@@ -56,6 +61,7 @@ object Editor extends LiftView {
 								case e: Exception => errorPage(e + "/" + project.path + "/" + mypath)
 							}
 						}
+					}
 				
 					}
 		
@@ -71,7 +77,8 @@ object Editor extends LiftView {
 
 	def content(filename: String, index: Long, file: Boolean):NodeSeq = {	
 
-			<lift:surround with="editorFile" at="content">
+			 
+			<lift:surround with={if(file){"editorFile"}else{"editorProject"}} at="content">	
 
 			<script type="text/javascript">
 			  var filename = '{filename}';
@@ -123,62 +130,14 @@ object Editor extends LiftView {
 			                    </div>
 					</td>			
 			<td id="codearea">
-			<textarea id={filename + joker + index} name={filename + joker + index} class="editor">{if(file){addText(filename, index)}}</textarea>
+			{
+				if(file) {
+					<textarea id={filename + joker + index} name={filename + joker + index} class="editor"></textarea>
+				}
+			}
 			<div id="log">
 			<div class='logDiv'>
-
-			<table class='logTable' cellspacing='0'>
-
-			<tr class='logTrErrorFirst'>
-
-			<td class='logTd1'>17</td><td class='logTd2'><a href='http://NetBeansProjects/SA4Game/src/sa4game/Client.scala#17'>NetBeansProjects/SA4Game/src/sa4game/Client.scala:17</a></td>
-
-			</tr>
-
-			<tr class='logTrErrorSecond'>
-
-			<td class='logTd1'></td><td class='logTd2'>Error - not found: type HashMap</td>
-
-			</tr>
-
-			<tr class='logTrErrorSecond'>
-
-			<td class='logTd1'></td><td class='logTd2 logTdFixed'>  var games = new <u>HashMap</u>[String,Array[Array[Array[Character]]]]</td>
-
-			</tr>
-
-			<tr class='logTrErrorFirst'>
-
-			<td class='logTd1'>12345</td><td class='logTd2'><a href='http://NetBeansProjects/SA4Game/src/sa4game/Client.scala#12345'>NetBeansProjects/SA4Game/src/sa4game/Client.scala:12345</a></td>
-
-			</tr>
-
-			<tr class='logTrErrorSecond'>
-
-			<td class='logTd1'></td><td class='logTd2'>Error - not found: type Random</td>
-
-			</tr>
-
-			<tr class='logTrErrorSecond'>
-
-			<td class='logTd1'></td><td class='logTd2 logTdFixed'>    val rnd = new <u>Random</u></td>
-
-			</tr>
-
-			<tr class='logTrFinalError'>
-
-			<td class='logTd1'></td><td class='logTd2'>2 errors found</td>
-
-			</tr>
-
-			<tr class='logTrFinalCompileFailure'>
-
-			<td class='logTd1'></td><td class='logTd2'>COMPILATION FAILED</td>
-
-			</tr>
-
-			</table>
-
+				<p>LOG HERE</p>
 			</div>
 
 			</div>
@@ -213,14 +172,5 @@ object Editor extends LiftView {
 
 			</lift:surround>
 		}	
-
-		def addText(fileName: String, index: Long) : String = {
-			val projectBox: Box[Project] = Project.find(By(Project.id, index))
-			val project: Project = projectBox.openOr(null)
-
-			val s: Array[String] = fileName.trim.split(joker)
-
-			return FileManager.openFile(project.path + "/" + s(0) + ".scala")
-		}
 	}
 	
