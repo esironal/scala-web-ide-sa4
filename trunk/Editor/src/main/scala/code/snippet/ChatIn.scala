@@ -8,6 +8,7 @@ import JsCmds._
 import JE._
 import util.Helpers._
 import comet.ChatServer
+import scala.xml.NodeSeq
 
 /**
  * A snippet transforms input to output... it transforms
@@ -21,29 +22,40 @@ import comet.ChatServer
  */
 object ChatIn {
 
-private var filename = ""
-private var name = ""
-private var message = "" 
   
   def render = {
+
+    var filename = ""
+    var name = ""
+    var message = ""
+    
+    def processMessage(s: String) = {
+    	message = s
+    	filename = S.param("filename").openOr("")
+    	name = S.param("name").openOr("")
+      	process()
+    }
   	
   	def process() = {
 	    ChatServer ! (("[" + name + "] " + message, filename))
-	    SetValById("chat_in", "")
+	    SetValById("chat_in", "") 
+//	     Alert("name = " + name + " message = " + message + " filename = " + filename)
   	}
   	
-  	def processFileName(s:String) = {
-		filename = s
+  	def processFileName(s: String) = {
+  		filename = s
   	}
   	
-  	def processName(s:String) = {
-		name = s
+  	def processName(s: String) = {
+  	    name = s
   	}
-  	
-  "name=filename" #> SHtml.onSubmit(processFileName) &
-  "name=name" #> SHtml.onSubmit(processName) &
-  "#chat_in" #> SHtml.onSubmit(message = _) &
-  "type=submit" #> SHtml.onSubmitUnit(process)    
-  	
+  
+//    (n: NodeSeq) => {
+//    	("name=filename" #> SHtml.hidden(processFileName _, "broken filename", "name" -> "filename") &
+//         "name=name" #> SHtml.hidden(processName _, "broken name") &
+//         "#chat_in" #> SHtml.onSubmit(message = _))(n) ++ SHtml.hidden(process)
+//    }  	
+
+         "#chat_in" #> SHtml.onSubmit(processMessage _)
   }
 }
