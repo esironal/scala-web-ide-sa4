@@ -134,7 +134,7 @@ object Editor extends LiftView {
 			<td id="codearea">
 			{
 				if(file) {
-					<textarea id={filename + joker + index} name={filename + joker + index} class="editor"></textarea>
+					<textarea id="demo" name="demo" class="editor"></textarea>
 				}
 			}
 			<div id="log">
