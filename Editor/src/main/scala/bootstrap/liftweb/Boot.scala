@@ -61,8 +61,7 @@ class Boot {
     // Build SiteMap
      val loggedIn = If(() => User.loggedIn_?, 
      					() => RedirectResponse("/user_mgt/login"))
-     					
-
+   
      					
     def sitemap = SiteMap(
       Menu.i("Home") / "index" >> User.AddUserMenusAfter, // the simple way to declare a menu
@@ -90,7 +89,6 @@ class Boot {
 	       "Editor Content" , loggedIn, Hidden))     )
 
 
-	
      def sitemapMutators = User.sitemapMutator
     
     // set the sitemap.  Note if you don't want access control for
@@ -132,21 +130,21 @@ class Boot {
     // start sefver for incoming messages from compiler
     val server = new Messager(8082)
 	server.start
-	
-	//--- start of compile request
-	
-	// setting parameters (in this example just one: -verbose)
-	//val parameters = new Array[String](1)
-	//parameters(0) = "-verbose"
-	  
-	// userID is a Long  
-	//val userID = 1
-	
-	// projectName is a String
-	//val projectName = "project_2"
-	  
-	// returns a Tuple2(binPath:String,logPath:String)
-	//val compile = code.comet.FileManager.compile(projectName, userID, parameters)
+//	
+//	//--- start of compile request
+//	
+//	// setting parameters (in this example just one: -verbose)
+//	val parameters = new Array[String](1)
+//	parameters(0) = "-verbose"
+//	  
+//	// userID is a Long  
+//	val userID = 1
+//	
+//	// projectName is a String
+//	val projectName = "project_2"
+//	  
+//	// returns a Tuple2(binPath:String,logPath:String)
+//	val compile = code.comet.FileManager.compile(projectName, userID, parameters)
 
 	//--- end of compile request
     

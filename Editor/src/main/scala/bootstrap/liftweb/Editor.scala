@@ -85,14 +85,18 @@ object Editor extends LiftView {
 			  var key = '{filename + joker + index}';
 	        </script>
 
+
+
+
+
 			<div id="save_form">
 	        <form class="lift:form.ajax" name="save_form">
-	        <lift:SaveBuffer filename={S.param("path").openOr("").toString}>
+	        <lift:SaveBuffer filename={S.param("path").open_!.toString}>
 	    	<textarea style="display:none" id="buffer" name="buffer"/>
 	      	<!--
 	    	<input type="hidden" id="buffer" name="buffer"/>
 	      	-->
-	      	<input type="hidden" id={filename} name="filename" value={S.param("path").openOr("").toString}/>
+	      	<input type="hidden" id={filename} name="filename" value={S.param("path").open_!.toString}/>
 	      	<input type="hidden" id="projectId" name="projectId" value={S.param("id").open_!.toString}/>
 	  		</lift:SaveBuffer>
 	        </form>
@@ -153,10 +157,10 @@ object Editor extends LiftView {
 			</lift:comet>
 
 			<div>
-			<form class="lift:form.ajax">
-			<input class="lift:ChatIn" id="chat_in" />
+			<form class="lift:ChatIn?form=post">
+			<input id="chat_in" />
 			<input type="hidden" name="filename" value={filename}/>
-			<input type="hidden" name="name" value={User.currentUser.openOr(null).accountID.is}/>
+			<input type="hidden" name="name" value="Jack"/>
 			<input type="submit" value="Send"/>
 			</form>
 			</div>
