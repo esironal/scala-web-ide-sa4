@@ -892,3 +892,9 @@ input#chat_in{
 }
 
 
+.CodeMirror-wrapping iframe {
+
+	background-color: #fff;
+	padding-bottom: 10px;
+}
+
