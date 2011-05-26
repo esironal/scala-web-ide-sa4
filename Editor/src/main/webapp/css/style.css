@@ -678,6 +678,9 @@ input#chat_in{
 	 width: 550px;
      height:220px;
 	 padding:30px auto;	
+	 margin-bottom: 30px;
+	 padding-top: 53px;
+	 margin-left: -26px;
 	
 }
  .changePage{
@@ -686,6 +689,16 @@ input#chat_in{
     height:320px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+
+.changePage input[type="submit"] {
+
+	
+	margin-left: 203px;
+	margin-top: 11px;
+	
+	
 }
  .editBox{
  	
@@ -730,6 +743,7 @@ input#chat_in{
 
 
 
+
 #lift__noticesContainer__ li {
 	
 	color: red;
@@ -747,51 +761,59 @@ input#chat_in{
 
 
 .rowSignUp{
-width:450px;
-float:left;
+	width:450px;
+	float:left;
 
 }
 
 .tdlSignUp{
-width:25%;
-float:left;
+	width:25%;
+	float:left;
 }
+
+
 .tdrSignUp{
-width:75%;
-float:left;
+	width:75%;
+	float:left;
 }
 
 #users_password{
 
-margin-left:50px;
+	margin-left:50px;
 }
 
 
 
 .Password  span input{
-width:87px;
+	width:87px;
 
 }
+
+
 .submitSignUp{
-width:450px;
-float:left;
-margin-top:20px;
-margin-left:55px;
+	width:450px;
+	float:left;
+	margin-top:20px;
+	margin-left:55px;
 }
+
+
+
 .submitEdit{
-width:450px;
-float:left;
-margin-top:20px;
-margin-left:153px;
+
+	width:450px;
+	float:left;
+	margin-top:20px;
+	margin-left:153px;
 
 }
 
 .Gender select{
-margin-top: 5px;
-margin-bottom: 5px;
-width:135px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	width:135px;
 
-margin-right:128px;
+	margin-right:128px;
 
     border: 1px solid #CCCCCC;
     border-radius: 3px 3px 3px 3px;
@@ -824,26 +846,49 @@ margin-right:128px;
 }
 
 .submitLogin{
-margin-left:162px;
-margin-top:15px;
-width:300px;
-float:left;
+	margin-left:162px;
+	margin-top:15px;
+	width:300px;
+	float:left;
 }
 
 
 .floatLeft{
-float:left;
+	float:left;
 }
+
+
 .loginWidth{
-width:400px;
+	width:400px;
 }
+
+
 .loginLeftCol{
-width:50px;
-float:left;
-margin-top:12px;
+	width:50px;
+	float:left;	
+	margin-top:12px;
 
 }
+
+
 .logintRightCol{
-width:300px;
-margin-left:2px;
+	width:300px;
+	margin-left:2px;
 }
+
+
+.lostHome input[type="submit"] {
+
+	margin-left: 203px;
+	margin-top: 10px;
+
+
+}
+
+.lostHome td {
+
+	padding-bottom: 10px;
+
+}
+
+

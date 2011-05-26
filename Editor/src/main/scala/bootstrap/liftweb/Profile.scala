@@ -18,6 +18,15 @@ import code.model.ProfileMessage
 object Profile extends LiftView {
      	
          def content(id: String) = {
+        	 
+        	 if(id == "index") {
+        		 
+        		if(User.find(By(User.accountID,id)) == Empty) {
+        			
+        			S.redirectTo("/profile/" + User.currentUser.openOr(null).accountID.is)
+        		}
+        	 }
+        	 
          	val userProfile: Box[User] = User.find(By(User.accountID,id))
          	val user: User = userProfile.openOr(null)
          	
@@ -59,7 +68,9 @@ object Profile extends LiftView {
                      }</div>
                      
                      }else 
-                     <h2>{"User doesn't exist"}</h2>
+                     <h2>{"User doesn't exist" + "  /" +id + "/"
+                    	 
+                     }</h2>
                      }}else{
 	                    	S.redirectTo("/user_mgt/login")
                      }}

@@ -61,30 +61,33 @@ class Boot {
     // Build SiteMap
      val loggedIn = If(() => User.loggedIn_?, 
      					() => RedirectResponse("/user_mgt/login"))
+     					
+
+     					
     def sitemap = SiteMap(
       Menu.i("Home") / "index" >> User.AddUserMenusAfter, // the simple way to declare a menu
 
       // more complex because this menu allows anything in the
       // /static path to be visible
       Menu(Loc("Static", Link(List("static"), true, "/static/index"), 
-	       "Static Content",loggedIn)),
+	       "Static Content",loggedIn, Hidden)),
 	      
      Menu(Loc("Profile",
               Link(List("profile"), true, "/profile/"), "Profile",loggedIn)),
      Menu(Loc("Stats",
-              Link(List("stats"), true, "/stats/"), "Stats" ,loggedIn)),
+              Link(List("stats"), true, "/stats/"), "Stats" ,loggedIn, Hidden)),
      Menu(Loc("UserList",
-              Link(List("userList"), true, "/userList/" ), "UserList" ,loggedIn)),
+              Link(List("userList"), true, "/userList/" ), "UserList" ,loggedIn, Hidden)),
      Menu(Loc("Delete", 
-              Link(List("delete"), true, "/delete/"), "Delete" ,loggedIn)),
-     Menu(Loc("Project", Link(List("project"), true, "/project"), "Project" ,loggedIn)),
+              Link(List("delete"), true, "/delete/"), "Delete", loggedIn, Hidden)),
+     Menu(Loc("Project", Link(List("project"), true, "/project"), "Project", loggedIn, Hidden)),
      Menu(Loc("ProjectList",
               Link(List("projectList"), true, "/projectList"), "ProjectList" ,loggedIn)),
      Menu(Loc("Invite",
-               Link(List("invite"), true, "/invite"), "Invite", loggedIn)),
+               Link(List("invite"), true, "/invite"), "Invite", loggedIn, Hidden)),
         	   
      Menu(Loc("Editor", Link(List("editor"), true, "/editor/"), 
-	       "Editor Content" ,loggedIn))     )
+	       "Editor Content" , loggedIn, Hidden))     )
 
 
 	
