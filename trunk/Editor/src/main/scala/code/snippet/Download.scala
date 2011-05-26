@@ -9,10 +9,12 @@ import JE._
 import util.Helpers._
 import comet.ChatServer
 import java.io._;
-import java.lang._;
 import java.util._;
 import net.liftweb.http.js.JE._
 import scala.xml._
+import code.model.{Project,User}
+import code.comet.FileManager
+import net.liftweb.mapper._
 
 /**
  * A snippet transforms input to output... it transforms
@@ -25,36 +27,27 @@ import scala.xml._
  * no explicit state managed in the snippet.
  */
 object Download {
+	
+	def zip(projectId : String) : Boolean = {
+		val fullProjectPath = Project.find(By(Project.id,java.lang.Long.parseLong(projectId))).open_!.path 
+		val c = scala.Array("/bin/bash","-c", "zip -r ./src/main/webapp/download/"+ projectId + ".zip "+ "./projectFiles/" + projectId)
+    	val exec = Runtime.getRuntime.exec(c)  		
+  		exec.waitFor()
+  		val v = exec.exitValue()
+        v == 0
+    }  	
 
-private var filename: String = ""
-private var contents: String = "not set yet"
-  
-  def render = {
-  	
-  	def process() = {
-  		var parts: Array[String] = filename.split(":")
-  		var fileN: String = parts(parts.length-1)
-  		try{
-		    // Create file 
-		    var fstream:FileWriter = new FileWriter("./tmp/" + fileN);
-		    var out:BufferedWriter = new BufferedWriter(fstream);
-		    out.write(contents);
-		    //Close the output stream
-		    out.close();
-	    }catch {
-	      	case _ =>
-	    }
-  	}
-  	
-  	def processFileName(s:String) = {
-		filename = s
-  	}
-  	def processContents(s:String) = {
-		contents = s
-  	}
-  	
-  "name=filename" #> SHtml.onSubmit(processFileName) &
-  "class=editor" #> SHtml.onSubmit(processContents) &
-  "type=submit" #> SHtml.onSubmitUnit(process)   
-  }
+	
+	def getlink = {
+		val id = S.param("id").open_!
+		
+		"a" #> SHtml.link("download", () => {
+	  	  val result = zip(id)
+		  if(result){
+			S.redirectTo("/download/" + id + ".zip")
+		  } else {
+			S.error("Could not create file " + id + ".zip")
+		  }
+	    }, <span>Download</span>)
+	} 
 }
