@@ -8,30 +8,45 @@ body {
 }
 /*****Style from User Project *******/
 .ProfileContainer{
-	width:900px;
-	
+	width:700px;
+	height:100%;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+	-moz-box-shadow: 0 0 5px 5px #ddd;
+    -webkit-box-shadow: 0 0  5px 5px #ddd;
+    box-shadow: 0 0 5px 5px #ddd;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 	
 	}
 
 .profileImg{
-	width:100px;
-	height:100%;
+	width:140px;
+	height:180px;
 	float:left;
+	margin-left:25px;
+	margin-top:25px;
 
 	}
 	
 .userData{
 
 	margin-left:10px;
-	float:left;
-	width:750px;
+	width:340px;
+    height:180px;
+	margin-bottom:40px;
+	
 	
 	}
-	
-textarea{
-	height:50px;
-	width:350px;
+.formMsg{
+width:300px;
+foat:left;
+}
 
+.formMsg textarea{
+	height:80px;
+	width:350px;
 	margin-left:5px;
 	-moz-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px;
@@ -39,10 +54,18 @@ textarea{
     border: 1px solid #DDDDDD;
     font-size: 14px;
     padding: 8px;
-    width: 42%;
+    width: 420px;
 
-	
-	}
+}
+
+.msgContainer{
+width:590px;
+}
+.msgLeftCol{
+widht:110px;
+float:left;
+}
+
 	input[type="text"]{
     -moz-border-radius: 5px 5px 5px 5px;
 	webkit-border-radius: 5px 5px 5px 5px;
@@ -84,26 +107,17 @@ textarea{
     text-shadow: 1px 1px 0 #FFFFFF;
     width: 120px;
 	font-size:120%;}
-#formMSG{
-	width:900px;
-    merge-top: 500px;
-    
 
-	
-	
-	}
 .msgComment{
-	width:600px;
+	width:400px;
 
 	
 	}
 .msgsComments{
-	width:600px;
+	width:400px;
 	float:left;
 	}
-.msgContainer{
-	width:600px;
-	}
+
 .lftSmallImg{
 	width:70px;
 	height:70px;
@@ -111,7 +125,7 @@ textarea{
 
 	}	
 .rightComments{
-	width:520px;
+	width:400px;
 	float:left;
 	margin:5px;
 	
@@ -197,7 +211,11 @@ textarea{
 	cursor: default;
 	color: white;
 }
+#top_menu li:hover a {
 
+color: rgb(59,58,59);
+
+}
 #top_menu li img
 {
 	margin-right: 5px;
@@ -207,10 +225,6 @@ textarea{
 text-decoration:none;
 color:white;
 }
-#top_menu li:hover a {
-	color: rgb(59,58,59);
-}
-
 /*#hidden-button
 {
 	display: none;
