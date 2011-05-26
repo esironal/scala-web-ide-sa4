@@ -207,6 +207,10 @@ textarea{
 text-decoration:none;
 color:white;
 }
+#top_menu li:hover a {
+	color: rgb(59,58,59);
+}
+
 /*#hidden-button
 {
 	display: none;
