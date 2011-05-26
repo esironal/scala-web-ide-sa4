@@ -44,29 +44,45 @@ object Profile extends LiftView {
  			</head>
  			<body class="lift:content_id=main">
  		  		<div id="main" class="lift:surround?with=default;at=content">
-                 {if (User.loggedIn_?){
-                 {if(userProfile!= Empty){
-                 <div class="ProfileContainer">	<div class="profileImg">
-                <img src={user.personalImageURL} style="width:100px; height:100px;"/></div>
-                     <div class="userData">
-                     <h2>{ user.accountID}</h2>
-                     <div style="float:left;">{"Name: " +user.firstName.is + " " + user.lastName.is}</div>
-                     <div style="float:left;">{"Gender: " + user.gender.is }</div>
-                     <br/>
-                     <div style="float:left;">{"Email: " + user.email.is }</div>
-                    
-                     <div style="float:left;">{"SkypeID: " + user.skypeID.is }</div>
-                     
-                    
-                     </div>
-                     
-                     <br />
-                      <div class="lift:FormMessage"> </div>
-                     <hr/>
-                     </div>
-                     <div>{for(message <- msgs) yield(printMessage(message))
-                     }</div>
-                     
+         			{if (User.loggedIn_?){
+         				{if(userProfile!= Empty){
+         			<div class="ProfileContainer">
+         					<div class="profileImg">
+         						<img src={user.personalImageURL} style="width:140px; height:180px;"/>
+         					</div>
+         					<div class="userData fontTahoma">
+         						<span style="font-weight:bold; font-size:20px; width:320px;"><h2 style="text-align:left;">{ user.accountID}</h2></span>
+         						<div style="float:left;">
+         							<span><b>Name: </b></span>{user.firstName.is + " " + user.lastName.is}
+         						</div>
+         						<div style="float:left;">
+         							<span><b>&nbsp;&nbsp; Gender: </b></span>{ user.gender.is }
+         						</div>
+         						<br/>
+         					    <div style="float:left;">
+         							<span><b>Email: </b></span>{ user.email.is }
+         					    </div>
+         					    <div style="float:left;">
+         							<span><b>&nbsp;&nbsp; SkypeID: </b></span>{ user.skypeID.is }
+         					    </div> 
+         			        </div>
+                    <br />
+         			     <div class="msgContainer">
+                             <div class="msgLeftCol"></div>
+
+                             <div class="formMsg">
+                                 <span style="text-align:left;">post something on my Profile ;)</span>
+                                 <lift:FormMessage> </lift:FormMessage>
+                             </div>
+                        </div>
+                    <hr/>
+                
+         	    <div style="width:590px;">
+         		<div class="msgLeftCol"></div>
+         		
+                   {for(message <- msgs) yield(printMessage(message))}
+                </div>
+                </div>
                      }else 
                      <h2>{"User doesn't exist" + "  /" +id + "/"
                     	 
@@ -74,11 +90,9 @@ object Profile extends LiftView {
                      }}else{
 	                    	S.redirectTo("/user_mgt/login")
                      }}
-                     
-                   
-                </div>
- 			</body>
-		</html>        
+            </div>
+ 		</body>
+	</html>        
              
          }    
          
@@ -91,11 +105,28 @@ object Profile extends LiftView {
          	val fromUser: Box[User] = User.find(By(User.id, msg.fromID.is))
          	val user: User = fromUser.openOr(null)
          	
-         	<span>
-         	<img src={user.personalImageURL} style="width:64px; height:64px;"></img><span>{"" + msg.messageNumber.is + ":  "}</span><b><a href={"/profile/"+user.accountID.is}>{""+user.accountID.is}</a></b><span>{"\t " + msg.date.is}</span>
-         	<br/>
-         	<span>{"" + msg.text.is}</span>
-         	<hr/>
-         	</span>
+         	<div style="width:450px; float:left;">
+         		<div style="width:64px; height:64px; float:left;">
+         			<img src={user.personalImageURL} style="width:64px; height:64px;"/>
+         		</div>
+         		<div style="width:350px; float:left;" >
+         			 <div style="float:left;">
+         				{"" + msg.messageNumber.is + ":  "}
+         			</div>
+         			 <div style="float:left;"><b><a href={"/profile/"+user.accountID.is}>
+         				{""+user.accountID.is}
+         			   </a>
+                    </b>
+         			</div>
+         			 <div style="float:left;">
+         				{"\t " + msg.date.is}
+         		    </div>
+         	        <br/>
+         	        <div style="float:left;">
+         				{"" + msg.text.is}
+         	       </div>
+         	   </div>
+         	
+         </div>
          }
      }
