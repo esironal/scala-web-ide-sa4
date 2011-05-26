@@ -102,9 +102,6 @@ object Editor extends LiftView {
 	        </form>
 	      	</div>
 
-			<input type="button" value="Save" onclick="javascript:saveBuffer()"/>
-
-
 
 
 			<table id="main_table">
