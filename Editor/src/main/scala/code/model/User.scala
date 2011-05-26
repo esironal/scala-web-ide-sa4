@@ -15,10 +15,31 @@ import sitemap._
 import Loc._
 import mapper._
 
+import code.comet.LoggedIn
+
 /**
  * The singleton that has methods for accessing the database
  */
 object User extends User with MetaMegaProtoUser[User] {
+	@volatile private var currentUserIds: Set[Long] = Set()
+
+	def isLoggedIn(who: User) = currentUserIds.contains(who.id.is)
+
+	def loggedInUsers(): List[User] = currentUserIds.toList.flatMap(id => this.find(By(User.id,id)))
+
+	override def logUserIn(who: User) {
+		super.logUserIn(who)
+		this.synchronized(currentUserIds += who.id.is)
+		LoggedIn ! (loggedInUsers)
+	}
+
+	override def logUserOut() {
+		currentUserIds.foreach(id => this.synchronized(currentUserIds -= id)) 
+		LoggedIn ! (loggedInUsers)
+		super.logUserOut()
+	}
+
+	
   override def dbTableName = "users" // define the DB table name
   override def screenWrap = Full(<lift:surround with="default" at="content">
 			       <lift:bind /></lift:surround>)
