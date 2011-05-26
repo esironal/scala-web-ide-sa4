@@ -154,12 +154,12 @@ object Editor extends LiftView {
 			</lift:comet>
 
 			<div>
-			<form class="lift:ChatIn?form=post">
-			<input id="chat_in" />
-			<input type="hidden" name="filename" value={filename}/>
-			<input type="hidden" name="name" value="Jack"/>
-			<input type="submit" value="Send"/>
-			</form>
+			<form class="lift:form.ajax">
+						<input class="lift:ChatIn" id="chat_in" />
+						<input type="hidden" name="filename" value={filename}/>
+						<input type="hidden" name="name" value={User.currentUser.openOr(null).accountID.is}/>
+						<input type="submit" value="Send"/>
+						</form>
 			</div>
 			</div>
 			</td>
