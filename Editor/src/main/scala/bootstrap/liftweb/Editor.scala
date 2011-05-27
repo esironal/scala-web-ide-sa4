@@ -85,14 +85,10 @@ object Editor extends LiftView {
 			  var key = '{filename + joker + index}';
 	        </script>
 
-
-
-
-
 			<div id="save_form">
 	        <form class="lift:form.ajax" name="save_form">
-	        <lift:SaveBuffer filename={S.param("path").openOr("").toString}>
-	    	<textarea style="display:none" id="buffer" name="buffer"/>
+			<lift:SaveBuffer filename={S.param("path").openOr("").toString}>	    	
+			<textarea style="display:none" id="buffer" name="buffer"/>
 	      	<!--
 	    	<input type="hidden" id="buffer" name="buffer"/>
 	      	-->
@@ -104,9 +100,11 @@ object Editor extends LiftView {
 
 
 
-			<table id="main_table">
-			<tr>
-			<td id="left_sidebar" value="true">
+
+
+			<div id="main_div">
+	      	<!-- left part -->
+			<div id="left_sidebar" value="true">
 
 			                    <div class="tree lift:FileIn.cometFileList">
 			                        <span id="backlink">back</span>
@@ -119,57 +117,60 @@ object Editor extends LiftView {
 			                            </ul>
 			                        </div>
 			                    </div>
-			                    <div>
+			                    <div class="treeForm">
 			                        <form class="lift:form.ajax">
 			                            <div class="lift:FileIn.hiddenProjectId"></div>
 			                            <input type="hidden" id="currentDir" name="currentDir" value=""/>
-			                            <input class="lift:FileIn.newFile" id="fileIn"/>
-			                            <input type="radio" name="type" value="file" checked="ckecked" /> 
-			                            File <input type="radio" name="type" value="folder" /> 
-			                            Folder <br/>
-			                            <input type="submit" value="Create"/>
+			                            <input class="lift:FileIn.newFile" id="fileIn"/><br/>
+			                           <div class="filesRadio"><input type="radio" name="type" value="file" checked="ckecked" /> 
+			                           <label>File</label><input type="radio" name="type" value="folder" /> 
+			                           <label>Folder</label></div>
+			                            <div class="createSubmit"><input type="submit" value="Create"/></div>
 			                        </form>
 			                    </div>
-					</td>			
-			<td id="codearea">
-			{
-				if(file) {
-					<textarea id="demo" name="demo" class="editor"></textarea>
+			</div>	
+
+	      	<!-- middle part -->
+	      	<div id="codearea">
+	      		{
+					if(file) {
+						<textarea id="demo" name="demo" class="editor"></textarea>					
+						}
 				}
-			}
-			<div id="log">
-			<div class='logDiv'>
-				<p>LOG HERE</p>
+				<div id="log">
+					<div class='logDiv'>
+						<p>LOG HERE</p>
+					</div>
+				</div>
 			</div>
+	      	<!-- right part -->
+			<div id="right_sidebar" value="true">
+	      		<div id="chat_content">
+	      		<lift:comet type="Chat" name={filename}>
+	      		<h5 style="text-align:center">Chat</h5>
+	      		<ul>
+	      			<li>A message</li>
+	      		</ul>
+	      		</lift:comet>
 
-			</div>
-			</td>
-			<td id="right_sidebar" value="true">
-			<div id="chat_content">
-			<lift:comet type="Chat" name={filename}>
-			<h5 style="text-align:center">Chat</h5>
-			<ul>
-			<li>A message</li>
-			</ul>
-			</lift:comet>
-
-			<div>
-			<form class="lift:form.ajax">
-						<input class="lift:ChatIn" id="chat_in" />
-						<input type="hidden" name="filename" value={filename}/>
-						<input type="hidden" name="name" value={User.currentUser.openOr(null).accountID.is}/>
-						<input type="submit" value="Send"/>
-						</form>
+	      		<div>
+	      		<form class="lift:form.ajax">
+	      			<input class="lift:ChatIn" id="chat_in" />
+	      			<input type="hidden" name="filename" value={filename}/>
+	      			<input type="hidden" name="name" value={User.currentUser.openOr(null).accountID.is}/>
+	      			<input type="submit" value="Send"/>
+				</form>
+	      		</div>
+	      		</div>
 			</div>
 			</div>
-			</td>
-			</tr>
-			</table>
 
 
 			<div id="box" class="dialog">
-			<div style="text-align:center"><span id="txt">A nice file viewer</span><br />
-			<button>OK</button></div>
+	      			<div style="text-align:center">
+	      				<span id="txt">A nice file viewer</span><br />
+	      				<button>OK</button>
+	      			</div>
 			</div>
 
 			</lift:surround>
