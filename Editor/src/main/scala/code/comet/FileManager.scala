@@ -25,12 +25,12 @@ object FileManager extends LiftActor with ListenerManager {
         }
     }
 
-    def newFile(filePath:String, name: String) = {
+    def newFile(filePath:String, name: String): Boolean = {
     	new File(filePath, name).createNewFile
     }
 
-    def newDir(projectPath:String, name: String) = {
-    	new File(projectPath, name).mkdir
+    def newDir(dirPath:String, name: String): Boolean = {
+    	new File(dirPath, name).mkdir
     }
 
     def saveFile(filePath: String, content: String) = {
@@ -38,15 +38,15 @@ object FileManager extends LiftActor with ListenerManager {
         try { writer.print(content) } finally { writer.close() }
     }
 
-    def deleteFile(filePath: String) = {
-    	def delete(file: File): Unit = {
-    	          if(file.isDirectory) {
-    	            file.listFiles.foreach(delete(_))
-    	          }
-    	          file.delete
-    	        }
+    def deleteFile(filePath: String, name: String) = {
+      def delete(file: File): Unit = {
+        if(file.isDirectory) {
+          file.listFiles.foreach(delete(_))
+        }
+        file.delete
+      }
     	        
-    	    	delete(new File(filePath))
+      delete(new File(filePath, name))
     }
 
     def openFile(filePath: String): String = {
@@ -122,14 +122,40 @@ object FileManager extends LiftActor with ListenerManager {
     	println(httpCon.getResponseMessage)
     }
 
-    val dirMap = new HashMap[String,String]
-    def createUpdate = dirMap
+    private val dirMap = new HashMap[String,String]
+    private var changedFolder = ""
+    private var changedFile = ""
+    def createUpdate = (dirMap, changedFolder, changedFile)
 
     override def lowPriority = {
-        case ('newfile, projectPath: String, s: String) => newFile(projectPath, s); updateListeners()
-        case ('newdir, projectPath: String, s: String) => newDir(projectPath, s); updateListeners()
-        case ('delete, filePath: String) => deleteFile(filePath); updateListeners()
-        case ('chdir, formId: String, filePath: String) => dirMap += (formId -> filePath); updateListeners()
+        case ('newfile, folderPath: String, fileName: String) => {
+          if(newFile(folderPath, fileName)) { 
+            changedFolder = folderPath
+            changedFile = fileName
+            updateListeners()
+          }
+        }
+        case ('newdir, folderPath: String, fileName: String) => {
+          if(newDir(folderPath, fileName)) { 
+            changedFolder = folderPath
+            changedFile = fileName
+            updateListeners()
+          }
+        }
+        case ('delete, folderPath: String, fileName: String) => {
+          deleteFile(folderPath, fileName) 
+          for ((formId, filePath) <- dirMap; if filePath == (folderPath + "/" + fileName))
+            FileManager ! ('chdir, formId, filePath.split('/').init.mkString("/"))
+          changedFolder = folderPath 
+          changedFile = fileName
+          updateListeners()
+        }
+        case ('chdir, formId: String, filePath: String) => {
+          dirMap += (formId -> filePath) 
+          changedFolder = ""
+          changedFile = ""
+          updateListeners()
+        }
         case _ => println("NOTHING")
     }
 }
