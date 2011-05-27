@@ -54,7 +54,7 @@ object User extends User with MetaMegaProtoUser[User] {
 //  override def loginFields = List(email, password)
   override def signupFields = List(accountID, firstName, lastName, password, email, gender, skypeID)	
   override def editFields = List(firstName, lastName, password, gender, skypeID, personalImageURL)	
-
+  def lostPasswordFields = List(email)
 
 
  def getName(field: String) : String = {
@@ -86,6 +86,12 @@ object User extends User with MetaMegaProtoUser[User] {
 	  						<form action="/user_mgt/login" method="post">
 	  						<div class="loginWidth">
 	  							<div class="loginWidth">
+	  								<lift:Msgs class="fontTahoma" showAll="true"> 
+          								<lift:error_class>error</lift:error_class> 
+          								<lift:notice_class>notice</lift:notice_class> 
+          								<lift:warning_class>error</lift:warning_class> 
+  									</lift:Msgs> 
+	  								
 	  								<div class="loginLeftCol fontTahoma"><label>Email:</label></div>
 	  								<div class="logintRightCol floatLeft" ><input name="username" type="text" id="F993430246327ZS4" />
 	  									<script type="text/javascript">
@@ -102,11 +108,7 @@ object User extends User with MetaMegaProtoUser[User] {
 	  						</div>
 	  					</form>
 	  							
-  							<lift:Msgs showAll="true"> 
-          					<lift:error_class>error</lift:error_class> 
-          				<lift:notice_class>notice</lift:notice_class> 
-          				<lift:warning_class>error</lift:warning_class> 
-  						</lift:Msgs> 
+  							
   						</div>
   						</div>
   
@@ -135,24 +137,42 @@ object User extends User with MetaMegaProtoUser[User] {
 	  												</form>
 	   											</div></div>
   
-  
-  override def changePasswordXhtml = <div id="changeBox"><div class="changePage fontTahoma">
-  										{ super.changePasswordXhtml }
-  									<lift:Msgs showAll="true"> 
-          								<lift:error_class>error</lift:error_class> 
-          								<lift:notice_class>notice</lift:notice_class> 
-          								<lift:warning_class>error</lift:warning_class> 
-  									</lift:Msgs> 
-  									</div> </div>
-  
-  
-  override def lostPasswordXhtml = <div id="lostBox" class="fontTahoma"><div class="lostHome">
-  										{ super.lostPasswordXhtml }
-  										<lift:Msgs showAll="true"> 
+
+  															
+   override def changePasswordXhtml = <div id="changeBox"><div class="changePage fontTahoma">
+	   									<lift:Msgs showAll="true"> 
           									<lift:error_class>error</lift:error_class> 
           									<lift:notice_class>notice</lift:notice_class> 
           									<lift:warning_class>error</lift:warning_class> 
   										</lift:Msgs> 
+	   									<form action="/user_mgt/change_password" method="post">
+        									<table>
+	   										<div class="rowSignUp">
+	   											<div class="tdlSignUp">Old password</div>
+	   											<div class="tdrSignUp"><input name="F146055401468ODB" type="password" value="" /></div>
+	   										</div>
+          									<div class="rowSignUp">
+	   											<div class="tdlSignUp">New password</div>
+	   											<div class="tdrSignUp"><input name="F146055401469RH2" type="password" value="" /></div>
+	   										</div>
+          									<div class="rowSignUp">
+	   											<div class="tdlSignUp">New password (repeat)</div>
+	   											<div class="tdrSignUp"><input name="F146055401469RH2" type="password" value="" /></div>
+	   										</div>
+          									<div class="changeSubmit"><user:submit/></div>
+	   									</table>
+	   									</form>
+	   										
+	   									</div></div>
+  															
+  															
+  override def lostPasswordXhtml = <div id="lostBox" class="fontTahoma"><div class="lostHome"> 										
+	  									<lift:Msgs showAll="true"> 
+          									<lift:error_class>error</lift:error_class> 
+          									<lift:notice_class>notice</lift:notice_class> 
+          									<lift:warning_class>error</lift:warning_class> 
+  										</lift:Msgs> 
+  										{ super.lostPasswordXhtml }
   									</div></div> 
  
   override def skipEmailValidation = true
@@ -165,9 +185,8 @@ class User extends MegaProtoUser[User] with ManyToMany {
   	
 	object accountID extends MappedString(this, 30){
 		override def displayName = "Account Name"
-		override def validations = valUnique(S.?("This name is already taken")) _ :: super.validations
-	}
-	
+		override def validations = valUnique(S.?("This name is already taken")) _ :: valMinLen(1, "Insert an account Name please") _ :: super.validations
+	}	
 
 	object skypeID extends MappedString(this, 30) {
 		override def displayName = "Skype ID"
