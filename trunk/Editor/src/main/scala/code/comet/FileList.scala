@@ -21,15 +21,20 @@ class FileList extends CometActor with CometListener {
     def registerWith = FileManager
 
     override def lowPriority = {
-        case dir: HashMap[String,String] => {
-          dir.get(formId) match {
-            case Some(d) => dirName = d
-            case None =>
+        case (dirMap: HashMap[String,String], folderChange: String, fileChanged: String) => {
+          dirMap.get(formId) match {
+            case Some(d) if d != dirName => {
+              dirName = d
+              reRender()
+            }
+            case _ => {
+              if( folderChange == dirName ) {
+                reRender()
+              }
+            }
           }
-          reRender()
         }
-        case _ =>
-          reRender()
+        case _ => println("\n???\n")
     }
 
     def render = {

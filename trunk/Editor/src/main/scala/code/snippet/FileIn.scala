@@ -93,9 +93,10 @@ object FileIn {
         }
 
         def deleteFile(file: File) = {
-            val filePath = file.getPath
+            val fileName = file.getName
+            val folderPath = file.getParent
             SHtml.a(() => {
-                FileManager ! ('delete -> filePath)
+                FileManager ! ('delete, folderPath, fileName)
                 Run("")
             }, <img class="delete" src="/filelist-template/img/delete.png"/>)
         }
