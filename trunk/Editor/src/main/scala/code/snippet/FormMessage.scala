@@ -16,13 +16,15 @@ import common._
 import sitemap._
 import Loc._
 import mapper._
-
+import scala.xml._
 import code.model.ProfileMessage
 import code.model.User
 
 object FormMessage extends LiftScreen {
 	object message extends ScreenVar(ProfileMessage.create)
 	
+	override def finishButton: Elem = <button class="msgButton">{S.??("Post")}</button>
+	override def cancelButton: Elem = <div style="visibility:hidden;">Hidden</div>
 	addFields(() => message.is.text)
 
 	def finish() {

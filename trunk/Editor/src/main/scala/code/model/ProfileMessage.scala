@@ -35,6 +35,8 @@ class ProfileMessage extends LongKeyedMapper[ProfileMessage] with IdPK {
 	
 	 object text extends MappedTextarea(this, 2048) {
 		 override def displayName = ""
+		 override def textareaCols = 40
+	     override def textareaRows = 14
 
   }
 }
