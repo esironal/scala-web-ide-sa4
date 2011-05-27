@@ -25,6 +25,24 @@ import code.comet.FileManager
 
 object Editor extends LiftView {
 
+        // Encode string as an HTML identifier.
+        // Must start with a letter.
+        // Can include letters, digits, -, _, :, and .
+        // We exclude : because of namespace issues.
+        def idEncode(s: String) = {
+          "K" + augmentString(s).map {
+            case c if 'A' <= c && c <= 'Z' => c.toString
+            case c if 'a' <= c && c <= 'z' => c.toString
+            case c if '0' <= c && c <= '9' => c.toString
+            // case c @ '-' => c.toString
+            // case c @ ':' => c.toString
+            case c @ '_' => "__"
+            // case c @ '.' => c.toString
+            case c => "_" + c.toInt + "_"
+          }.mkString
+        }
+
+
 	LiftRules.useXhtmlMimeType = false
 
 	val joker :String = "_-_" 
@@ -77,12 +95,14 @@ object Editor extends LiftView {
 
 	def content(filename: String, index: Long, file: Boolean):NodeSeq = {	
 
+
+                val key = idEncode(filename + joker + index)
 			 
 			<lift:surround with={if(file){"editorFile"}else{"editorProject"}} at="content">	
 
 			<script type="text/javascript">
 			  var filename = '{filename}';
-			  var key = '{filename + joker + index}';
+			  var key = '{key}';
 	        </script>
 
 			<div id="save_form">
@@ -134,7 +154,7 @@ object Editor extends LiftView {
 	      	<div id="codearea">
 	      		{
 					if(file) {
-						<textarea id="demo" name="demo" class="editor"></textarea>					
+						<textarea id={key} name={key} class="editor"></textarea>					
 						}
 				}
 				<div id="log">
