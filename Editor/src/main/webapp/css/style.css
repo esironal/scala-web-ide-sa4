@@ -7,9 +7,21 @@ body {
 	background-color:#eee !important;
 }
 /*****Style from User Project *******/
-.ProfileContainer{
+
+/*************** PROFILE STYLE ***************/
+
+
+.mainProfile {
+
+	height: 100%;
+
+
+}
+
+
+
+#ProfileContainer{
 	width:700px;
-	height:100%;
 	border-top: 1px solid #ccc;
 	 border-bottom: 1px solid #ccc;
 	 -moz-box-shadow: 0 0 5px 5px #ddd;
@@ -22,31 +34,49 @@ body {
 	}
 
 .profileImg{
-	width:140px;
+	width: 35%;
 	height:180px;
 	float:left;
-	margin-left:25px;
 	margin-top:25px;
 
 	}
 	
 .userData{
 
-	margin-left:10px;
+	margin-left:10%;
 	width:340px;
 	height:180px;	
-	margin-bottom:40px;
+	width: 65%;
+	text-align: left;
+	margin-bottom: -34px;
 }
+
+	
+.userInfo {
+
+	margin-left: 20%;
+
+}	
+	
+.userDataLeft {
+
+	float:left;
+	margin-right:6%;
+
+}
+
+
+	
 	
 .formMsg{
 
- 	width:300px;
- 	foat:left;
+ 	width:70%;
+ 	margin-left:30%;
  }
 		
 .formMsg textarea{
 	height:80px;
-	width:350px;
+	width:90%;
 	margin-left:5px;
 	-moz-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px;
@@ -54,14 +84,15 @@ body {
 	border: 1px solid #DDDDDD;
 	 font-size: 14px;
 	  padding: 8px;
-	  width: 420px;
+	  float:right;
 
 }	
 
 
 .msgContainer{
 
- 	width:590px;
+ 	width:90%;
+	margin-left: 10%;
 }	
 	
 .msgLeftCol{
@@ -69,6 +100,77 @@ body {
  	float:left;
 
 }	
+
+.msgButton {
+	-moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
+    background: url("/images/bg-btn.gif") repeat-x scroll 0 0 #DDDDDD;
+    border-color: #DDDDDD #DDDDDD #CCCCCC;
+    border-style: solid;
+    border-width: 1px;
+    color: #333333;
+    cursor: pointer;
+    font: 11px/14px "Lucida Grande",sans-serif;
+ 	margin: 0;
+    overflow: visible;
+    padding: 4px 8px 5px;
+    text-shadow: 1px 1px 0 #FFFFFF;
+    width: 90px;
+	font-size:120%;
+	margin-left: 232px;
+	margin-top:8px;
+
+}
+
+
+#message {
+	
+	height: 70px;
+}
+
+.messageImg {
+
+	width: 10%;
+	float: left;	
+
+}
+
+
+.messageInfo {
+
+	height: 35px;
+	width: 60%;
+	text-align: left;
+	
+}
+
+
+
+.messageText {
+	
+	height: 35px;
+	width: 60%;
+	text-align: left;
+	
+
+}
+
+.msgFrom {
+	
+	padding-right: 45px;
+
+}
+
+.msgHr {
+	
+	color: #CCCCCC;
+	border-top: 1px solid #CCCCCC;
+	box-shadow: 0 0 3px 0;
+	margin-right: 30%;
+	wdth: 70%; 
+
+}
 	
 input[type="text"]{
 
@@ -978,5 +1080,7 @@ input#chat_in{
 	margin-right: 148px;
 
 }
+
+
 
 

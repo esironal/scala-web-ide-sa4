@@ -58,6 +58,7 @@
 	font-weight:bolder;
 }
 
+
 #userMenuID{
 	margin-top:0px;
 	}
@@ -108,37 +109,8 @@
 		}
 	</script>
 	
-	<script type="text/javascript" charset="utf-8">
-	window.onresize = height_size;
-	
-	function height_size() {
-		var table_height = window.innerHeight - 34;
-		var editor_height = window.innerHeight - 140;
-		var log_height = table_height - editor_height - 5;
-		var main_table = document.getElementById('main_table');
-		var editor = document.getElementById(filename);
-		var log = document.getElementById('log');
-		main_table.style.height = table_height + 'px';
-		editor.style.height = editor_height + 'px';
-		log.style.height = log_height + 'px';
-	}
-	
-		function editor_text() {
-			// var demo_editor_text = mobwrite.shareCodeMirror.create(filename, {
-			// 		    height: '100%',
-			// 		    width: '100%',
-			// 		    parserfile: ['tokenizejavascript.js', 'parsejavascript.js'],
-			// 		    path: 'http://usiedit.appspot.com/static/lib/',
-			// stylesheet: 'http://usiedit.appspot.com/static/lib/jscolors.css',
-			// 		    tabMode: 'shift',
-			// 		    autoMatchParens: true
-			// 		  });
-		}
-	
-		
-	 </script>
-	
-	
+
+
 	
 	<script type="text/javascript">
 
@@ -207,6 +179,8 @@
 	}
 
 	</script>
+	
+	
 		
   </head>
 
@@ -219,7 +193,9 @@
 				<img src="/img/logo.png" alt="the project logo" title="the LOGO"/>
 			</div>
 		
-        <div id="content" >The main content will get bound here</div>
+		
+        <div id="content">The main content will get bound here</div>
+		<div class="lift:ProfileScript"></div>
 		
 		<div align="center" style="width:500px; margin:5px auto;">	
 					<span  class="userMenu" align="center"><lift:Menu.builder></lift:Menu.builder></span>
