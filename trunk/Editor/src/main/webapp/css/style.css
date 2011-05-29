@@ -295,14 +295,7 @@ input[type="submit"] {
 	cursor:pointer;
 }
 
-#top_menu li:hover {
-	margin: 0 10px 0 10px;
-	height: 23px;
-	background-color: #e7f5fa;
-	color: rgb(59,58,59);
-	cursor: pointer;
-	border: solid 1px #9de2fb;
-}
+
 
 #top_menu li.nohover:hover
 {

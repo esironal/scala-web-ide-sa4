@@ -115,7 +115,7 @@ var CodeMirror = (function(){
     frame.style.display = "block";
 
     var div = this.wrapping = document.createElement("DIV");
-    div.style.position = "relative";
+    //div.style.position = "relative";
     div.className = "CodeMirror-wrapping";
     //div.style.width = options.width;
     //div.style.height = options.height;

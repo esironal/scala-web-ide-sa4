@@ -23,7 +23,7 @@
 }
 
 .userMenu{
-	float:left;
+	float:right;
 	width:100%;
 	list-style:none;
 	font-weight:bold;
@@ -31,37 +31,117 @@
 	margin-top:0px;
 }
 .userMenu li{
-	float:left;
+	float:right;
 	margin-right:10px;
 	/* position:relative; */
 	display:block;
 }
 .userMenu li a{
-	color:#666;
-	background-color:transparent;
-	font-size:14px;
-	font-family:Tahoma;
-	font-weight:normal;
+	display:block;
+	padding:0px;
+	color:#fff;
 	text-decoration:none;
-	padding:5px 8px;
+
+	text-shadow:1px 1px 1px rgba(0,0,0,0.75); /* Text shadow to lift it a little */
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
 }
 .userMenu li a:hover{
-	color: #6399cd;
-	background-color:#EFF4FA;
-	text-decoration:none;
-}
-.userMenu ul li.active a
-{
-	color: #6399cd;
-	background-color:#EFF4FA;
-	text-decoration:none;
-	font-weight:bolder;
-}
+	color:#4B717A;
+	/*background:#9DE2FB; /* Solid colour fall-back */*/
+	/*background:rgba(157,226,251,0.75); /* It'll look nice semi-transparent */*/
 
-
+	text-decoration:underline;
+}
 #userMenuID{
 	margin-top:0px;
 	}
+
+/************/
+
+
+.userMenu {
+
+
+
+}
+
+.userMenu ul{
+	right:-9999px;
+	list-style:none;
+	position:absolute;
+	-webkit-transition:0.25s linear opacity; /* Make the dropdown fade-in in Webkit */
+		background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.05, rgb(59,58,59)),
+	    color-stop(0.48, rgb(102,102,102)),
+	    color-stop(0.88, rgb(156,156,156))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(59,58,59) 5%,
+	    rgb(102,102,102) 48%,
+	    rgb(156,156,156) 88%
+	);
+	
+	
+}
+.userMenu ul li{
+	padding-top:1px; /* Introducing a padding between the li and the a give the illusion spaced items */
+	float:none;
+	
+	
+	
+}
+.userMenu ul a{
+	white-space:nowrap; /* Stop text wrapping and creating multi-line dropdown items */
+	display:block;
+}
+.userMenu li:hover ul{ /* Display the dropdown on hover */
+	right:0; /* Bring back on-screen when needed */
+	opacity:1; /* Fade to opaque */
+}
+.userMenu li:hover a{ /* Set styles for top level when dropdown is hovered */
+
+
+	/*background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.05, rgb(59,58,59)),
+	    color-stop(0.48, rgb(102,102,102)),
+	    color-stop(0.88, rgb(156,156,156))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(59,58,59) 5%,
+	    rgb(102,102,102) 48%,
+	    rgb(156,156,156) 88%
+	);*/
+	
+	-webkit-box-shadow: 0px 1px 1px rgba(150,150,150,0.8);
+	-moz-box-shadow: 0px 1px 1px rgba(150,150,150,0.8);
+	box-shadow: 0px 1px 1px rgba(150,150,150,0.8);
+
+	
+	text-decoration:underline;
+}
+.userMenu li:hover ul a{ /* Override some top level styles when dropdown is hovered */
+	text-decoration:none;
+	-webkit-transition:-webkit-transform 0.075s linear;
+}
+.userMenu li:hover ul li a:hover{ /* Set styles for dropdown when items are hovered */
+	
+
+	
+	text-decoration:underline;
+	-moz-transform:scale(1.05);
+	-webkit-transform:scale(1.05);
+}
+
 
 /* ]]> */
   </style>
