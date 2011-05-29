@@ -178,7 +178,8 @@ object Editor extends LiftView {
 	      			<input class="lift:ChatIn" id="chat_in" />
 	      			<input type="hidden" name="filename" value={filename}/>
 	      			<input type="hidden" name="name" value={User.currentUser.openOr(null).accountID.is}/>
-	      			<input type="submit" value="Send"/>
+	      			
+	      			<div class="chatButton"><input type="submit" value="Send"/></div>
 				</form>
 	      		</div>
 	      		</div>

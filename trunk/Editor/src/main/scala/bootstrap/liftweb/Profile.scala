@@ -30,8 +30,9 @@ object Profile extends LiftView {
          	val userProfile: Box[User] = User.find(By(User.accountID,id))
          	val user: User = userProfile.openOr(null)
          	
-         	var msgs :List[ProfileMessage] = null
          	
+         	var msgs :List[ProfileMessage] = null
+         	var i : Int = 1;
          	if(userProfile!= Empty){
          		msgs = ProfileMessage.findAll(By(ProfileMessage.userID, user.id.is)).reverse
          	}
@@ -87,7 +88,9 @@ object Profile extends LiftView {
          	    <div id="msgsContainer" style="width:590px;">
          		<div class="msgLeftCol"></div>
          		
-                   {for(message <- msgs) yield(printMessage(message))}
+                   {for(i <- 0 until msgs.length) yield(printMessage(msgs(i), msgs.length, i))
+                	   
+                   }
                 </div>
                 </div>
                      }else 
@@ -108,10 +111,22 @@ object Profile extends LiftView {
              case id: String => () => Full(content(id))
          }
          
-          def printMessage(msg: ProfileMessage): NodeSeq = {
+         def putHr(index: Int, length: Int) : NodeSeq = {
+        	 
+        	 if(index != length-1) {
+        		 return <hr class="msgHr"/>
+        	 }
+        	 else {
+        		 return <br/><br/>
+        	 }
+         }
+         
+         
+          def printMessage(msg: ProfileMessage, length: Int, index: Int): NodeSeq = {
          	
          	val fromUser: Box[User] = User.find(By(User.id, msg.fromID.is))
          	val user: User = fromUser.openOr(null)
+         
          	
          	<div id="message">
          		<div class="messageImg">
@@ -130,8 +145,8 @@ object Profile extends LiftView {
          			{"" + msg.text.is}
          	   </div>
          	</div>
-         	<hr class="msgHr"/>
          	
+         	<div>{putHr(index, length)}</div>
          	
          }
      }

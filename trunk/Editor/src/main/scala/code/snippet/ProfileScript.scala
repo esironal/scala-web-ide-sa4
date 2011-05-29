@@ -25,7 +25,7 @@ class ProfileScript {
 					}
 
 				}
-				var height = (83*messages);
+				var height = (87*messages);
 				var curHeight = parseInt(container.style.height.split('p')[0]);
 				var newHeight =  height+curHeight;
 				container.style.height = newHeight+'px';
