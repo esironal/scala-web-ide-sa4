@@ -5,10 +5,16 @@ import code.model.User
 import net.liftweb.common.Full
 import code.model.Project
 import java.io.File
+import scala.xml._
+
 
 object ProjectScreen extends LiftScreen {
 
 	val name = field("Name", "")
+	override def finishButton: Elem = <button class="projButton">{S.??("Create")}</button>
+	override def cancelButton: Elem = <div style="visibility:hidden;">Hidden</div>
+	
+	
 	
 	def finish = {
 		User.currentUser match {
