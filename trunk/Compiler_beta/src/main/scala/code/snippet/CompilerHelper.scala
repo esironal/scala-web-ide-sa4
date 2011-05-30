@@ -11,7 +11,7 @@ import java.io._
 class CompilerHelper(id: Int, var optionList: scala.Array[String]) 
 {
 	// fields:
-	val DOWNLOAD_LOCATION = "src/main/webapp/download/"
+	val DOWNLOAD_LOCATION = "downloads/"
 	val runTime = Runtime.getRuntime 
 	val projectId = "project_"+id
 	
@@ -120,7 +120,7 @@ class CompilerHelper(id: Int, var optionList: scala.Array[String])
 	 */
 	def zipBinAndLog() = 
 	{
-		val c = scala.Array("/bin/bash", "-c", "zip -r ./src/main/webapp/download/"+projectId+".zip "+projectId+"/log"+" "+projectId+"/bin") 
+		val c = scala.Array("/bin/bash", "-c", "zip -r ./"+DOWNLOAD_LOCATION+projectId+".zip "+projectId+"/log"+" "+projectId+"/bin") 
 	   	val pr = runTime.exec(c)  
 	   	// wait for the end of the command execution
   		pr.waitFor()

@@ -72,7 +72,7 @@ class RunCompiler(id: String, path: String, var options: Array[String]) extends 
 	{
 		var hostName: String = InetAddress.getLocalHost().getHostName();
 		var addrs: Array[InetAddress] = InetAddress.getAllByName(hostName);
-		var myIp: String = "";
+		var myIp: String = "localhost";
 		addrs.foreach((addr: InetAddress) => {
 			if (!addr.isLoopbackAddress() && addr.isSiteLocalAddress()) {
 				myIp = addr.getHostAddress();
