@@ -1,12 +1,21 @@
-<div id="main" class="lift:surround?with=editorProject;at=content">
-    <div>Current users in this project:</div>
-    <div class="lift:ProjectUsers.listProjectUsers"></div>
-    <form action="/invite" method="post" class="lift:InvitationScreen">
-        Add people:<br/>
-        <div class="lift:FileIn.hiddenProjectId"></div>
-        <input name="email" value="" type="text"/>
-        <input value="Add" type="submit"/>
-    </form>
+<div id="main" class="simpleListTemplate lift:surround?with=editorProject;at=content">
+    <div class="newListElem">
+        <form action="/invite" method="post" class="lift:InvitationScreen">
+            Add a collaborator filling its username and hitting add
+            <br/><br/>
+            <div class="lift:FileIn.hiddenProjectId"></div>
+            <input name="email" value="" type="text"/>
+            <input value="Add" type="submit"/>
+        </form>
+    </div>
+    <div class="simpleList">
+        <div class="simpleListTitle">
+           Project users 
+        </div>
+        <div class="tree">
+            <div class="lift:ProjectUsers.listProjectUsers"></div>
+        </div>
+    </div>
     
     <div>People you could invite:</div>
     <div class="lift:InviteList.whoToInvite"></div>

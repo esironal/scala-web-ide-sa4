@@ -102,17 +102,21 @@
 }
 
 
-.projectlist {
+.simpleListTemplate {
    font-family: Helvetica,Arial,sans-serif; 
 }
 
-.newproject {
+.simpleListTemplate .tree{
+   color:black;
+}
+
+.newListElem {
     float:left;
     margin:2% 0 2% 2%;
     width:35%;
 }
 
-.myprojects {
+.simpleList {
     float:left;
     margin:2%;
     text-align:center;
@@ -121,7 +125,7 @@
     padding: 1% 4%;
 }
 
-.myprojectstitle {
+.simpleListTitle {
    font-size:19px; 
    margin-bottom: 20px;
 }
