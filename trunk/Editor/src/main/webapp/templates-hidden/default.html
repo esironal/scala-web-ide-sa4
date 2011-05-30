@@ -22,6 +22,42 @@
   color: red;
 }
 
+.userMenuHome{
+
+	width:550px;
+	list-style:none;
+	font-weight:bold;
+
+	margin-top:0px;
+
+}
+.userMenuHome li{
+display: inline;
+}
+.userMenuHome li a{
+	color:#666;
+	background-color:transparent;
+	font-size:12px;
+	font-weight:normal;
+	text-decoration:none;
+	padding:5px 8px;
+}
+.userMenuHome li a:hover{
+	color: #6399cd;
+	background-color:#EFF4FA;
+	text-decoration:none;
+}
+.userMenuHome li.active a{
+	color: #fff;
+	background-color:#6399cd;
+	text-decoration:none;
+	font-weight:bolder;
+	}
+.userMenuHome ul{
+margin-right: 10%;
+margin-left:auto;
+}
+
 .userMenu{
 	float:right;
 	width:100%;
@@ -267,9 +303,9 @@
 <!-- INSERIRE IL NOME DEL FILE -->
 <!-- <body onload="var name = getURL(); "> -->
 	<body onload="assign_value(); getURL(); height_size(); mobwrite.share(filename); editor_text();" >
-		<div>
+		<div align="center" style="width:700px; margin: 0 auto;">
 			
-			<div class="imgLogo" align="center">
+			<div style="width:700px; margin: 2px auto 0px auto;">
 				<img src="/img/logo.png" alt="the project logo" title="the LOGO"/>
 			</div>
 		
@@ -278,7 +314,7 @@
 		<div class="lift:ProfileScript"></div>
 		
 		<div align="center" style="width:500px; margin:5px auto;">	
-					<span  class="userMenu" align="center"><lift:Menu.builder></lift:Menu.builder></span>
+					<span  class="userMenuHome" align="center"><lift:Menu.builder></lift:Menu.builder></span>
 		</div>
 	
 	
