@@ -89,7 +89,7 @@ object FileIn {
                 
               )
             else
-              <a href={Helpers.appendParams("editor", ("id" -> project.id.is.toString) :: ("path" -> filePathInProject) :: Nil)}><img src="/filelist-template/img/file.jpeg" class="file_img" /><span>{file.getName}</span></a>
+              <a class="fileName" href={Helpers.appendParams("editor", ("id" -> project.id.is.toString) :: ("path" -> filePathInProject) :: Nil)}><img src="/filelist-template/img/file.jpeg" class="file_img" /><span>{file.getName}</span></a>
         }
 
         def deleteFile(file: File) = {

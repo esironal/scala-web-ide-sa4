@@ -80,7 +80,7 @@ object Profile extends LiftView {
                              <div class="msgLeftCol"></div>
 
                              <div class="formMsg">
-                                 <span class="fontTahoma" style="text-align:left;margin-right:136px">Post something on my Profile</span>
+                                 <span class="fontTahoma" style="text-align:left;margin-left:12px;">Post something on my Profile</span>
                                  <lift:FormMessage> </lift:FormMessage>
                              </div>
                         </div>
