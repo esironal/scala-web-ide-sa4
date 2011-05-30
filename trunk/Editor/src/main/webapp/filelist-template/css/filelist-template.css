@@ -17,6 +17,7 @@
     width: 100%;
     height: 100%;
     padding:					0 0 0 0px;
+    color: white;
 	
 }
 
@@ -51,6 +52,10 @@
 .folder_img, .file_img{
 	margin-right: 7px;
 }
+
+.folder_text{
+	color: white;
+    }
 
 .treeForm {
 
