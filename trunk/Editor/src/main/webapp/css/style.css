@@ -292,13 +292,18 @@ input[type="submit"] {
 #top_menu li {
 	font-family: Tahoma;
 	font-size: 13px;
-	margin: 1px 11px 1px 11px;
+	margin: 0px 11px 1px 11px;
 	padding-top:3px;
 	float: left;
 	cursor:pointer;
 }
 
 
+.shareLink {
+	
+	padding-top: 2px;
+
+}
 
 #top_menu li.nohover:hover
 {
@@ -412,7 +417,7 @@ input[type="submit"] {
 	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 	height: 89%;
-	z-index: -999;
+	z-index: 500;
 }
 
 #right_sidebar a {
@@ -470,6 +475,7 @@ input#chat_in{
 	float:left;
 	margin-top: 5px;
 	margin-left: 2%;
+	z-index: -999;
 }
 
 #codearea textarea {
@@ -482,7 +488,7 @@ input#chat_in{
 	
 	margin-left: 1%;
 	width: 99.5%;
-	height: 157px;
+	height: 150px;
 	z-index: -999;
 
 }

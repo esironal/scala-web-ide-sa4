@@ -35,7 +35,6 @@
 .userMenu li{
 	float:right;
 	margin-right:10px;
-	/* position:relative; */
 	display:block;
 }
 .userMenu li a{
@@ -51,29 +50,21 @@
 }
 .userMenu li a:hover{
 	color:#4B717A;
-	/*background:#9DE2FB; /* Solid colour fall-back */*/
-	/*background:rgba(157,226,251,0.75); /* It'll look nice semi-transparent */*/
+	
 
-	text-decoration:underline;
 }
+
+
 #userMenuID{
 	margin-top:0px;
 	}
 
-/************/
-
-
-.userMenu {
-
-
-
-}
 
 .userMenu ul{
 	right:5000px;
 	list-style:none;
 	position:absolute;
-	-webkit-transition:0.25s linear opacity; /* Make the dropdown fade-in in Webkit */
+	-webkit-transition:0.25s linear opacity; 
 		background-image: -webkit-gradient(
 	    linear,
 	    left bottom,
@@ -89,57 +80,34 @@
 	    rgb(156,156,156) 88%
 	);
 	
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	height: 171px;
+	z-index: 600;
+	
 	
 }
 .userMenu ul li{
-	padding-top:1px; /* Introducing a padding between the li and the a give the illusion spaced items */
+	padding-top:14px; 
 	float:none;
-	
-	
-	
 }
+
 .userMenu ul a{
-	white-space:nowrap; /* Stop text wrapping and creating multi-line dropdown items */
+	white-space:nowrap; 
 	display:block;
 }
-.userMenu li:hover ul{ /* Display the dropdown on hover */
-	right:0; /* Bring back on-screen when needed */
-	opacity:1; /* Fade to opaque */
+.userMenu li:hover ul{ 
+	right:0; 
+	opacity:1; 
 }
-.userMenu li:hover a{ /* Set styles for top level when dropdown is hovered */
 
-
-	/*background-image: -webkit-gradient(
-	    linear,
-	    left bottom,
-	    left top,
-	    color-stop(0.05, rgb(59,58,59)),
-	    color-stop(0.48, rgb(102,102,102)),
-	    color-stop(0.88, rgb(156,156,156))
-	);
-	background-image: -moz-linear-gradient(
-	    center bottom,
-	    rgb(59,58,59) 5%,
-	    rgb(102,102,102) 48%,
-	    rgb(156,156,156) 88%
-	);*/
-	
-	-webkit-box-shadow: 0px 1px 1px rgba(150,150,150,0.8);
-	-moz-box-shadow: 0px 1px 1px rgba(150,150,150,0.8);
-	box-shadow: 0px 1px 1px rgba(150,150,150,0.8);
-
-	
-	text-decoration:underline;
-}
-.userMenu li:hover ul a{ /* Override some top level styles when dropdown is hovered */
+.userMenu li:hover ul a{ 
 	text-decoration:none;
 	-webkit-transition:-webkit-transform 0.075s linear;
 }
-.userMenu li:hover ul li a:hover{ /* Set styles for dropdown when items are hovered */
-	
+.userMenu li:hover ul li a:hover{ 
 
-	
-	text-decoration:underline;
 	-moz-transform:scale(1.05);
 	-webkit-transform:scale(1.05);
 }
@@ -270,7 +238,7 @@
 
 <!-- INSERIRE IL NOME DEL FILE -->
 <!-- <body onload="var name = getURL(); "> -->
-	<body onload="getURL(); mobwrite.share(demo_editor_text);" style="overflow:hidden;">
+	<body onload="getURL(); mobwrite.share(demo_editor_text);">
 		
 		<div style="width: 200px; float:right;">
 			<ul class="userMenu">
@@ -284,7 +252,7 @@
 	<!-- body -->
 
 		<div id="top_menu">
-			<ul><li><span class="lift:FileIn.projectNameWithLink">ProjectName</span></li>
+			<ul><li style="margin-top: 2px;"><span class="lift:FileIn.projectNameWithLink">ProjectName</span></li>
 				<li class="nohover">|</li>
 				<li>
 					<img src="/img/download.png" />
@@ -294,10 +262,12 @@
 				<a href="#" onClick="javascript:buildButton()">Build</a>
 
 				</li>
-				<li>
+						  <li style="margin-top: 3px;">
+								
                                     <img src="/img/share-icon-12x12.png" />
                                     <span class="lift:FileIn.addUserLink">Share</span>
-                                </li>
+                                
+                           </li>
 				<li class="nohover">|</li>
 				
 				<li>

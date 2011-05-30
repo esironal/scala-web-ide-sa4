@@ -128,7 +128,7 @@ object FileIn {
 
     def addUserLink = {
         val projectId = S.param("id").open_!.toString
-        <a href={"/invite?id=" + projectId}>Share</a>
+        <a href={"/invite?id=" + projectId}><span>Share</span></a>
     }
 
     def projectNameWithLink = {
