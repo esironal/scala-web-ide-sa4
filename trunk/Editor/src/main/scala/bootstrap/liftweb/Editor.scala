@@ -154,19 +154,32 @@ object Editor extends LiftView {
 	      	<div id="codearea">
 	      		{
 					if(file) {
-						<textarea id={key} name={key} class="editor"></textarea>					
+						<textarea id={key} name={key} class="editor"></textarea>
+						
+						<div id="tabs">
+							<ul>
+								<li><a href="#tabs-1">Log</a></li>
+								<li><a href="#tabs-2">Terminal</a></li>
+							</ul>
+							<div id="tabs-1">
+								<div id="log">
+								</div>
+							</div>
+							<div id="tabs-2">
+								<iframe src="http://localhost:4200"> 
+								</iframe>
+							</div>
+						</div>				
 						}
-				}
-				<div id="log">
-					<div class='logDiv'>
-						<p>LOG HERE</p>
-					</div>
-				</div>
+				}	
 			</div>
 	      	<!-- right part -->
 			<div class="right-slider" id="right_sidebar" value="true">
 				<a class="right-handle" href="#">Content</a>
 	      		<div id="chat_content">
+				<lift:comet type="InProjectViewer">
+		                 <span name="list" id="inProject_out"></span>
+		           </lift:comet>
 	      		<lift:comet type="Chat" name={filename}>
 	      		<h5 style="text-align:center">Chat</h5>
 	      		<ul>
@@ -195,7 +208,12 @@ object Editor extends LiftView {
 	      			</div>
 			</div>
 
+			<lift:comet type="EnterProjectNotifier" name={index.toString}>
+			           </lift:comet>
+
+			    
 			</lift:surround>
+			
 		}	
 	}
 	
