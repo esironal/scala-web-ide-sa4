@@ -9,7 +9,8 @@
 
         <!-- CSS for the file list -->
 	<link rel="stylesheet" type="text/css" href="/filelist-template/css/filelist-template.css"/>
-	
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css" type="text/css" media="all" /> 
+	<link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" />
 	<!-- <link rel="stylesheet" type="text/css" href="mode/clike/clike.css"/> -->
 	<style type="text/css"> 
 	.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
@@ -160,12 +161,16 @@
     }
     </style>
 
+
+	<script src="lib/jquery-ui-1.7.3.custom.min.js"></script>
+    
     <script src="static/mobwrite/static/compressed_codemirror.js"></script>
     <script src="static/mobwrite/static/codemirror/js/codemirror.js"></script>
     <script>
       mobwrite.syncGateway = 'http://mobwrite3.appspot.com/scripts/q.py';
     </script>
 	
+
 
 	<script type="text/javascript">
   function saveBuffer() {
@@ -220,6 +225,8 @@
 	</script>
 	<!-- /RIGHT -->
 	<!-- /SLIDERS -->
+	
+	
 		
   </head>
 
@@ -266,6 +273,11 @@
 			
 		</div>
 		
+		<script>
+			$(function() {
+				$('#tabs').tabs();
+			});
+			</script>
 	
         <div id="content">The main content will get bound here</div>
 
