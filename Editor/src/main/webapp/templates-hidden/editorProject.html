@@ -68,7 +68,7 @@
 }
 
 .userMenu ul{
-	right:-9999px;
+	right:0;
 	list-style:none;
 	position:absolute;
 	-webkit-transition:0.25s linear opacity; /* Make the dropdown fade-in in Webkit */
@@ -208,9 +208,13 @@
 		var editor_height = window.innerHeight - 140;
 		var log_height = table_height - editor_height - 5;
 		var main_table = document.getElementById('main_table');
+		var left-sidebar = document.getElementById('left-sidebar');
+		var right-sidebar = document.getElementById('right-sidebar');
 		var editor = document.getElementById(key);
 		var log = document.getElementById('log');
 		main_table.style.height = table_height + 'px';
+		// left-sidebar.style.height = table_height + 'px';
+		// right-sidebar.style.height = table_height + 'px';
 		editor.style.height = editor_height + 'px';
 		log.style.height = log_height + 'px';
 	}
@@ -218,75 +222,36 @@
 			
 	 </script>
 	
-	
-	
+	<!-- SLIDERS -->
+	<script src="lib/left-slider.js"></script>
+	<script src="lib/right-slider.js"></script>
+	<!-- LEFT -->
 	<script type="text/javascript">
+		$(function(){
+		     $('.left-slider').leftSlide({
+		         tabHandle: '.left-handle',             
+		         pathToTabImage: 'img/left-tab.png',
+		         imageHeight: '172px',                    
+		         imageWidth: '35px',                 
+		     });
 
-	
-	function sidebar(side) {
-		
-		
-		if(side == 'left') {
-			
-			if(left.value == 'true') {
-				
-				left.style.display = 'none';
-				
-				if(right.value == 'true') {
-					codearea.style.width = '90%';
-				} else {
-					codearea.style.width = '100%';
-				}
-				
-				left.value = 'false';
-				left_button.value = 'Show Project Browser';
-				
-			} else {
-				
-				left.style.display = 'inline';
-				
-				if(right.value == 'true') {
-					codearea.style.width = '80%';
-				} else {
-					codearea.style.width = '90%';
-				}
-				
-				left.value = 'true';
-				left_button.value = 'Hide Project Browser';
-				
-			}
-		} else {
-			
-			if(right.value == 'true') {
-				
-				right.style.display = 'none';
-				
-				if(left.value == 'true') {
-					codearea.style.width = '90%';
-				} else {
-					codearea.style.width = '100%';
-				}
-				
-				right.value = 'false';
-				right_button.value = 'Show Chat';
-				
-			} else {
-				
-				right.style.display = 'inline';
-				
-				if(left.value == 'true') {
-					codearea.style.width = '80%';
-				} else {
-					codearea.style.width = '90%';
-				}
-				
-				right.value = 'true';
-				right_button.value = 'Hide Chat';	
-			}
-		}
-	}
-
+		 });
 	</script>
+	<!-- /LEFT -->
+	<!-- RIGHT -->
+	<script>
+		$(function(){
+		     $('.right-slider').rightSlide({
+		         tabHandle: '.right-handle',                    
+		         pathToTabImage: 'img/right-tab.png', 
+		         imageHeight: '172px',                   
+		         imageWidth: '35px',                   
+		     });
+
+		 });
+	</script>
+	<!-- /RIGHT -->
+	<!-- /SLIDERS -->
 		
   </head>
 

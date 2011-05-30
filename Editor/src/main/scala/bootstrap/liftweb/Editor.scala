@@ -124,8 +124,8 @@ object Editor extends LiftView {
 
 			<div id="main_div">
 	      	<!-- left part -->
-			<div id="left_sidebar" value="true">
-
+			<div class="left-slider" id="left_sidebar" value="true">
+								<a class="left-handle" href="#">Content</a>
 			                    <div class="tree lift:FileIn.cometFileList">
 			                        <span id="backlink">back</span>
 			                        <img src="/filelist-template/img/current_folder.png"/>
@@ -164,7 +164,8 @@ object Editor extends LiftView {
 				</div>
 			</div>
 	      	<!-- right part -->
-			<div id="right_sidebar" value="true">
+			<div class="right-slider" id="right_sidebar" value="true">
+				<a class="right-handle" href="#">Content</a>
 	      		<div id="chat_content">
 	      		<lift:comet type="Chat" name={filename}>
 	      		<h5 style="text-align:center">Chat</h5>
