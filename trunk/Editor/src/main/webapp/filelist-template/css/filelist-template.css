@@ -45,8 +45,8 @@
    }
 
 .scrollable{
-	 height: 300px;
-     overflow: scroll;
+   max-height:420px;
+     overflow-x: auto;
      width: 100%;
 }
 
