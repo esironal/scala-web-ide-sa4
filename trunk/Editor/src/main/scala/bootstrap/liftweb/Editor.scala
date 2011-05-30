@@ -128,7 +128,7 @@ object Editor extends LiftView {
 	      	<!-- left part -->
 			<div class="left-slider" id="left_sidebar" value="true">
 								<a class="left-handle" href="#">Content</a>
-			                    <div class="tree lift:FileIn.cometFileList">
+			                    <div class="tree lift:FileIn.cometFileList" style="display:inline-block">
 			                        <span id="backlink">back</span>
 			                        <img src="/filelist-template/img/current_folder.png"/>
 			                        <span id="dirName">Current folder</span>
@@ -144,9 +144,9 @@ object Editor extends LiftView {
 			                            <div class="lift:FileIn.hiddenProjectId"></div>
 			                            <input type="hidden" id="currentDir" name="currentDir" value=""/>
 			                            <input class="lift:FileIn.newFile" id="fileIn"/><br/>
-			                           <div class="filesRadio"><input type="radio" name="type" value="file" checked="ckecked" /> 
-			                           <label>File</label><input type="radio" name="type" value="folder" /> 
-			                           <label>Folder</label></div>
+			                           <div class="filesRadio"><input type="radio" name="type" id="typefile" value="file" checked="ckecked" /> 
+			                           <label for="typefile">File</label><input type="radio" name="type" id="typefolder" value="folder" /> 
+			                           <label for="typefolder">Folder</label></div>
 			                            <div class="createSubmit"><input type="submit" value="Create"/></div>
 			                        </form>
 			                    </div>
