@@ -12,7 +12,7 @@ object ProjectUsers {
     def listProjectUsers(in: NodeSeq): NodeSeq = {
         User.currentUser match {
             case Full(user) =>
-                <ul>{
+                <ul class="list">{
                     val projectId = S.param("id").open_!.toString
                     val users = Project.getProjectByIdAndByCurrentUser(projectId).users
                     users.map(user => <li>{ user.accountID.is }</li>)
