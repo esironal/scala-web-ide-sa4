@@ -349,7 +349,22 @@ input[type="submit"] {
 #main_table tr {
 	width: 99%;
 }
+/*****************************************  SLIDERS ***********************************************************/
+.left-slider {
+          padding: 20px;
+          width: 15%;
+		  height: 400px;
+          background: #ccc;
+          border: 2px solid #989898;
+      }
 
+.right-slider {
+          padding: 20px;
+          width: 15%;
+		  height: 400px;
+          background: #ccc;
+          border: 2px solid #989898;
+      }
 
 /***************************************** LEFT SIDEBAR - FILE MANAGER ****************************************/
 
@@ -360,7 +375,7 @@ input[type="submit"] {
 	margin-top: 5px;
 	margin-left: 0.5%;
 	float: left; 
-	height: 100%;
+	height: 400px;
 	width: 15%;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -385,7 +400,7 @@ input[type="submit"] {
 	background: -webkit-gradient(linear, right center, left center, from(#71787a), to(#b8c3c7));*/
 	margin-top: 2px;
 	margin-right: 0.5%;
-	height: 100%;
+	height: 400px;
 	float: right;
 	width: 15%;
 	-webkit-border-radius: 4px;
