@@ -102,3 +102,27 @@
 }
 
 
+.projectlist {
+   font-family: Helvetica,Arial,sans-serif; 
+}
+
+.newproject {
+    float:left;
+    margin:2% 0 2% 2%;
+    width:35%;
+}
+
+.myprojects {
+    float:left;
+    margin:2%;
+    text-align:center;
+    width:15%;
+    border-left: 1px solid #cccccc;
+    padding: 1% 4%;
+}
+
+.myprojectstitle {
+   font-size:19px; 
+   margin-bottom: 20px;
+}
+

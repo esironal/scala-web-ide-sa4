@@ -10,7 +10,7 @@ import scala.xml._
 
 object ProjectScreen extends LiftScreen {
 
-	val name = field("Name", "")
+	val name = field("Project name", "")
 	override def finishButton: Elem = <button class="projButton">{S.??("Create")}</button>
 	override def cancelButton: Elem = <div style="visibility:hidden;">Hidden</div>
 	

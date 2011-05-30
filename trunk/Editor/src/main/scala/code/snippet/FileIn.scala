@@ -113,7 +113,7 @@ object FileIn {
     def projectList = {
         User.currentUser match {
             case Full(user) =>
-                <ul>{
+                <ul class="list">{
                     user.projects.map(project =>
                         <li>{ SHtml.link("/editor?id=" + project.id.toString, () => (), Text(project.name)) }</li>)
                 }</ul>
