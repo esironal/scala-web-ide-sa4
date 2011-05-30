@@ -31,6 +31,13 @@ class Compiler(projectDirectory: String, optionList: scala.Array[String]) {
   	{
   		val c = scala.Array("/bin/bash", "-c", "cd " + projectDirectory + "/src && curl -O " + src +
   		" && unzip *.zip")
+  		println(src)
+  		var t1: Long = 0;
+        var t0: Long = System.currentTimeMillis();
+        do{
+        	t1=System.currentTimeMillis();
+        }
+        while (t1-t0<3000)
   		val pr = runTime.exec(c)
   		
 		// wait for the end of the command execution
