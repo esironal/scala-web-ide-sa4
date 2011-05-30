@@ -103,7 +103,9 @@ object Editor extends LiftView {
 			<script type="text/javascript">
 			  var filename = '{filename}';
 			  var key = '{key}';
-	        </script>
+	        </script>\
+
+			<div style="display: none;" id="userID" name="userID" >{code.model.User.currentUser.openOr(null: User).id.is}</div>
 
 			<div id="save_form">
 	        <form class="lift:form.ajax" name="save_form">
@@ -150,7 +152,7 @@ object Editor extends LiftView {
 			                    </div>
 			</div>	
 
-	      	<!-- middle part -->
+	       	<!-- middle part -->
 	      	<div id="codearea">
 	      		{
 					if(file) {

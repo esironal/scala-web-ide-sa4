@@ -28,6 +28,7 @@ import code.model.FileChatMessage
 import code.model.ProjectChatMessage
 
 import code.comet._
+import code.lib._
 
 
 /**
@@ -129,26 +130,24 @@ class Boot {
     // Make a transaction span the whole HTTP request
     S.addAround(DB.buildLoanWrapper)
     
+    // find localhost:8080/zipped/name.zip
+    LiftRules.statelessDispatchTable.append {
+      case Req("zipped" :: name :: Nil,"zip", GetRequest) =>
+        () =>
+        for {
+          stream <- tryo(new java.io.FileInputStream("projectfiles/"+name+".zip")) if null ne stream
+        } yield StreamingResponse(stream, () => stream.close, stream.available, List("Content-Type" -> "application/zip"), Nil, 200)
+    }
+    
+    // REST for compiling
+    LiftRules.dispatch.append(RestCompiler) // stateful -- associated with a servlet container session
+    LiftRules.statelessDispatchTable.append(RestCompiler) // stateless -- no session created
+    
+    
     // start sefver for incoming messages from compiler
     val server = new Messager(8082)
 	server.start
 	
-	//--- start of compile request
-	
-	// setting parameters (in this example just one: -verbose)
-	//val parameters = new Array[String](1)
-	//parameters(0) = "-verbose"
-	  
-	// userID is a Long  
-	//val userID = 1
-	
-	// projectName is a String
-	//val projectName = "project_2"
-	  
-	// returns a Tuple2(binPath:String,logPath:String)
-	//val compile = code.comet.FileManager.compile(projectName, userID, parameters)
-
-	//--- end of compile request
     
     
   }

@@ -63,7 +63,7 @@ object FileManager extends LiftActor with ListenerManager {
     	
     	
     	
-    	val c = scala.Array("/bin/bash","-c", "cd "+path+" && zip -r ../compiled_projects/user_"+userId+"/"+projectName+".zip "+projectName)
+    	val c = scala.Array("/bin/bash","-c", "cd "+path+" && zip -r "+projectName+".zip "+projectName)
     	// later, for compiled projects use: ../compiled_projects/user_"+userId+"/"+projectName+".zip"
     	
     	
@@ -76,7 +76,7 @@ object FileManager extends LiftActor with ListenerManager {
   		val v = exec.exitValue()
   		println("zipFile: exec.exitValue() = " + v)
   		if(v == 0) {
-  			return path+projectName+".zip"
+  			return "http://localhost:8080/zipped/"+projectName+".zip"
   		}
     	return "failed"
 	}
@@ -87,12 +87,12 @@ object FileManager extends LiftActor with ListenerManager {
     // if the operation failed, a string with "failed" will be sent returned
     // and no JSON will be sent
     def compile(projectName: String, userId: Long, options: Array[String]): String = {
-    	var zip = zipFile("./src/main/webapp/projects/",projectName, userId)
+    	var zip = zipFile("./projectfiles/",projectName, userId)
     	if(!zip.equals("failed")) {
     		var json = createJson(userId, zip, options)
     		put(json, "http://localhost:8081/compiler/link")
-    		println("compiling...")
-    		return "ok"
+    		
+    		return "compiling..."
     	}
     	println("failed")
     	return "failed"
@@ -122,6 +122,26 @@ object FileManager extends LiftActor with ListenerManager {
     	println(httpCon.getResponseMessage)
     }
 
+    def delete(link: String) = {
+    	val url: URL = new URL(link)
+    	val httpCon: HttpURLConnection = (url.openConnection).asInstanceOf[HttpURLConnection]
+    	httpCon.setDoOutput(true)
+    	httpCon.setRequestMethod("DELETE")
+    	println(httpCon.getResponseMessage)
+    }
+    
+    def getCompiledZip(path: String, userId: Long) = {
+      
+    	val c = scala.Array("/bin/bash","-c", "cd compiled_projects/ && curl -o user_"+userId+".zip "+path)
+    	val exec = Runtime.getRuntime.exec(c)
+  		
+  		exec.waitFor() 
+  		val v = exec.exitValue()
+  		println("#### got compiled zip: "+path+" :"+ v)
+      
+    }
+    
+    
     private val dirMap = new HashMap[String,String]
     private var changedFolder = ""
     private var changedFile = ""

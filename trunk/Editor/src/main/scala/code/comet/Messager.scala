@@ -40,8 +40,10 @@ class Messager(port: Int) extends Actor {
 			
 			case ('compiled, id: Int, path: String) => {
 				println("Compiled(Id: "+id+", path: "+path+")")
-				
+				FileManager.getCompiledZip(path, id)
+				FileManager.delete("http://localhost:8081/compiler/link/"+id)
 				sender ! "Notification received: Compiled(Id: "+id+", path: "+path+")"
+				
 			}
 			
 			
