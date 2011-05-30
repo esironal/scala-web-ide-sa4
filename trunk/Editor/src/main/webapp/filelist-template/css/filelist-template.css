@@ -15,9 +15,9 @@
 
 .tree{
     width: 100%;
-    padding:					0 0 0 0px;
-    color: white;
-	
+    height: 100%;
+    padding:0 0 0 0px;
+	color: white;
 }
 
 #dirName, #create_file, #submit{
@@ -39,46 +39,48 @@
     margin-right:						10px;
 }
 
-.tree a { text-decoration:none;
+.tree a { 
+
+	text-decoration:none;
     color: black;
-    }
+   }
 
 .scrollable{
-        height: 300px;
-        overflow: scroll;
-        width: 100%;
+	 height: 300px;
+     overflow: scroll;
+     width: 100%;
 }
 
 .folder_img, .file_img{
 	margin-right: 7px;
 }
 
+
 .folder_text{
-	color: white;
-    }
+	color: white;	
+}
 
 .treeForm {
 	margin-top: 10px;
 	margin-bottom: 5px;
-        width:85%;
-        text-align:right;
+	width:85%;
+	text-align:right;
 
 }
 
 #fileIn {
 
+	margin-left:23px;
 	
 }
 
 .filesRadio {
+
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
-.createSubmit {
 
-
-}
 
 
 .createSubmit input {
@@ -94,4 +96,10 @@
 	color: white;
 
 }
+
+.folderName {
+	color:white;
+
+}
+
 

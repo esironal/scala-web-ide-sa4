@@ -12,7 +12,6 @@
             speed: 300, 
             action: 'click',
             tabLocation: 'left',
-            topPos: '70px',
             leftPos: '20px',
             fixedPosition: false,
             positioning: 'absolute',
@@ -86,7 +85,6 @@
         
         if(settings.tabLocation === 'left' || settings.tabLocation === 'right') {
             obj.css({
-                'height' : properties.containerHeight,
                 'top' : settings.topPos
             });
             

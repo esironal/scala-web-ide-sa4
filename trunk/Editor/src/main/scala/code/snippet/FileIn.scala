@@ -84,13 +84,13 @@ object FileIn {
             if ((new java.io.File(filePath).isDirectory))
               goToFolderLink(
                 formId, filePath, filePathInProject, 
-                <img src="/filelist-template/img/folder.png" class="folder_img" /> <span class="folder_text">{
-                Text(file.getName)} </span><img class="right" src="/filelist-template/img/right.png"/>
+                <img src="/filelist-template/img/folder.jpeg" class="folder_img" /> 
+               <span class="folder_text">{ Text(file.getName)} </span><img class="right" src="/filelist-template/img/right.png"/>
+                <img class="right" src="/filelist-template/img/right.png"/>
                 
               )
             else
-              <a class="fileName" href={Helpers.appendParams("editor", ("id" -> project.id.is.toString) :: ("path" -> filePathInProject) :: Nil)}><img src="/filelist-template/img/file.png" class="file_img" /><span>{file.getName}</span></a>
-        }
+            <a class="fileName" href={Helpers.appendParams("editor", ("id" -> project.id.is.toString) :: ("path" -> filePathInProject) :: Nil)}><img src="/filelist-template/img/file.png" class="file_img" /><span>{file.getName}</span></a>        }
 
         def deleteFile(file: File) = {
             val fileName = file.getName
