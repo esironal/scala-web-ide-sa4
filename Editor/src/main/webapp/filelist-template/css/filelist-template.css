@@ -15,8 +15,9 @@
 
 .tree{
     width: 100%;
+   
     padding:0 0 0 0px;
-    color: white;
+	color: white;
 }
 
 #dirName, #create_file, #submit{
@@ -45,7 +46,7 @@
    }
 
 .scrollable{
-   max-height:420px;
+	 max-height:420px;
      overflow-x: auto;
      width: 100%;
 }
@@ -74,11 +75,15 @@
 }
 
 .filesRadio {
-
+	
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
+.filesRadio label {
+
+	color: white;
+}
 
 
 
@@ -102,31 +107,42 @@
 }
 
 
-.simpleListTemplate {
-   font-family: Helvetica,Arial,sans-serif; 
+
+.simpleListTemplate  {
+	 font-family: Helvetica,Arial,sans-serif;
 }
 
+
 .simpleListTemplate .tree{
-   color:black;
+	color:black;
+
 }
 
 .newListElem {
-    float:left;
-    margin:2% 0 2% 2%;
-    width:35%;
+	 float:left;
+	  margin:2% 0 2% 2%;
+	  width:35%;
 }
 
-.simpleList {
-    float:left;
-    margin:2%;
-    text-align:center;
-    width:15%;
-    border-left: 1px solid #cccccc;
-    padding: 1% 4%;
+.simplelist {
+
+	float:left;
+	 margin:2%;
+	 text-align:center;
+	 width:15%;
+	 border-left: 1px solid #cccccc;
+	 padding: 1% 4%;
+
+
+
 }
 
 .simpleListTitle {
-   font-size:19px; 
-   margin-bottom: 20px;
+	
+	font-size:19px;
+	margin-bottom: 20px;
+	
 }
+
+
 
