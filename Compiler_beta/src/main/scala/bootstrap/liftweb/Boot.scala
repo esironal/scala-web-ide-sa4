@@ -54,6 +54,13 @@ class Boot {
     def sitemapMutators = User.sitemapMutator
 
 	LiftRules.statelessDispatchTable.append(FullRest)
+	LiftRules.statelessDispatchTable.append {
+    	case Req("download" :: name :: Nil,"zip", GetRequest) =>
+        	() =>
+        		for {
+          			stream <- tryo(new java.io.FileInputStream("downloads/"+name+".zip")) if null ne stream
+        		} yield StreamingResponse(stream, () => stream.close, stream.available, List("Content-Type" -> "application/zip"), Nil, 200)
+    }
 
     // set the sitemap.  Note if you don't want access control for
     // each page, just comment this line out.
