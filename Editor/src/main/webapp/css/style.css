@@ -416,7 +416,7 @@ input[type="submit"] {
 	border-width: 1px;
 	border-style: solid;
 	border: medium none;
-	background: rgba(255,255,255,1);
+	background: rgba(85, 85, 85, 0.9);
 	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
@@ -439,6 +439,7 @@ input#chat_in{
 
 #chat_content {
 	overflow: auto;
+	color: white;
 }
 
 #chat_content ul {
