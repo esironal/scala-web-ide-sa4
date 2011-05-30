@@ -9,8 +9,6 @@ import scala.actors.remote.RemoteActor._
 import scala.actors.remote._
 import java.net.{InetAddress, UnknownHostException}
 
-import code.comet._
-
 /*
  * Run compiler and parse generated log.
  * @author: Cristian Bruseghini <cristian.bruseghini@gmail.com>	
