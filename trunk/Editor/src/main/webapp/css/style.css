@@ -413,6 +413,7 @@ input[type="submit"] {
 	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 	height: 89%;
+	z-index: -999;
 }
 
 #right_sidebar a {
@@ -482,7 +483,8 @@ input#chat_in{
 	
 	margin-left: 1%;
 	width: 99.5%;
-	height: 157px;;
+	height: 157px;
+	z-index: -999;
 
 }
 
