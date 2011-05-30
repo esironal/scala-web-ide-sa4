@@ -1,9 +1,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	/* background-image: url("/img/
-	pattern.png"); */
-	
+	/* background-image: url("/img/pattern.png"); */
 	font: Tahoma;
 	background-color:#eee !important;
 }
@@ -359,7 +357,6 @@ input[type="submit"] {
 .left-slider {
           padding: 20px;
           width: 15%;
-		  height: 400px;
           background: #ccc;
           border: 2px solid #989898;
       }
@@ -367,7 +364,6 @@ input[type="submit"] {
 .right-slider {
           padding: 20px;
           width: 15%;
-		  height: 400px;
           background: #ccc;
           border: 2px solid #989898;
       }
@@ -375,13 +371,11 @@ input[type="submit"] {
 /***************************************** LEFT SIDEBAR - FILE MANAGER ****************************************/
 
 #left_sidebar {
-/*
-	background: -moz-linear-gradient(90% 200% 180deg, #b8c3c7, #71787a);
-	background: -webkit-gradient(linear, left center, right center, from(#71787a), to(#b8c3c7));*/
+	
 	margin-top: 5px;
 	margin-left: 0.5%;
+	height: 89%;
 	float: left; 
-	height: 400px;
 	width: 15%;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -397,18 +391,18 @@ input[type="submit"] {
 }
 
 
-
+.addFile
+{
+	display:block !important;
+}
 
 /***************************************** RIGHT SIDEBAR - CHAT **********************************************/
 
 #right_sidebar {
-/*	background: -moz-linear-gradient(90% 200% 180deg, #71787a, #b8c3c7);
-	background: -webkit-gradient(linear, right center, left center, from(#71787a), to(#b8c3c7));*/
-	margin-top: 2px;
+	margin-top: 5px;
 	margin-right: 0.5%;
-	height: 400px;
-	float: right;
 	width: 15%;
+	background: rgba(85, 85, 85, 0.9);
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
@@ -416,10 +410,18 @@ input[type="submit"] {
 	border-width: 1px;
 	border-style: solid;
 	border: medium none;
-	background: rgba(85, 85, 85, 0.9);
 	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+	height: 89%;
 }
+
+#right_sidebar a {
+
+	z-index: -9999;
+
+}
+
+
 
 #chat_in{
 	border:1px solid #bdc7d8;
@@ -443,13 +445,17 @@ input#chat_in{
 }
 
 #chat_content ul {
+	overflow: auto;
+	height: 300px;
 	font-family: Tahoma;
 	font-size: 13px;
 	list-style: none;
 }
 
 #chat_content ul li {
-	width: 20px;
+	width: 140px;
+	word-wrap: break-word;
+	margin-bottom: 5px;
 }
 
 
@@ -459,10 +465,11 @@ input#chat_in{
 	margin-top:50px;
 	}
 #codearea {
-	width: 100%;
-	height: 100%;
+	width: 94%;
+	height: 70%;
 	float:left;
 	margin-top: 5px;
+	margin-left: 2%;
 }
 
 #codearea textarea {
@@ -470,6 +477,17 @@ input#chat_in{
 
 	visibility: hidden;
 }
+
+#tabs {
+	
+	margin-left: 1%;
+	width: 99.5%;
+	height: 157px;;
+
+}
+
+
+
 
 .editor
 {
@@ -765,11 +783,15 @@ input#chat_in{
 
 /*******************************  Home ******************************************/
 
+
+
+
+
+
 .logInBox{
 	
 	margin-left: auto;
 	margin-right: auto;
-
 
 	border: 1px solid #ccc;
 	-moz-box-shadow: 0 0 5px 5px #ddd;
@@ -1090,8 +1112,8 @@ input#chat_in{
 
 .CodeMirror-wrapping {
 	
-	height: 600px;
-	width: 98%;
+	height: 473px;
+	width: 100%;
 	margin-bottom: 2%;
 
 }
@@ -1106,8 +1128,6 @@ input#chat_in{
     margin-left: 1%;
     margin-right: 1%;
     overflow: auto;
-    width: 98%;
-    height: 600px;
     margin-bottom: 1%;
 }
 
