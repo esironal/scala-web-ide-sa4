@@ -21,8 +21,6 @@ object InviteList {
        		val allUser = User.findAll()
        
        		<ul>{
-                    val projectId = S.param("id").open_!.toString
-                    val users = Project.getProjectByIdAndByCurrentUser(projectId).users
                     val possibleInvite = allUser.filter(user => !(listAlreadyInProject.contains(user)))
                     
                     possibleInvite.map(user => <li>{ user.accountID.is }</li>)
