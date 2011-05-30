@@ -1,8 +1,9 @@
 body {
 	margin: 0;
 	padding: 0;
-	/* background-image: url("/img/pattern.png"); */
-	overflow: hidden;
+	/* background-image: url("/img/
+	pattern.png"); */
+	
 	font: Tahoma;
 	background-color:#eee !important;
 }
@@ -21,7 +22,7 @@ body {
 
 
 #ProfileContainer{
-	width:750px;
+	width:700px;
 	border-top: 1px solid #ccc;
 	 border-bottom: 1px solid #ccc;
 	 -moz-box-shadow: 0 0 5px 5px #ddd;
@@ -30,7 +31,6 @@ body {
 	  -webkit-border-radius: 10px;
 	  -moz-border-radius: 10px;
 	  border-radius: 10px;	
-	  margin-left: 454px;
 	
 	}
 
@@ -378,8 +378,6 @@ input[type="submit"] {
 /*
 	background: -moz-linear-gradient(90% 200% 180deg, #b8c3c7, #71787a);
 	background: -webkit-gradient(linear, left center, right center, from(#71787a), to(#b8c3c7));*/
-	
-	
 	margin-top: 5px;
 	margin-left: 0.5%;
 	float: left; 
@@ -766,22 +764,11 @@ input#chat_in{
 
 /*******************************  Home ******************************************/
 
-
-
-
-.imgLogo {
-
-	margin-left: 33%;
-	width: 550px;
-
-}
-
-
 .logInBox{
 	
-	margin-left: 525px;
+	margin-left: auto;
 	margin-right: auto;
-	float:left;
+
 
 	border: 1px solid #ccc;
 	-moz-box-shadow: 0 0 5px 5px #ddd;
