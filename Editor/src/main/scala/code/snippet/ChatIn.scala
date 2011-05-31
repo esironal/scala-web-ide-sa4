@@ -10,6 +10,9 @@ import util.Helpers._
 import comet.ChatServer
 import scala.xml.NodeSeq
 
+
+import model.FileChatMessage
+
 /**
  * A snippet transforms input to output... it transforms
  * templates to dynamic content.  Lift's templates can invoke
@@ -20,26 +23,37 @@ import scala.xml.NodeSeq
  * objects, singletons.  Singletons are useful if there's
  * no explicit state managed in the snippet.
  */
-object ChatIn {
-
+object ChatIn{
   
   def render = {
-
+	
     var filename = ""
     var name = ""
     var message = ""
+    var projectId = ""
     
     def processMessage(s: String) = {
     	message = s
+    	
     	filename = S.param("filename").openOr("")
     	name = S.param("name").openOr("")
+    	projectId = S.param("projectId").openOr("")
+    	
+    	var chatMessage = FileChatMessage.create
+    	 	
+    	chatMessage.projectID(java.lang.Long.parseLong(projectId))
+		chatMessage.fileName(filename)
+		chatMessage.timeStamp(new java.util.Date)
+		chatMessage.text("[" + name + "] " + message)
+		chatMessage.save
+    	
       	process()
     }
   	
   	def process() = {
-	    ChatServer ! (("[" + name + "] " + message, filename))
+	    ChatServer ! (("[" + name + "] " + message, filename, projectId))
 	    SetValById("chat_in", "") 
-//	     Alert("name = " + name + " message = " + message + " filename = " + filename)
+//	     Alert("name = " + name + " message = " + message + " filename = " + filename + " / projectId = " + projectId)
   	}
   	
   	def processFileName(s: String) = {

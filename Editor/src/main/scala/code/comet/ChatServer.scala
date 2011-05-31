@@ -7,6 +7,7 @@ import actor._
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.immutable.Iterable
 
+import model.FileChatMessage
 
 
 /**
@@ -17,6 +18,13 @@ import scala.collection.immutable.Iterable
 object ChatServer extends LiftActor with ListenerManager {
   private var msgs = Map.empty[String, ArrayBuffer[String]] // private state
 
+  val allMessages = FileChatMessage.findAll()
+  
+  for(m <- allMessages) {
+  	val room = m.projectID.is + m.fileName.is
+  	
+  	msgs = msgs + (room->((msgs.getOrElse(room, ArrayBuffer()) += m.text.is)))
+  }
 
   /**
    * When we update the listeners, what message do we send 
@@ -33,8 +41,11 @@ object ChatServer extends LiftActor with ListenerManager {
    * messages, and then update all the listeners.
    */
   override def lowPriority = {
-	case (s: String, filename:String) => {
-    	msgs = msgs + (filename->((msgs.getOrElse(filename, ArrayBuffer()) += s))); 
+	case (s: String, filename:String, projectId:String) => {
+
+		val room = projectId + filename
+    	msgs = msgs + (room->((msgs.getOrElse(room, ArrayBuffer()) += s)));
+    	
     	updateListeners()
     }
   }
