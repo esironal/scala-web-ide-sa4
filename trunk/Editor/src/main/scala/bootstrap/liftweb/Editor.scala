@@ -173,7 +173,7 @@ object Editor extends LiftView {
 								</div>
 							</div>
 							<div id="tabs-2">
-								<iframe src="http://localhost:4200"> 
+								<iframe src="http://localhost:4200" style="width:100%; height:70px; margin:0 auto; border=0" frameborder="0"> 
 								</iframe>
 							</div>
 						</div>				
