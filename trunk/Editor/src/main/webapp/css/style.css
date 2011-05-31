@@ -389,6 +389,7 @@ input[type="submit"] {
 	
 	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+	z-index: 500;
 }
 
 
@@ -472,7 +473,6 @@ input#chat_in{
 	float:left;
 	margin-top: 5px;
 	margin-left: 2%;
-	z-index: -999;
 }
 
 #codearea textarea {
@@ -486,7 +486,6 @@ input#chat_in{
 	margin-left: 1%;
 	width: 99.5%;
 	height: 150px;
-	z-index: -999;
 
 }
 
