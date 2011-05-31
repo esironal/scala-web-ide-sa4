@@ -20,7 +20,7 @@ object InviteList {
        		val listAlreadyInProject = Project.getProjectByIdAndByCurrentUser(projectId).users
        		val allUser = User.findAll()
        
-       		<ul>{
+       		<ul class="list">{
                     val possibleInvite = allUser.filter(user => !(listAlreadyInProject.contains(user)))
                     
                     possibleInvite.map(user => <li onclick="document.getElementById('usr').value = this.innerHTML; document.forms['addusr'].submit();">{ user.accountID.is }</li>)
