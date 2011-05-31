@@ -449,7 +449,7 @@ input#chat_in{
 
 #chat_content ul {
 	overflow: auto;
-	height: 300px;
+	height: 418px;
 	font-family: Tahoma;
 	font-size: 13px;
 	list-style: none;
@@ -778,9 +778,8 @@ input#chat_in{
 	margin-bottom: 15px;
 	margin-left: 122px;
 	margin-top: 15px;
+	margin-left: 133px;
 	
-
-
 }
 
 
