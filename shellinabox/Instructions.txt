@@ -1,0 +1,10 @@
+Install program:
+./configure
+make
+sudo make install
+
+Run program:
+shellinaboxd -t -s /:user_name:group_id_of_user:working_directory:path_to_scala/bin/scala
+
+Example
+shellinaboxd -t -s /:admin:20:/:/Applications/scala-2.8.1.final/bin/scala
