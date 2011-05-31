@@ -178,6 +178,11 @@ object Editor extends LiftView {
 							</div>
 						</div>				
 						}
+					else{
+						<div class="imgDivProj">
+							<img src="/img/logo02.png" alt="the project logo" title="the LOGO"/>
+						</div>
+					}
 				}	
 			</div>
 	      	<!-- right part -->
