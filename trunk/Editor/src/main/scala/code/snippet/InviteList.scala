@@ -23,7 +23,7 @@ object InviteList {
        		<ul>{
                     val possibleInvite = allUser.filter(user => !(listAlreadyInProject.contains(user)))
                     
-                    possibleInvite.map(user => <li>{ user.accountID.is }</li>)
+                    possibleInvite.map(user => <li onclick="document.getElementById('usr').value = this.innerHTML; document.forms['addusr'].submit();">{ user.accountID.is }</li>)
         	}</ul>
        }
 

@@ -1,10 +1,10 @@
 <div id="main" class="simpleListTemplate lift:surround?with=editorProject;at=content">
     <div class="newListElem">
-        <form action="/invite" method="post" class="lift:InvitationScreen">
+        <form id="addusr" action="/invite" method="post" class="lift:InvitationScreen">
             Add a collaborator filling its username and hitting add
             <br/><br/>
             <div class="lift:FileIn.hiddenProjectId"></div>
-            <input name="email" value="" type="text"/>
+            <input id="usr" name="email" value="" type="text"/>
             <input value="Add" type="submit"/>
         </form>
     </div>
