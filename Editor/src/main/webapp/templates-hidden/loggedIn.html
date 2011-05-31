@@ -28,7 +28,8 @@
 	width:100%;
 	list-style:none;
 	font-weight:bold;
-	margin-top:0px;
+	margin-right: 70px;
+	margin-top: 7px;
 }
 
 
@@ -51,49 +52,61 @@
 
 
 .userMenu li a:hover{
-	color:#4B717A;
-	/*background:#9DE2FB; /* Solid colour fall-back */*/
-	/*background:rgba(157,226,251,0.75); /* It'll look nice semi-transparent */*/
-
-	text-decoration:underline;
+	color: rgb(191, 187, 136);
 }
+
 #userMenuID{
 	margin-top:0px;
-	}
+}
 
 /************/
 
 
 .userMenu {
 
+	z-index: 999;
+	float:right;
+	width:100%;
+	list-style:none;
+	font-weight:bold;
+	margin-right: 70px;
+	margin-top: 7px;
+	font: 15px/18px Tahoma Neue,Helvetica,Arial,sans-serif !important;
+	height: 171px;
 
 
 }
 
 .userMenu ul{
-	right:-9999px;
+	right:5000px;
 	list-style:none;
 	position:absolute;
 	-webkit-transition:0.25s linear opacity; /* Make the dropdown fade-in in Webkit */
-		background-image: -webkit-gradient(
-	    linear,
-	    left bottom,
-	    left top,
-	    color-stop(0.05, rgb(59,58,59)),
-	    color-stop(0.48, rgb(102,102,102)),
-	    color-stop(0.88, rgb(156,156,156))
+	background-image: -webkit-gradient(
+    	linear,
+    	left bottom,
+    	left top,
+    	color-stop(0, rgba(156,156,156, 0.9)),
+    	color-stop(0.51, rgba(86,89,88, 0.9)),
+    	color-stop(0.76, rgba(59,58,59, 0.9))
 	);
 	background-image: -moz-linear-gradient(
-	    center bottom,
-	    rgb(59,58,59) 5%,
-	    rgb(102,102,102) 48%,
-	    rgb(156,156,156) 88%
+    	center bottom,
+    	rgba(130,130,130, 0.9) 0%,
+    	rgba(86,89,88,0.9) 51%,
+    	rgba(54,56,56,0.9) 76%
 	);
+	
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	height: 171px;
+		z-index: 600;
 	
 	
 }
 .userMenu ul li{
-	padding-top:1px; /* Introducing a padding between the li and the a give the illusion spaced items */
+	padding-top:14px; /* Introducing a padding between the li and the a give the illusion spaced items */
 	float:none;
 	
 	
@@ -125,12 +138,6 @@
 	    rgb(156,156,156) 88%
 	);*/
 	
-	-webkit-box-shadow: 0px 1px 1px rgba(150,150,150,0.8);
-	-moz-box-shadow: 0px 1px 1px rgba(150,150,150,0.8);
-	box-shadow: 0px 1px 1px rgba(150,150,150,0.8);
-
-	
-	text-decoration:underline;
 }
 .userMenu li:hover ul a{ /* Override some top level styles when dropdown is hovered */
 	text-decoration:none;
@@ -140,7 +147,6 @@
 	
 
 	
-	text-decoration:underline;
 	-moz-transform:scale(1.05);
 	-webkit-transform:scale(1.05);
 }

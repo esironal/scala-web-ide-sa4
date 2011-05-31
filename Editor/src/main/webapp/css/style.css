@@ -150,12 +150,9 @@ body {
 
 
 .messageText {
-	
 	height: 35px;
 	width: 60%;
-	text-align: left;
-	
-
+	text-align: left;	
 }
 
 .msgFrom {
@@ -324,7 +321,7 @@ input[type="submit"] {
 	border: none;
 	margin: 1px 11px 1px 11px;
 	cursor: default;
-	color: white;
+	color: rgb(191, 187, 136);
 }
 
 #top_menu li img
@@ -339,7 +336,7 @@ input[type="submit"] {
 
 #top_menu li:hover a {
 
-	color: rgb(59, 58, 59);
+	color: rgb(191, 187, 136);
 }
 
 /*#hidden-button
@@ -1174,14 +1171,23 @@ input#chat_in{
     color: #333333;
     cursor: pointer;
     font: 11px/14px "Lucida Grande",sans-serif;
-	margin-left: 184px;
+	margin-left: 237px;
     overflow: visible;
     padding: 4px 8px 5px;
     text-shadow: 1px 1px 0 #FFFFFF;
     width: 120px;
 	font-size:120%;
+	margin-top: 4px;
 
 }
 
 
+.imgDiv {
 
+	width: 700px;
+	margin-right: auto;
+	margin-left: auto; 
+	margin-top: 25px;
+	margin-bottom: 25px;
+
+}
