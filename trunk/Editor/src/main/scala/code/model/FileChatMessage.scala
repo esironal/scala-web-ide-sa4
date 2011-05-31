@@ -10,7 +10,7 @@ import java.math.MathContext
 object FileChatMessage extends FileChatMessage with LongKeyedMetaMapper[FileChatMessage] {
 	override def dbTableName = "FileChatMessages"
 	
-	override def fieldOrder = List(id, projectID, fileName, timeStamp, userID, text)
+	override def fieldOrder = List(id, projectID, fileName, timeStamp, text)
 }
 
 class FileChatMessage extends LongKeyedMapper[FileChatMessage] with IdPK {
@@ -29,10 +29,6 @@ class FileChatMessage extends LongKeyedMapper[FileChatMessage] with IdPK {
 	
 	object timeStamp extends MappedDateTime(this){
 		override def displayName = "timeStamp"
-	}
-	
-	object userID extends MappedLong(this) {
-		override def displayName = "User ID"
 	}
 	
 	 object text extends MappedTextarea(this, 2048) {

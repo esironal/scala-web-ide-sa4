@@ -188,7 +188,7 @@ object Editor extends LiftView {
 				<lift:comet type="InProjectViewer">
 		                 <span name="list" id="inProject_out"></span>
 		           </lift:comet>
-	      		<lift:comet type="Chat" name={filename}>
+	      		<lift:comet type="Chat" name={index+filename}>
 	      		<h5 style="text-align:center">Chat</h5>
 	      		<ul>
 	      			<li>A message</li>
@@ -200,7 +200,7 @@ object Editor extends LiftView {
 	      			<input class="lift:ChatIn" id="chat_in" />
 	      			<input type="hidden" name="filename" value={filename}/>
 	      			<input type="hidden" name="name" value={User.currentUser.openOr(null).accountID.is}/>
-	      			
+	      			<input type="hidden" name="projectId" value={index}/>	      			
 	      			<div class="chatButton"><input type="submit" value="Send"/></div>
 				</form>
 	      		</div>
