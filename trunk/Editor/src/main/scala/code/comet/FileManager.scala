@@ -15,6 +15,7 @@ import java.io.IOException
 import java.io.OutputStream
 import java.io.PrintStream
 import java.io.Reader
+import scala.xml._
 
 object FileManager extends LiftActor with ListenerManager {
 
@@ -52,6 +53,42 @@ object FileManager extends LiftActor with ListenerManager {
     def openFile(filePath: String): String = {
     	Source.fromFile(new File(filePath)).getLines.mkString("\n")
     }
+    
+    def getLogPath(id: Int): String = {
+      
+    	val c = scala.Array("/bin/bash","-c", "cd compiled_projects/ && unzip -u user_"+id+".zip")
+    	
+  		val exec = Runtime.getRuntime.exec(c)
+  		println("before waitfor")
+  		exec.waitFor
+  		println("after waitfor")
+  		val v = exec.exitValue()
+    		
+  		
+  		println(" : exec.exitValue() = " + v)
+  		
+  		if(v == 0) {
+  		  
+  			return "compiled_projects/project_"+id+"/log/"
+  		}
+    	
+    	return "failed to unzip"
+    }
+    
+     def getLog(logPath: String): NodeSeq = {
+     
+       var filter: FilenameFilter = new FilenameFilter() {
+         def accept(dir: File, name: String): Boolean = {
+           return name.endsWith(".xml")
+         }
+       }
+       println("logPath: "+logPath+(new File(logPath)).list(filter)(0))
+      var filteredList = (new File(logPath)).list(filter)
+      var log = XML.load(new FileReader(new File( logPath+filteredList(filteredList.length - 1))))
+     
+     return <b>{log}</b>
+     
+   }
     
     // creates a zip file of the file on the given projectPath and returns its path
     def zipFile(path: String, projectName:String, userId: Long): String = {
@@ -105,6 +142,7 @@ object FileManager extends LiftActor with ListenerManager {
     		optstr = optstr +"\"" +opt+ "\"" +", "
     	}
     	optstr = optstr.substring(0,optstr.length - 3) 
+    	println("json is: "+"{\"id\":\""+userId+"\", \"path\":\""+path+"\", \"options\": ["+optstr+"\"]}")
     	return "{\"id\":\""+userId+"\", \"path\":\""+path+"\", \"options\": ["+optstr+"\"]}"
     }
 

@@ -88,6 +88,8 @@ object Editor extends LiftView {
 	def errorPage(): NodeSeq = {
 		<span>{"TODO"}</span>
 	}
+	
+	
 
 	def errorPage(s: String): NodeSeq = {
 		<span>{s}</span>
@@ -105,10 +107,8 @@ object Editor extends LiftView {
 			  var key = '{key}';
 	        </script>
 
+			<div style="display: none;" id="userID" name="userID" >{code.model.User.currentUser.openOr(null: User).id.is}</div>
 
-			 <div style="display: none;" id="userID" name="userID" >{code.model.User.currentUser.openOr(null: User).id.is}</div>
-
-			  	
 			<div id="save_form">
 	        <form class="lift:form.ajax" name="save_form">
 			<lift:SaveBuffer filename={S.param("path").openOr("").toString}>	    	
@@ -130,7 +130,6 @@ object Editor extends LiftView {
 	      	<!-- left part -->
 			<div class="left-slider" id="left_sidebar" value="true">
 								<a class="left-handle" href="#">Content</a>
-	      				
 			                    <div class="tree lift:FileIn.cometFileList" style="display:inline-block">
 			                        <span id="backlink">back</span>
 			                        <img src="/filelist-template/img/current_folder.png"/>
@@ -147,7 +146,7 @@ object Editor extends LiftView {
 			                            <div class="lift:FileIn.hiddenProjectId"></div>
 			                            <input type="hidden" id="currentDir" name="currentDir" value=""/>
 			                            <input class="lift:FileIn.newFile" id="fileIn"/><br/>
-	      								<div class="filesRadio"><input type="radio" name="type" id="typefile" value="file" checked="ckecked" />
+			                          <div class="filesRadio"><input type="radio" name="type" id="typefile" value="file" checked="ckecked" />
 	      								<label for="typefile">File</label><input type="radio" name="type" id="typefolder" value="folder" />
 	      								<label for="typefolder">Folder</label>
 	      						</div>
@@ -158,7 +157,7 @@ object Editor extends LiftView {
 			                    </div>
 			</div>	
 
-	      	<!-- middle part -->
+	       	<!-- middle part -->
 	      	<div id="codearea">
 	      		{
 					if(file) {
@@ -174,7 +173,7 @@ object Editor extends LiftView {
 								</div>
 							</div>
 							<div id="tabs-2">
-								<iframe src="http://localhost:4200" style="width:100%; height:70px; margin:0 auto; border=0" frameborder="0"> 
+								<iframe src="http://localhost:4200"> 
 								</iframe>
 							</div>
 						</div>				
@@ -200,7 +199,7 @@ object Editor extends LiftView {
 	      			<input class="lift:ChatIn" id="chat_in" />
 	      			<input type="hidden" name="filename" value={filename}/>
 	      			<input type="hidden" name="name" value={User.currentUser.openOr(null).accountID.is}/>
-	      			<input type="hidden" name="projectId" value={index}/>	      			
+	      			<input type="hidden" name="projectId" value={index}/>	
 	      			<div class="chatButton"><input type="submit" value="Send"/></div>
 				</form>
 	      		</div>
