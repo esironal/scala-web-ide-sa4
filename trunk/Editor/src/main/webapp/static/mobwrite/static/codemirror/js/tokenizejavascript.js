@@ -55,6 +55,7 @@ var tokenizeJavaScript = (function() {
  	  "implicit" : atom,
  	  "lazy": atom,
  	  "class": keywordB,
+ 	  "object": keywordB,
  	  "requires": keywordC,
  	  "with": keywordC,
  	  "extends": keywordC,
