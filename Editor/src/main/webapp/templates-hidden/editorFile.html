@@ -51,10 +51,7 @@
 }
 .userMenu li a:hover{
 	color: rgb(191, 187, 136);
-
 }
-
-
 #userMenuID{
 	margin-top:0px;
 	}
@@ -113,6 +110,8 @@
 }
 
 
+
+
   /* ]]> */
   </style>
 
@@ -130,15 +129,16 @@
     </style>
 
 
+
 	<script src="lib/jquery-ui-1.7.3.custom.min.js"></script>
     
     <script src="static/mobwrite/static/compressed_codemirror.js"></script>
+    
     <script src="static/mobwrite/static/codemirror/js/codemirror.js"></script>
     <script>
       mobwrite.syncGateway = 'http://mobwrite3.appspot.com/scripts/q.py';
     </script>
 	
-
 
 	<script type="text/javascript">
   function saveBuffer() {
@@ -154,43 +154,46 @@
     xyzzy();
   }
   
-  
   function buildButton() {
-  	var userIDform = jQuery('#userID')[0];
-  	var userID = userIDform.innerHTML;
-  	 alert('userID: '+userID);
-  	 var projectIDform = jQuery('#projectId')[0];
-  	  var projectID = projectIDform.value;
-  	  alert('projectID: '+projectID);
-  	   AJAX('http://localhost:8080/userId/'+userID+'/projectId/'+projectID+'.xml', 'compiling');
+    var userIDform = jQuery('#userID')[0];
+    var userID = userIDform.innerHTML;
+    var projectIDform = jQuery('#projectId')[0];
+    var projectID = projectIDform.value;
+    compile('compiling...');
+    AJAX('http://localhost:8080/userId/'+userID+'/projectId/'+projectID+'.xml', 'compiling');
+    
   }
   
   function AJAX(url, callback) {
-  	var xmlhttp = new XMLHttpRequest();
-  	var object = {};
-  	xmlhttp.open( 'GET', url, true );
-  	xmlhttp.onreadystatechange = function () {
-  		if(xmlhttp.readyState == 4){
-  			if(xmlhttp.status == 200) {
-  				if(callback == 'compiling') {
-  					compile(xmlhttp.responseText);
-  				}
-  			}
-  		}
-    };
-    
-    xmlhttp.send(null);
-    }
-    
-     function compiling(response) {
-     	var log = jQuery('#log')[0];
-     	 log.innerHTML = response;
-     
-     }
+	
+	var xmlhttp = new XMLHttpRequest();	
+	var object = {}; 
+	
+	xmlhttp.open( 'GET', url, true );
+	xmlhttp.onreadystatechange = function () {
+		if(xmlhttp.readyState == 4){
+			if(xmlhttp.status == 200) {
+				if(callback == 'compiling') {
+					compile(xmlhttp.responseText);
+				}
+			}
+		}
+	};
+ 
+	xmlhttp.send(null);
+	
+	
+}
+
+  function compile(response) {
   
+  	
+    var log = jQuery('#log')[0];
+    log.innerHTML = response;
   
+  }
   
-  
+   
 </script>
 
 	<script type="text/javascript">
@@ -231,15 +234,13 @@
 	</script>
 	<!-- /RIGHT -->
 	<!-- /SLIDERS -->
-	
-	
 		
   </head>
 
 <!-- INSERIRE IL NOME DEL FILE -->
 <!-- <body onload="var name = getURL(); "> -->
 	<body onload="getURL(); mobwrite.share(demo_editor_text);">
-		
+			
 		<div style="width: 200px; float:right;">
 			<ul class="userMenu">
 				<li>
