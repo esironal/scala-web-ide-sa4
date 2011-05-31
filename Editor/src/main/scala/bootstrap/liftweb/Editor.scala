@@ -113,7 +113,9 @@ object Editor extends LiftView {
 	        <form class="lift:form.ajax" name="save_form">
 			<lift:SaveBuffer filename={S.param("path").openOr("").toString}>	    	
 			<textarea style="display:none" id="buffer" name="buffer"/>
-
+	      	<!--
+	    	<input type="hidden" id="buffer" name="buffer"/>
+	      	-->
 	      	<input type="hidden" id={filename} name="filename" value={S.param("path").openOr("").toString}/>
 	      	<input type="hidden" id="projectId" name="projectId" value={S.param("id").openOr("").toString}/>
 	  		</lift:SaveBuffer>
@@ -172,13 +174,11 @@ object Editor extends LiftView {
 								</div>
 							</div>
 							<div id="tabs-2">
-								<iframe src="http://localhost:4200"> 
+								<iframe src="http://localhost:4200" style="width:100%; height:60px; margin:0 auto; border=0"> 
 								</iframe>
 							</div>
 						</div>				
 						}
-					
-					<div class="imgDivProj"><img src="/img/logo02.png" alt="the project logo" title="the LOGO"/></div>
 				}	
 			</div>
 	      	<!-- right part -->
