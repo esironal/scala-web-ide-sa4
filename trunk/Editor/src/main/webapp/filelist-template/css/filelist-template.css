@@ -43,7 +43,15 @@
 
 	text-decoration:none;
     color: black;
-   }
+    
+    
+}
+
+
+.tree a hover { 
+
+	color: rgb(191, 187, 136);    
+}
 
 .scrollable{
 	 max-height:420px;
@@ -124,7 +132,7 @@
 	  width:35%;
 }
 
-.simplelist {
+.simpleList {
 
 	float:left;
 	 margin:2%;
