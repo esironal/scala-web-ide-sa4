@@ -1,5 +1,5 @@
 <div id="main" class="simpleListTemplate lift:surround?with=editorProject;at=content">
-    <div class="newListElem">
+    <div class="newListElem" style="display:none">
         <form id="addusr" action="/invite" method="post" class="lift:InvitationScreen">
             Add a collaborator filling its username and hitting add
             <br/><br/>
@@ -17,6 +17,12 @@
         </div>
     </div>
     
-    <div>People you could invite:</div>
-    <div class="lift:InviteList.whoToInvite"></div>
+    <div class="simpleList">
+        <div class="simpleListTitle">
+            People you could invite
+        </div>
+        <div class="tree">
+            <div class="lift:InviteList.whoToInvite"></div>
+        </div>
+    </div>
 </div>
