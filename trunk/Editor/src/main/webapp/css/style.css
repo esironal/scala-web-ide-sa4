@@ -403,7 +403,7 @@ input[type="submit"] {
 #right_sidebar {
 	margin-top: 5px;
 	margin-right: 0.5%;
-	width: 15%;
+	
 	background: rgba(85, 85, 85, 0.9);
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -443,8 +443,7 @@ input#chat_in{
 }
 
 #chat_content {
-	overflow: auto;
-	color: white;
+		color: white;
 }
 
 #chat_content ul {
@@ -776,9 +775,9 @@ input#chat_in{
 	font-size: 14px;
 	width: 90px;
 	margin-bottom: 15px;
-	margin-left: 122px;
+	margin-left: 113px;
 	margin-top: 15px;
-	margin-left: 133px;
+
 	
 }
 
