@@ -57,6 +57,7 @@
     max-height:480px;
      overflow-x: auto;
      width: 100%;
+     min-height: 439px;
 }
 
 .folder_img, .file_img{
