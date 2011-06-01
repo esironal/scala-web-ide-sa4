@@ -533,6 +533,7 @@ input#chat_in{
 	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 	overflow: auto;
+	max-height:70px;
 }
 
 /*WO*/
